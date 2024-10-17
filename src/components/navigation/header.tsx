@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { logoSmall, logoLarge } from "../../assets/logo";
-import profileIcon from "../../assets/icon";
+import { profileIcon, bars } from "../../assets/icon";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -60,7 +60,9 @@ function Header() {
               <img src={logoSmall} aria-label="main logo" />
             </picture>
           </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-5" onClick={() => setIsDropDownOpen(!dropDownOpen)} />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-5" onClick={() => setIsDropDownOpen(!dropDownOpen)}>
+            <img src={bars} />
+          </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
             <Nav className="dropdown-active ms-auto align-items-center">
               <Link className="nav-link-styling fs-1-125rem m-2" to="/">
