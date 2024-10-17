@@ -60,7 +60,7 @@ function Header() {
               <img src={logoSmall} aria-label="main logo" />
             </picture>
           </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-5" onClick={() => setIsDropDownOpen(!dropDownOpen)}>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="pe-5" onClick={() => setIsDropDownOpen(!dropDownOpen)}>
             <img src={bars} />
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
