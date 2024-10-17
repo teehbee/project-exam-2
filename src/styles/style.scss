@@ -1,0 +1,191 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+@import "node_modules/bootstrap/scss/variables";
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Fonts
+
+* {
+  font-family: "Rubik", sans-serif;
+}
+
+.secondary-font {
+  font-family: "Playfair Display", serif;
+}
+
+// Font size variables
+
+$custom-fs-0-5rem: 0.5rem;
+$custom-fs-0-625rem: 0.625rem;
+$custom-fs-0-75rem: 0.75rem;
+$custom-fs-0-938rem: 0.938rem;
+$custom-fs-0-875rem: 0.875rem;
+$custom-fs-1-125rem: 1.125rem;
+$custom-fs-1-25rem: 1.25rem;
+$custom-fs-1-5rem: 1.5rem;
+$custom-fs-1-563rem: 1.563rem;
+$custom-fs-1-625rem: 1.625rem;
+$custom-fs-2rem: 2rem;
+$custom-fs-2-125rem: 2.125rem;
+$custom-fs-2-375rem: 2.375rem;
+$custom-fs-3rem: 3rem;
+$custom-fs-3-625rem: 3.625rem;
+$custom-fs-4-rem: 4rem;
+
+// Font classes
+
+.fs-0-875rem {
+  font-size: $custom-fs-0-875rem;
+}
+
+.fs-1-125rem {
+  font-size: $custom-fs-1-125rem;
+}
+
+// Responsive font classes
+
+.fs-0-5rem-to-0-625rem {
+  font-size: $custom-fs-0-5rem; 
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-0-625rem;
+  }
+}
+
+.fs-0-625rem-to-1rem {
+  font-size: $custom-fs-0-625rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: 1rem;
+  }
+}
+
+.fs-0-75rem-to-1-125rem {
+  font-size: $custom-fs-0-75rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-1-125rem;
+  }
+}
+
+.fs-1-5rem-to-2rem {
+  font-size: $custom-fs-1-5rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-2rem;
+  }
+}
+
+.fs-2rem-to-3rem {
+  font-size: $custom-fs-2rem; 
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-3rem;
+  }
+}
+
+// Image styling
+
+.banner-img {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  filter: brightness(50%);
+  z-index: -1;
+}
+
+// Colors 
+
+
+$dark-gray-color: #2E3543;
+$secondary-gray-color: #484848;
+$red-button-color: #B52935;
+
+.bg-dark-gray-color {
+  background-color: $dark-gray-color
+}
+
+// Sticky footer
+
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+// Navigation
+
+.upper-nav {
+  height: 40px;
+}
+
+.upper-nav ul {
+  list-style: none;
+}
+
+// Buttons
+
+.main-button-red {
+  border-radius: 0;
+  background-color: $red-button-color;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+// Borders
+
+.border-bottom-white {
+  border-bottom: 0.2px solid rgb(255, 255, 255, .5);
+}
+
+// Forms - Searchform 
+
+.search-form {
+  max-width: 400px;
+  background-color: rgb(37, 38, 39, .6)
+}
+
+.search-form label {
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.search-form input {
+  height: 40px;
+  background: $secondary-gray-color;
+  color: rgb(255, 255, 255, .7);
+  border: none;
+  text-indent: 10px;
+  font-weight: 300;
+  font-size: $custom-fs-0-875rem;
+}
+
+.search-form input::placeholder {
+  color: white;
+  font-weight: 300;
+  opacity: 0.7;
+}
+
+// Media queries 
+
+@media screen and (max-width: 767px) {
+  .border-bottom-nav-dropdown {
+    border-bottom: 0.2px solid rgb(255, 255, 255, .5);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .text-start-lg {
+    text-align: start;
+  }
+  .search-form input {
+      height: 45px;
+  }
+    .search-form {
+      max-width: 530px;
+    }
+}
