@@ -31,6 +31,7 @@ $custom-fs-1-625rem: 1.625rem;
 $custom-fs-2rem: 2rem;
 $custom-fs-2-125rem: 2.125rem;
 $custom-fs-2-375rem: 2.375rem;
+$custom-fs-2-5rem: 2.5rem;
 $custom-fs-3rem: 3rem;
 $custom-fs-3-625rem: 3.625rem;
 $custom-fs-4-rem: 4rem;
@@ -76,6 +77,14 @@ $custom-fs-4-rem: 4rem;
 
   @include media-breakpoint-up("md") {
     font-size: $custom-fs-2rem;
+  }
+}
+
+.fs-1-5rem-to-2-5rem {
+  font-size: $custom-fs-1-5rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-2-5rem;
   }
 }
 
@@ -211,6 +220,9 @@ header {
   .border-bottom-nav-dropdown {
     border-bottom: 0.2px solid rgb(255, 255, 255, 0.5);
   }
+  .banner-img {
+    max-height: 500px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -226,6 +238,9 @@ header {
     width: 100%;
     margin-top: 10px;
     padding: 50px 0;
+  }
+  .banner-img {
+    max-height: 800px;
   }
 }
 

@@ -8,7 +8,7 @@ function Home() {
         <source media="(min-width: 992px)" srcSet={frontpageHeroImageLarge} />
         <img className="position-absolute top-0 banner-img" src={frontpageHeroImageSmall} aria-label="A beautiful fjord" />
       </picture>
-      <div className="hero-container d-flex align-items-center justify-content-center position-relative">
+      <section className="hero-container d-flex align-items-center justify-content-center position-relative">
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-6">
@@ -20,8 +20,10 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <div></div>
+      </section>
+      <section className="container text-center">
+        <h2 className="py-5 secondary-font fs-1-5rem-to-2-5rem">Find your next getaway</h2>
+      </section>
     </>
   );
 }
