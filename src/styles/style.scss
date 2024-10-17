@@ -48,7 +48,7 @@ $custom-fs-4-rem: 4rem;
 // Responsive font classes
 
 .fs-0-5rem-to-0-625rem {
-  font-size: $custom-fs-0-5rem; 
+  font-size: $custom-fs-0-5rem;
 
   @include media-breakpoint-up("md") {
     font-size: $custom-fs-0-625rem;
@@ -80,7 +80,7 @@ $custom-fs-4-rem: 4rem;
 }
 
 .fs-2rem-to-3rem {
-  font-size: $custom-fs-2rem; 
+  font-size: $custom-fs-2rem;
 
   @include media-breakpoint-up("md") {
     font-size: $custom-fs-3rem;
@@ -91,21 +91,29 @@ $custom-fs-4-rem: 4rem;
 
 .banner-img {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   object-fit: cover;
   filter: brightness(50%);
   z-index: -1;
 }
 
-// Colors 
+.hero-container {
+  height: 100vh;
+  margin-top: -175px;
+}
 
+.hero-text-container {
+  max-width: 540px;
+}
 
-$dark-gray-color: #2E3543;
+// Colors
+
+$dark-gray-color: #2e3543;
 $secondary-gray-color: #484848;
-$red-button-color: #B52935;
+$red-button-color: #b52935;
 
 .bg-dark-gray-color {
-  background-color: $dark-gray-color
+  background-color: $dark-gray-color;
 }
 
 // Sticky footer
@@ -139,14 +147,15 @@ $red-button-color: #B52935;
 // Borders
 
 .border-bottom-white {
-  border-bottom: 0.2px solid rgb(255, 255, 255, .5);
+  border-bottom: 0.2px solid rgb(255, 255, 255, 0.5);
 }
 
-// Forms - Searchform 
+// Forms - Searchform
 
 .search-form {
   max-width: 400px;
-  background-color: rgb(37, 38, 39, .6)
+  height: 325px;
+  background-color: rgb(37, 38, 39, 0.6);
 }
 
 .search-form label {
@@ -157,7 +166,7 @@ $red-button-color: #B52935;
 .search-form input {
   height: 40px;
   background: $secondary-gray-color;
-  color: rgb(255, 255, 255, .7);
+  color: rgb(255, 255, 255, 0.7);
   border: none;
   text-indent: 10px;
   font-weight: 300;
@@ -170,11 +179,17 @@ $red-button-color: #B52935;
   opacity: 0.7;
 }
 
-// Media queries 
+// Media queries
 
 @media screen and (max-width: 767px) {
   .border-bottom-nav-dropdown {
-    border-bottom: 0.2px solid rgb(255, 255, 255, .5);
+    border-bottom: 0.2px solid rgb(255, 255, 255, 0.5);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-form {
+    height: 375px;
   }
 }
 
@@ -183,9 +198,17 @@ $red-button-color: #B52935;
     text-align: start;
   }
   .search-form input {
-      height: 45px;
+    height: 45px;
   }
+  .search-form {
+    max-width: 530px;
+  }
+  .hero-container {
+    margin-top: -125px;
+  }
+  @media screen and (min-width: 768px) {
     .search-form {
-      max-width: 530px;
+      height: 350px;
     }
+  }
 }
