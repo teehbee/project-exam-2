@@ -73,6 +73,14 @@ $custom-fs-4-rem: 4rem;
   }
 }
 
+.fs-1rem-to-1-25rem {
+  font-size: 1rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-1-25rem;
+  }
+}
+
 .fs-1rem-to-1-5rem {
   font-size: 1rem;
 
@@ -164,6 +172,35 @@ header {
 
 .nav-link-styling:hover {
   font-weight: 400;
+}
+
+.fp-img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #272727;
+}
+
+.fp-img-container:hover .fp-img-overlay {
+  opacity: 0.9;
+}
+
+.fp-img-overlay-text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 55%;
+  left: 35%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 // Buttons
