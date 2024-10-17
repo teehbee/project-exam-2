@@ -12,5 +12,6 @@ import RegistrationComplete from "./register/registerComplete";
 import VenueManagerBookings from "./venueManager/vmBookings";
 import UpdateVenue from "./venueManager/vmUpdateVenue";
 import UpdateProfile from "./profile/updateProfile";
+import Venue from "./venue";
 
-export { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile };
+export { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile, Venue };

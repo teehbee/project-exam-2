@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile } from "../pages";
+import { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile, Venue } from "../pages";
 import MainLayout from "../layouts/mainLayout";
 
 const router = createBrowserRouter([
@@ -62,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "success",
         element: <BookingSuccess />,
+      },
+      {
+        path: "venue",
+        element: <Venue />,
       },
     ],
   },

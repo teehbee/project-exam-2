@@ -10,6 +10,7 @@
 
 * {
   font-family: "Rubik", sans-serif;
+  color: #252627;
 }
 
 .secondary-font {
@@ -69,6 +70,14 @@ $custom-fs-4-rem: 4rem;
 
   @include media-breakpoint-up("md") {
     font-size: $custom-fs-1-125rem;
+  }
+}
+
+.fs-1rem-to-1-5rem {
+  font-size: 1rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-1-5rem;
   }
 }
 
@@ -212,6 +221,14 @@ header {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.dark-font {
+  color: $dark-gray-color;
+}
+
+.link-hover:hover {
+  font-weight: 800;
 }
 
 // Media queries
