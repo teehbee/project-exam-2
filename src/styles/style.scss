@@ -134,6 +134,10 @@ $red-button-color: #b52935;
   list-style: none;
 }
 
+header {
+  z-index: 1000;
+}
+
 // Buttons
 
 .main-button-red {
@@ -177,6 +181,12 @@ $red-button-color: #b52935;
   color: white;
   font-weight: 300;
   opacity: 0.7;
+}
+
+// Utility classes
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 // Media queries

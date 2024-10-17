@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { logoSmall, logoLarge } from '../../assets/logo';
+import { Link } from "react-router-dom";
+import { logoSmall, logoLarge } from "../../assets/logo";
 
 function Footer() {
   return (
@@ -7,20 +7,34 @@ function Footer() {
       <div className="container text-light text-center border-bottom-white">
         <div className="row pb-3">
           <div className="col-12 col-lg-3">
-            <picture>
-            <source media="(min-width: 992px)" srcSet={logoLarge} />
-            <img src={logoSmall} aria-label="main logo" />
-            </picture>
+            <Link to="/">
+              <picture>
+                <source media="(min-width: 992px)" srcSet={logoLarge} />
+                <img src={logoSmall} aria-label="main logo" />
+              </picture>
+            </Link>
           </div>
-            <div className="col-12 col-lg-2 py-3 py-lg-0 text-decoration-none d-lg-flex flex-column text-start-lg">
-              <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="/">HOME</Link>
-              <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="/">ACCOMODATION</Link>
-              <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="/">CONTACT</Link>
-              <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="/">RENT OUT</Link>
+          <div className="col-12 col-lg-2 py-3 py-lg-0 text-decoration-none d-lg-flex flex-column text-start-lg">
+            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="/">
+              HOME
+            </Link>
+            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="venues">
+              ACCOMODATION
+            </Link>
+            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="contact">
+              CONTACT
+            </Link>
+            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="rent-out">
+              RENT OUT
+            </Link>
           </div>
-              <div className="col-12 col-lg-2 text-decoration-none d-lg-flex flex-column text-start-lg">
-              <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-1" to="/">Login</Link>
-              <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-1" to="/">Register</Link>
+          <div className="col-12 col-lg-2 text-decoration-none d-lg-flex flex-column text-start-lg">
+            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-1" to="login">
+              Login
+            </Link>
+            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-1" to="register">
+              Register
+            </Link>
           </div>
           <div className="col-12 col-lg-5 text-decoration-none pt-3 pt-lg-0">
             <p className="fs-0-625rem-to-1rem fw-light">Aknowledgements: </p>
@@ -29,7 +43,7 @@ function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 export default Footer;
