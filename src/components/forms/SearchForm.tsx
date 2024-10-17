@@ -15,7 +15,7 @@ function SearchForm() {
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data: string) {
+  function onSubmit(data: { venueSearchName: string }) {
     console.log(data);
   }
 
