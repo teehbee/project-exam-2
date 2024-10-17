@@ -15,24 +15,24 @@ function Footer() {
             </Link>
           </div>
           <div className="col-12 col-lg-2 py-3 py-lg-0 text-decoration-none d-lg-flex flex-column text-start-lg">
-            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="/">
+            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-2" to="/">
               HOME
             </Link>
-            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="venues">
+            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-2" to="venues">
               ACCOMODATION
             </Link>
-            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="contact">
+            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-2" to="contact">
               CONTACT
             </Link>
-            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-2" to="rent-out">
+            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-2" to="rent-out">
               RENT OUT
             </Link>
           </div>
           <div className="col-12 col-lg-2 text-decoration-none d-lg-flex flex-column text-start-lg">
-            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-1" to="login">
+            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="login">
               Login
             </Link>
-            <Link className="text-decoration-none text-light fs-0-875rem fw-light fs-0-75rem-to-1-125rem px-2 py-lg-1" to="register">
+            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="register">
               Register
             </Link>
           </div>

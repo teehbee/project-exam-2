@@ -93,7 +93,7 @@ $custom-fs-4-rem: 4rem;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(50%);
+  filter: brightness(30%);
   z-index: -1;
 }
 
@@ -138,6 +138,16 @@ header {
   z-index: 1000;
 }
 
+.nav-link-styling {
+  color: white;
+  font-weight: 200;
+  text-decoration: none;
+}
+
+.nav-link-styling:hover {
+  font-weight: 400;
+}
+
 // Buttons
 
 .main-button-red {
@@ -146,6 +156,12 @@ header {
   color: white;
   border: none;
   padding: 5px 10px;
+  font-weight: 200;
+}
+
+.main-button-red:hover {
+  font-weight: 300;
+  background-color: #871b25;
 }
 
 // Borders
