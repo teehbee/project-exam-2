@@ -6,7 +6,7 @@ function FrontpageTiles() {
     <section className="container my-5">
       <div className="row mb-4">
         <div className="col-12 col-lg-6">
-          <img className="img-fluid" src={frontPageImage1} alt="" />
+          <img className="img-fluid" src={frontPageImage1} alt="People dining around a table" />
         </div>
         <div className="col-12 col-lg-6 text-center text-lg-start">
           <h3 className="secondary-font fs-1-5rem-to-2-5rem pt-5">Earn money on your property</h3>
@@ -20,7 +20,7 @@ function FrontpageTiles() {
       </div>
       <div className="row flex-lg-row-reverse">
         <div className="col-12 col-lg-6">
-          <img className="img-fluid" src={frontPageImage2} alt="" />
+          <img className="img-fluid" src={frontPageImage2} alt="Landscape in northern Norway" />
         </div>
         <div className="col-12 col-lg-6 text-center text-lg-end">
           <h3 className="secondary-font fs-1-5rem-to-2-5rem pt-5">Find your next getaway</h3>
