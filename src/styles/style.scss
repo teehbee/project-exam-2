@@ -125,7 +125,6 @@ $custom-fs-4-rem: 4rem;
 
 .hero-container {
   height: 100vh;
-  margin-top: -125px;
 }
 
 .hero-text-container {
@@ -278,9 +277,6 @@ header {
   .border-bottom-nav-dropdown {
     border-bottom: 0.2px solid rgb(255, 255, 255, 0.5);
   }
-  .banner-img {
-    max-height: 500px;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -296,9 +292,6 @@ header {
     width: 100%;
     margin-top: 10px;
     padding: 50px 0;
-  }
-  .banner-img {
-    max-height: 800px;
   }
 }
 
