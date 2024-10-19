@@ -22,13 +22,23 @@ function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Dynamically changes the header color to dark when dropdown is open
-
   const addDarkBackground = !isTransparent || isSmallScreen;
 
   const handleLinkClick = () => {
     setExpanded(false);
   };
+
+  const handleToggleClick = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
+  };
+
+  useEffect(() => {
+    if (expanded) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [expanded]);
 
   return (
     <header className={`position-relative ${addDarkBackground ? "bg-dark-gray-color" : ""}`}>
@@ -63,7 +73,7 @@ function Header() {
               <img src={logoSmall} aria-label="main logo" />
             </picture>
           </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-5" onClick={() => setExpanded(!expanded)}>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-5" onClick={handleToggleClick}>
             <img src={bars} />
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
