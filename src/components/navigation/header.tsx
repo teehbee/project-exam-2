@@ -54,13 +54,13 @@ function Header() {
           </ul>
         </div>
         <Navbar expand="lg" className={`py-3 ${isTransparent && !dropDownOpen ? "" : "bg-dark-gray-color"}`}>
-          <Link to="/" className="ps-5">
+          <Link to="/" className="ps-3 ps-md-5">
             <picture className="cursor-pointer">
               <source media="(min-width: 992px)" srcSet={logoLarge} />
               <img src={logoSmall} aria-label="main logo" />
             </picture>
           </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-5" onClick={() => setIsDropDownOpen(!dropDownOpen)}>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className=" me-3 me-md-5" onClick={() => setIsDropDownOpen(!dropDownOpen)}>
             <img src={bars} />
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
