@@ -37,8 +37,8 @@ function Footer() {
             </Link>
           </div>
           <div className="col-12 col-lg-5 text-decoration-none pt-3 pt-lg-0">
-            <p className="fw-light text-light">Aknowledgements: </p>
-            <p className="fw-light text-light">This website is not real and is not representing a real company. This website is created by Tor-Håkon Bergseng as an exam delivery for the Front-End development studies at Noroff School of technology and digital media</p>
+            <p className="text-light fs-0-625rem-to-1rem mb-1">Aknowledgements: </p>
+            <p className="fw-light text-light fs-0-625rem-to-1rem">This website is not real and is not representing a real company. This website is created by Tor-Håkon Bergseng as an exam delivery for the Front-End development studies at Noroff School of technology and digital media</p>
           </div>
         </div>
       </div>
