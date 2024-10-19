@@ -7,11 +7,23 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function Header() {
+  // Used to check url for correct background color on nav
+
   const location = useLocation();
+
+  // State for handling screen size to set background color on nav on smaller screens
+
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 992);
+
+  // State for expanded and not-expanded dropdown menu
+
   const [expanded, setExpanded] = useState(false);
 
+  // Setting isTransparent if on the homepage or venue page, the only pages with transparent headers on large screens
+
   const isTransparent = location.pathname === "/" || location.pathname === "venues";
+
+  // Event listener and cleanup for window size
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,15 +34,23 @@ function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Change background color if on other page than home or venue, or if screen size is smaller than 992px
+
   const addDarkBackground = !isTransparent || isSmallScreen;
+
+  // Close dropdown menu when links clicked
 
   const handleLinkClick = () => {
     setExpanded(false);
   };
 
+  // Close dropdown when clicking the dropdown icon
+
   const handleToggleClick = () => {
     setExpanded((prevExpanded) => !prevExpanded);
   };
+
+  // Add no-scroll to body when dropdown is open
 
   useEffect(() => {
     if (expanded) {
@@ -67,13 +87,13 @@ function Header() {
           </ul>
         </div>
         <Navbar expand="lg" className={`py-3 ${addDarkBackground ? "bg-dark-gray-color" : ""}`} expanded={expanded}>
-          <Link to="/" className="ps-5">
+          <Link to="/" className="ps-3 ps-md-5">
             <picture className="cursor-pointer">
               <source media="(min-width: 992px)" srcSet={logoLarge} />
               <img src={logoSmall} aria-label="main logo" />
             </picture>
           </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-5" onClick={handleToggleClick}>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-3 me-md-5" onClick={handleToggleClick}>
             <img src={bars} />
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
@@ -90,17 +110,17 @@ function Header() {
               <Link className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
                 RENT OUT
               </Link>
-              <Link to="venues">
+              <Link to="venues" onClick={handleLinkClick}>
                 <button className="main-button-red fs-1-125rem ms-2">BOOK NOW</button>
               </Link>
               <div className="d-md-none text-center">
-                <Link className="text-light fs-1-125rem fw-light nav-link" to="login">
+                <Link className="text-light fs-1-125rem fw-light nav-link" to="login" onClick={handleLinkClick}>
                   Login
                 </Link>
-                <Link className="text-light fs-1-125rem fw-light nav-link" to="register">
+                <Link className="text-light fs-1-125rem fw-light nav-link" to="register" onClick={handleLinkClick}>
                   Register
                 </Link>
-                <Link className="text-light fs-1-125rem fw-light nav-link d-none" to="profile">
+                <Link className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
                   Profile
                 </Link>
               </div>
