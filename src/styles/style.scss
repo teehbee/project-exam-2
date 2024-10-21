@@ -120,6 +120,14 @@ $custom-fs-4-rem: 4rem;
   }
 }
 
+.fs-1-25rem-to-1-5rem {
+  font-size: $custom-fs-1-25rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-1-5rem;
+  }
+}
+
 .fs-1-5rem-to-2rem {
   font-size: $custom-fs-1-5rem;
 
@@ -267,6 +275,17 @@ header {
   background-color: #5f5e5e;
 }
 
+.registration-button-gray {
+  border: 1px solid rgb(72, 72, 72, 0.5);
+  border-radius: 5px;
+  height: 85px;
+}
+
+.reg-button-clicked {
+  background: $secondary-gray-color;
+  color: white;
+}
+
 // Borders
 
 .border-bottom-white {
@@ -350,6 +369,11 @@ header {
     overflow-y: hidden;
   }
 }
+@media screen and (min-width: 768px) {
+  .search-form {
+    height: 350px;
+  }
+}
 
 @media screen and (min-width: 992px) {
   .text-start-lg {
@@ -364,9 +388,7 @@ header {
   .hero-container {
     margin-top: -125px;
   }
-  @media screen and (min-width: 768px) {
-    .search-form {
-      height: 350px;
-    }
+  .registration-button-gray {
+    height: 105px;
   }
 }
