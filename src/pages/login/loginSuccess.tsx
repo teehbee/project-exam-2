@@ -1,17 +1,8 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import useRedirectTimer from "../../components/utils";
 import LoginSuccessMessage from "../../components/login";
 
 function LoginComplete() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const redirectTimer = setTimeout(() => {
-      navigate("/");
-    }, 3000);
-
-    return () => clearTimeout(redirectTimer);
-  }, [navigate]);
+  useRedirectTimer("/", 2000);
 
   return <LoginSuccessMessage />;
 }
