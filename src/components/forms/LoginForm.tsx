@@ -16,12 +16,14 @@ function LoginForm() {
                   Email
                 </label>
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fw-light fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" name="login-email" id={id + "-loginEmail"} />
+                <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address</p>
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-loginPassword"} className="mt-2 fs-0-75rem-to-1rem fw-light">
                   Password
                 </label>
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fw-light fs-0-75rem-to-0-875rem" type="password" placeholder="********" name="login-password" id={id + "-loginPassword"} />
+                <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Password is incorrect</p>
               </div>
               <button className="main-button-gray mt-4 p-1 p-md-2">Login</button>
               <div className="mt-2 mt-md-3">
