@@ -1,4 +1,4 @@
-export const SET_VENUE_MANAGER = `SET_VENUE_MANAGER`;
+export const SET_VENUE_MANAGER = "SET_VENUE_MANAGER";
 
 interface SetVenueManagerAction {
   type: typeof SET_VENUE_MANAGER;
