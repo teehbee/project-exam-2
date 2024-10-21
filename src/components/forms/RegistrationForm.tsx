@@ -8,7 +8,10 @@ import Spinner from "react-bootstrap/Spinner";
 // Yup schema for validation
 const schema = yup.object().shape({
   registerName: yup.string().required("Name is required"),
-  registerEmail: yup.string().email("Please enter a valid Noroff email address").required("Email is required"),
+  registerEmail: yup
+    .string()
+    .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
+    .required("Email is required"),
   registerPassword: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
   registerPasswordConfirm: yup
     .string()
@@ -35,6 +38,7 @@ function RegistrationForm() {
     formState: { errors },
   } = useForm<RegisterFormInputs>({
     resolver: yupResolver(schema),
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = (data) => {
