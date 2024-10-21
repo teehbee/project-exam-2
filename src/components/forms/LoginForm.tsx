@@ -46,8 +46,8 @@ function LoginForm() {
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-12 col-md-6 mx-auto mt-5">
+      <div className="row my-5">
+        <div className="col-12 col-md-6 mx-auto my-5">
           <div className="custom-border-gray text-start p-3">
             <h1 className="fs-1-5rem-to-2rem fw-light">Login</h1>
             <form onSubmit={handleSubmit(onSubmit)}>

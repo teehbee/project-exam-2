@@ -13,9 +13,9 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container my-5">
       <div className="row">
-        <div className="col-12 col-md-6 mx-auto mt-5">
+        <div className="col-12 col-md-6 mx-auto my-5">
           <div className="custom-border-gray text-start p-3">
             <h1 className="fs-1-5rem-to-2rem fw-light">Register user</h1>
             <p className="fw-light fs-0-75rem-to-1rem pt-2">Choose whether to register as a customer or as a venue manager</p>
