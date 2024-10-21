@@ -60,7 +60,10 @@ function RegistrationForm() {
       <div className="row">
         <div className="col-12 col-md-6 mx-auto my-5">
           <div className="custom-border-gray text-start p-3">
-            <h1 className="fs-1-5rem-to-2rem fw-light">Register</h1>
+            <Link className="mb-3 font-gray fs-0-75rem-to-1rem text-decoration-none " to="/register">
+              Back to account types
+            </Link>
+            <h1 className="fs-1-5rem-to-2rem fw-light mt-2">Register</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerName"} className="mt-2 fs-0-75rem-to-1rem fw-light">
