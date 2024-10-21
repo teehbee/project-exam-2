@@ -1,6 +1,9 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 function LoginForm() {
+  const id = React.useId();
+
   return (
     <div className="container">
       <div className="row">
@@ -9,16 +12,16 @@ function LoginForm() {
             <h1 className="fs-1-5rem-to-2rem fw-light">Login</h1>
             <form action="">
               <div className="form-group d-flex flex-column">
-                <label htmlFor="login-email" className="mt-2 fs-0-75rem-to-1rem fw-light">
+                <label htmlFor={id + "-loginEmail"} className="mt-2 fs-0-75rem-to-1rem fw-light">
                   Email
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fw-light fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" name="login-email" />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fw-light fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" name="login-email" id={id + "-loginEmail"} />
               </div>
               <div className="form-group d-flex flex-column">
-                <label htmlFor="login-password" className="mt-2 fs-0-75rem-to-1rem fw-light">
+                <label htmlFor={id + "-loginPassword"} className="mt-2 fs-0-75rem-to-1rem fw-light">
                   Password
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fw-light fs-0-75rem-to-0-875rem" type="password" placeholder="********" name="login-password" />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fw-light fs-0-75rem-to-0-875rem" type="password" placeholder="********" name="login-password" id={id + "-loginPassword"} />
               </div>
               <button className="main-button-gray mt-4 p-1 p-md-2">Login</button>
               <div className="mt-2 mt-md-3">
