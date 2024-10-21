@@ -1,6 +1,6 @@
 import { FrontpageTiles, FrontpageVenuePreview } from "../components/frontpageContent";
 import { frontpageHeroImageSmall, frontpageHeroImageLarge } from "../assets/img";
-import SearchForm from "../components/forms";
+import { SearchForm } from "../components/forms";
 
 function Home() {
   return (
