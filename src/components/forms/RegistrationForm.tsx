@@ -35,6 +35,7 @@ function RegistrationForm() {
     formState: { errors },
   } = useForm<RegisterFormInputs>({
     resolver: yupResolver(schema),
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = (data) => {
