@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
 function LoginForm() {
   const id = React.useId();
@@ -25,7 +26,9 @@ function LoginForm() {
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fw-light fs-0-75rem-to-0-875rem" type="password" placeholder="********" name="login-password" id={id + "-loginPassword"} />
                 <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Password is incorrect</p>
               </div>
-              <button className="main-button-gray mt-4 p-1 p-md-2">Login</button>
+              <button className="main-button-gray mt-4 p-1 p-md-2">
+                Login <Spinner className="d-none ms-1" animation="border" size="sm" variant="light" />
+              </button>
               <div className="mt-2 mt-md-3">
                 <p className="fw-light fs-0-75rem-to-1rem">
                   Not registered?{" "}
