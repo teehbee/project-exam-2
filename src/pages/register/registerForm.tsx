@@ -1,9 +1,7 @@
+import { RegistrationForm } from "../../components/forms";
+
 function RegisterFormPage() {
-  return (
-    <div>
-      <h1>Registration form page</h1>
-    </div>
-  );
+  return <RegistrationForm />;
 }
 
 export default RegisterFormPage;
