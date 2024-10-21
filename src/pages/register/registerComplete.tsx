@@ -1,9 +1,9 @@
+import SuccessMessage from "../../components/successMessages";
+import useRedirectTimer from "../../components/utils";
+
 function RegistrationComplete() {
-  return (
-    <div>
-      <h1>Registration Success Page</h1>
-    </div>
-  );
+  useRedirectTimer("/", 2000);
+  return <SuccessMessage title="Registration complete" linkTo="/" />;
 }
 
 export default RegistrationComplete;
