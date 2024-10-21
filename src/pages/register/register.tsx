@@ -28,7 +28,9 @@ const Register: React.FC = () => {
                 Venue manager
               </button>
             </div>
-            <button className="main-button-gray py-2 mt-5 mb-2">Continue</button>
+            <Link to="/registration-form">
+              <button className="main-button-gray py-2 mt-5 mb-2">Continue</button>
+            </Link>
             <p className="fw-light fs-0-75rem-to-1rem pt-4">
               Already have a user?{" "}
               <Link className="font-gray" to="/login">
