@@ -1,3 +1,4 @@
 import SearchForm from "./SearchForm";
+import LoginForm from "./LoginForm";
 
-export default SearchForm;
+export { SearchForm, LoginForm };
