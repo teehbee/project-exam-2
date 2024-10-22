@@ -1,5 +1,5 @@
 import SuccessMessage from "../../components/successMessages";
-import useRedirectTimer from "../../components/utils";
+import { useRedirectTimer } from "../../components/utils";
 
 function RegistrationComplete() {
   useRedirectTimer("/", 2000);

@@ -1,4 +1,4 @@
-import useRedirectTimer from "../../components/utils";
+import { useRedirectTimer } from "../../components/utils";
 import SuccessMessage from "../../components/successMessages";
 
 function LoginComplete() {

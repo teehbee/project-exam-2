@@ -1,3 +1,4 @@
 import useRedirectTimer from "./useRedirectTimer";
+import { getTodaysDate, getTomorrowsDate } from "./dateUtils";
 
-export default useRedirectTimer;
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate };
