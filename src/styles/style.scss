@@ -302,8 +302,7 @@ header {
 
 .search-form {
   max-width: 425px;
-  height: 325px;
-  background-color: rgb(37, 38, 39, 0.6);
+  background-color: rgb(37, 38, 39, 0.9);
 }
 
 .search-form label {
@@ -323,6 +322,11 @@ header {
   color: white;
   font-weight: 300;
   opacity: 0.7;
+}
+
+.date-search-input {
+  text-indent: 0;
+  color: white;
 }
 
 // Utility classes
@@ -355,12 +359,6 @@ header {
   }
 }
 
-@media screen and (min-width: 768px) {
-  .search-form {
-    height: 375px;
-  }
-}
-
 @media screen and (max-width: 992px) {
   .dropdown-active {
     position: absolute;
@@ -370,11 +368,6 @@ header {
     margin-top: 10px;
     padding: 50px 0;
     overflow-y: hidden;
-  }
-}
-@media screen and (min-width: 768px) {
-  .search-form {
-    height: 350px;
   }
 }
 
