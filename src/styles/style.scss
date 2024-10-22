@@ -164,6 +164,7 @@ $custom-fs-4-rem: 4rem;
 
 .hero-container {
   height: 100vh;
+  margin-top: -150px;
 }
 
 .hero-text-container {
@@ -300,9 +301,9 @@ header {
 // Forms - Search-form
 
 .search-form {
-  max-width: 400px;
-  height: 325px;
-  background-color: rgb(37, 38, 39, 0.6);
+  max-width: 425px;
+  max-height: 700px;
+  background-color: rgb(37, 38, 39, 0.9);
 }
 
 .search-form label {
@@ -313,17 +314,26 @@ header {
 .search-form input {
   height: 40px;
   background: $secondary-gray-color;
-  color: rgb(255, 255, 255, 0.7);
   border: none;
   text-indent: 10px;
   font-weight: 300;
-  font-size: $custom-fs-0-875rem;
 }
 
 .search-form input::placeholder {
   color: white;
   font-weight: 300;
   opacity: 0.7;
+}
+
+.date-search-input {
+  text-indent: 0;
+  color: white;
+}
+
+// Form - Date picker
+
+.date-search-input::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* This will invert the color */
 }
 
 // Utility classes
@@ -344,17 +354,15 @@ header {
   background: #f6f6f6;
 }
 
+.mt-125px {
+  margin-top: 125px;
+}
+
 // Media queries
 
 @media screen and (max-width: 767px) {
   .border-bottom-nav-dropdown {
     border-bottom: 0.2px solid rgb(255, 255, 255, 0.5);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .search-form {
-    height: 375px;
   }
 }
 
@@ -369,11 +377,6 @@ header {
     overflow-y: hidden;
   }
 }
-@media screen and (min-width: 768px) {
-  .search-form {
-    height: 350px;
-  }
-}
 
 @media screen and (min-width: 992px) {
   .text-start-lg {
@@ -384,9 +387,6 @@ header {
   }
   .search-form {
     max-width: 530px;
-  }
-  .hero-container {
-    margin-top: -125px;
   }
   .registration-button-gray {
     height: 105px;
