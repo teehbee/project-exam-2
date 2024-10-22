@@ -20,8 +20,8 @@ function SearchForm() {
   }
 
   return (
-    <div className="bg-dark-gray-color text-light search-form mx-auto px-4 py-5">
-      <h2 className="secondary-font py-3 fs-1-5rem-to-2rem">Search for accommodation</h2>
+    <div className="bg-dark-gray-color text-light search-form mx-auto px-4 pb-5 pt-3">
+      <h2 className="secondary-font py-2 fs-1-5rem-to-2rem m-0">Search for accommodation</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column">
         <label htmlFor="venueSearchName" className="py-2 text-light">
           Enter search text here

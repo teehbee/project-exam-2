@@ -164,6 +164,7 @@ $custom-fs-4-rem: 4rem;
 
 .hero-container {
   height: 100vh;
+  margin-top: -100px;
 }
 
 .hero-text-container {
@@ -300,7 +301,7 @@ header {
 // Forms - Search-form
 
 .search-form {
-  max-width: 400px;
+  max-width: 425px;
   height: 325px;
   background-color: rgb(37, 38, 39, 0.6);
 }
