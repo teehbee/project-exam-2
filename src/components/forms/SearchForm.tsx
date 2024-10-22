@@ -8,8 +8,8 @@ import { getTodaysDate, getTomorrowsDate } from "../utils";
 
 interface SearchFormInputFP {
   venueSearchNameFP: string;
-  venueSearchArrFP: string;
-  venueSearchDepFP: string;
+  venueSearchArrFP: Date;
+  venueSearchDepFP: Date;
   venueSearchNumberFP: number;
 }
 
@@ -17,8 +17,8 @@ interface SearchFormInputFP {
 
 const schema = yup.object().shape({
   venueSearchNameFP: yup.string().required("Destination is required"),
-  venueSearchArrFP: yup.string().required("Arrival date is required"),
-  venueSearchDepFP: yup.string().required("Departure date is required"),
+  venueSearchArrFP: yup.date().required("Arrival date is required"),
+  venueSearchDepFP: yup.date().required("Arrival date is required"),
   venueSearchNumberFP: yup
     .number()
     .required("Number of guests is required")
@@ -34,23 +34,12 @@ function SearchForm() {
     resolver: yupResolver(schema),
   });
 
-  // Submit handling. For now just consol logging the received data
-
   const onSubmit: SubmitHandler<SearchFormInputFP> = (data) => {
     console.log(data);
   };
-
   // Setting unique id for input fields
 
   const id = React.useId();
-
-  // Finding date of today for inserting as default value in arrival field
-
-  const today = getTodaysDate();
-
-  // Finding date of tomorrow for inserting as default value in departure field
-
-  const tomorrow = getTomorrowsDate();
 
   return (
     <div className="bg-dark-gray-color text-light search-form mx-auto px-4 pb-5 pt-3">
@@ -64,12 +53,12 @@ function SearchForm() {
         <label htmlFor={id + "-venueSearchNameFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Arrival date
         </label>
-        <input type="date" id={id + "-venueSearchArrFP"} defaultValue={today} {...register("venueSearchArrFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        <input type="date" id={id + "-venueSearchArrFP"} min={getTodaysDate()} defaultValue={getTodaysDate()} {...register("venueSearchArrFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
         {errors.venueSearchArrFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchArrFP.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Departure date
         </label>
-        <input type="date" id={id + "-venueSearchDepFP"} defaultValue={tomorrow} {...register("venueSearchDepFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        <input type="date" id={id + "-venueSearchDepFP"} min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("venueSearchDepFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
         {errors.venueSearchDepFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchDepFP.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Number of guests
