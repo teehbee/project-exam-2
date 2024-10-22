@@ -1,13 +1,23 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+interface SearchFormInputFP {
+  venueSearchNameFP: string;
+  venueSearchArrFP: string;
+  venueSearchDepFP: string;
+  venueSearchNumberFP: number;
+}
+
 const schema = yup.object().shape({
-  venueSearchNameFP: yup.string().required("Search field cannot be empty"),
-  venueSearchArrFP: yup.string().required("Search field cannot be empty"),
-  venueSearchDepFP: yup.string().required("Search field cannot be empty"),
-  venueSearchNumberFP: yup.string().required("Search field cannot be empty"),
+  venueSearchNameFP: yup.string().required("Destination is required"),
+  venueSearchArrFP: yup.string().required("Arrival date is required"),
+  venueSearchDepFP: yup.string().required("Departure date is required"),
+  venueSearchNumberFP: yup
+    .number()
+    .required("Number of guests is required")
+    .transform((_, originalValue) => (originalValue === "" ? undefined : Number(originalValue))),
 });
 
 function SearchForm() {
@@ -15,13 +25,13 @@ function SearchForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<SearchFormInputFP>({
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data: { venueSearchName: string }) {
+  const onSubmit: SubmitHandler<SearchFormInputFP> = (data) => {
     console.log(data);
-  }
+  };
 
   const id = React.useId();
 
@@ -47,7 +57,7 @@ function SearchForm() {
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Number of guests
         </label>
-        <input type="number" id={id + "-venueSearchNumberFP"} placeholder="Fagernes" {...register("venueSearchNumberFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        <input type="number" id={id + "-venueSearchNumberFP"} placeholder="0" {...register("venueSearchNumberFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
         {errors.venueSearchNumberFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchNumberFP.message}</p>}
         <button className="main-button-red mt-2 mt-md-4 fs-1-125rem">SEARCH</button>
       </form>

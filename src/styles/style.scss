@@ -330,6 +330,12 @@ header {
   color: white;
 }
 
+// Form - Date picker
+
+.date-search-input::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* This will invert the color */
+}
+
 // Utility classes
 
 .cursor-pointer {
