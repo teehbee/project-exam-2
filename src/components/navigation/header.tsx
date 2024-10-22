@@ -21,7 +21,7 @@ function Header() {
 
   // Setting isTransparent if on the homepage or venue page, the only pages with transparent headers on large screens
 
-  const isTransparent = location.pathname === "/" || location.pathname === "venues";
+  const isTransparent = location.pathname === "/" || location.pathname === "/venues";
 
   // Event listener and cleanup for window size
 
