@@ -102,7 +102,7 @@ function Header() {
               <Link className="nav-link-styling fs-1-125rem m-2" to="/" onClick={handleLinkClick}>
                 HOME
               </Link>
-              <Link className="nav-link-styling fs-1-125rem m-2" to="contact" onClick={handleLinkClick}>
+              <Link className="nav-link-styling fs-1-125rem m-2" to="venues" onClick={handleLinkClick}>
                 ACCOMMODATIONS
               </Link>
               <Link className="nav-link-styling fs-1-125rem m-2" to="contact" onClick={handleLinkClick}>
