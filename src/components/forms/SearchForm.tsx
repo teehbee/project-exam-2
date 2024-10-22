@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -76,7 +77,9 @@ function SearchForm() {
         </label>
         <input type="number" id={id + "-venueSearchNumberFP"} defaultValue={1} {...register("venueSearchNumberFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
         {errors.venueSearchNumberFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchNumberFP.message}</p>}
-        <button className="main-button-red mt-2 mt-md-4 fs-1-125rem">SEARCH</button>
+        <Link to="venues">
+          <button className="main-button-red mt-2 mt-md-4 fs-1-125rem w-100">SEARCH</button>
+        </Link>
       </form>
     </div>
   );
