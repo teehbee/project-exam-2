@@ -23,12 +23,17 @@ function SearchForm() {
     <div className="bg-dark-gray-color text-light search-form mx-auto px-4 pb-5 pt-3">
       <h2 className="secondary-font py-2 fs-1-5rem-to-2rem m-0">Search for accommodation</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column">
-        <label htmlFor="venueSearchName" className="py-2 text-light">
+        <label htmlFor="venueSearchName" className="py-2 text-light fs-0-75rem-to-1rem">
           Enter search text here
         </label>
-        <input type="text" id="venueSearchName" placeholder="Fagernes" {...register("venueSearchName")} className="mb-3" />
+        <input type="text" id="venueSearchName" placeholder="Fagernes" {...register("venueSearchName")} className="mb-3 fs-0-75rem-to-0-875rem text-light" />
         {errors.venueSearchName && <p className="text-danger m-0">{errors.venueSearchName.message}</p>}
-        <button className="main-button-red py-2 mt-2 mt-md-4 fs-1-125rem">SEARCH</button>
+        <label htmlFor="venueSearchName" className="py-2 text-light fs-0-75rem-to-1rem">
+          Enter search text here
+        </label>
+        <input type="text" id="venueSearchName" placeholder="Fagernes" {...register("venueSearchName")} className="mb-3 fs-0-75rem-to-0-875rem text-light" />
+        {errors.venueSearchName && <p className="text-danger m-0">{errors.venueSearchName.message}</p>}
+        <button className="main-button-red mt-2 mt-md-4 fs-1-125rem">SEARCH</button>
       </form>
     </div>
   );
