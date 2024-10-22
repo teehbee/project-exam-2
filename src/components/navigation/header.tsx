@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { logoSmall, logoLarge } from "../../assets/logo";
-import { profileIcon, bars } from "../../assets/icon";
+import { profileIcon, bars, signOutIcon } from "../../assets/icon";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -80,9 +80,10 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to="profile">
-                <img className="d-none" src={profileIcon} alt="" />
+              <Link className="d-none" to="profile">
+                <img className="" src={profileIcon} aria-label="profile link" />
               </Link>
+              <img className="d-none ps-2" src={signOutIcon} aria-label="sign out" />
             </li>
           </ul>
         </div>
@@ -122,6 +123,9 @@ function Header() {
                 </Link>
                 <Link className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
                   Profile
+                </Link>
+                <Link className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
+                  Sign out
                 </Link>
               </div>
             </Nav>
