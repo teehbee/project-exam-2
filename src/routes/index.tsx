@@ -1,27 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import {
-  Home,
-  Venues,
-  Register,
-  Contact,
-  RentOutVenue,
-  Profile,
-  Login,
-  BookingSuccess,
-  RegisterFormPage,
-  RegistrationComplete,
-  LoginComplete,
-  VenueManagerBookings,
-  UpdateVenue,
-  UpdateProfile,
-  Venue,
-  ContactSuccess,
-  CreateVenueSuccess,
-  UpdateVenueSuccess,
-  UpdateProfileSuccess,
-} from "../pages";
+import { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile, Venue, ContactSuccess, CreateVenueSuccess, UpdateVenueSuccess, UpdateProfileSuccess } from "../pages";
 import MainLayout from "../layouts/mainLayout";
-import { ProfileUpdateForm } from "../components/forms";
 
 const router = createBrowserRouter([
   {
