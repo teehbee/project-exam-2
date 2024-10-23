@@ -53,33 +53,21 @@ function ProfileUpdateForm() {
     <div className="container">
       <div className="row my-5">
         <div className="col-12 col-md-6 mx-auto my-5">
-          <div className="custom-border-gray text-start p-4">
+          <div className="form-box-shadow text-start p-4">
             <h1 className="fs-1-5rem-to-2rem">Update profile</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-updateProfileAvatar"} className="mt-2 fs-0-75rem-to-1rem">
                   Update avatar
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="url"
-                  placeholder="E.g. Fagernes"
-                  id={id + "-updateProfileAvatar"}
-                  {...register("updateProfileAvatar")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="url" placeholder="E.g. Fagernes" id={id + "-updateProfileAvatar"} {...register("updateProfileAvatar")} />
                 {errors.updateProfileAvatar && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.updateProfileAvatar.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenueDescription"} className="mt-2 fs-0-75rem-to-1rem">
                   Bio
                 </label>
-                <textarea
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  placeholder="Enter bio text here"
-                  rows={4}
-                  id={id + "-updateProfileBio"}
-                  {...register("updateProfileBio")}
-                />
+                <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Enter bio text here" rows={4} id={id + "-updateProfileBio"} {...register("updateProfileBio")} />
                 {errors.updateProfileBio && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.updateProfileBio.message}</p>}
               </div>
               <div className="col-6 form-check d-flex align-items-center pt-3">
