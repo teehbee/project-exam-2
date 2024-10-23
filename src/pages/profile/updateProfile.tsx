@@ -1,9 +1,7 @@
+import { ProfileUpdateForm } from "../../components/forms";
+
 function UpdateProfile() {
-  return (
-    <div>
-      <h1>Update Profile</h1>
-    </div>
-  );
+  return <ProfileUpdateForm />;
 }
 
 export default UpdateProfile;

@@ -1,9 +1,7 @@
+import { UpdateVenueForm } from "../../components/forms";
+
 function UpdateVenue() {
-  return (
-    <div>
-      <h1>Update Venue</h1>
-    </div>
-  );
+  return <UpdateVenueForm />;
 }
 
 export default UpdateVenue;

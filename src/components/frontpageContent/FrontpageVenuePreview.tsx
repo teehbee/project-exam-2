@@ -5,7 +5,7 @@ function FrontpageVenuePreview() {
   return (
     <section className="container text-center mt-125px mt-md-4">
       <h2 className=" pb-5 py-md-5 secondary-font fs-1-5rem-to-2-5rem">Find your next getaway</h2>
-      <div className="row pb-5 g-1">
+      <div className="row pb-5 gy-4">
         <div className="col-6 col-lg-3 fp-img-container">
           <div className="position-relative">
             <Link to="venue">

@@ -42,23 +42,37 @@ function SearchForm() {
   const id = React.useId();
 
   return (
-    <div className="bg-dark-gray-color text-light search-form mx-auto px-4 pb-5 pt-3">
+    <div className="bg-dark-gray-color text-light search-form mx-auto px-4 pb-5 pt-3 form-box-shadow-no-br">
       <h2 className="secondary-font py-2 fs-1-5rem-to-2rem m-0">Search for accommodation</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column">
         <label htmlFor={id + "-venueSearchNameFP"} className="py-2 text-light fs-0-75rem-to-1rem">
-          Enter search text here
+          Destination
         </label>
-        <input type="text" id={id + "-venueSearchNameFP"} defaultValue={"Scranton"} {...register("venueSearchNameFP")} className="mb-1 fs-0-75rem-to-0-875rem text-light" />
+        <input type="text" id={id + "-venueSearchNameFP"} placeholder="Where do you want to go?" {...register("venueSearchNameFP")} className="mb-1 fs-0-75rem-to-0-875rem text-light" />
         {errors.venueSearchNameFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchNameFP.message}</p>}
         <label htmlFor={id + "-venueSearchNameFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Arrival date
         </label>
-        <input type="date" id={id + "-venueSearchArrFP"} min={getTodaysDate()} defaultValue={getTodaysDate()} {...register("venueSearchArrFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        <input
+          type="date"
+          id={id + "-venueSearchArrFP"}
+          min={getTodaysDate()}
+          defaultValue={getTodaysDate()}
+          {...register("venueSearchArrFP")}
+          className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2"
+        />
         {errors.venueSearchArrFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchArrFP.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Departure date
         </label>
-        <input type="date" id={id + "-venueSearchDepFP"} min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("venueSearchDepFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        <input
+          type="date"
+          id={id + "-venueSearchDepFP"}
+          min={getTomorrowsDate()}
+          defaultValue={getTomorrowsDate()}
+          {...register("venueSearchDepFP")}
+          className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2"
+        />
         {errors.venueSearchDepFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchDepFP.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Number of guests

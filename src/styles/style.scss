@@ -255,6 +255,7 @@ header {
   border: none;
   padding: 5px 10px;
   font-weight: 200;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .main-button-red:hover {
@@ -270,6 +271,7 @@ header {
   padding: 5px 10px;
   font-weight: 200;
   width: 100%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .main-button-gray:hover {
@@ -277,7 +279,7 @@ header {
 }
 
 .registration-button-gray {
-  border: 1px solid rgb(72, 72, 72, 0.5);
+  border: none;
   border-radius: 5px;
   height: 85px;
 }
@@ -294,8 +296,17 @@ header {
 }
 
 .custom-border-gray {
-  border: 1px solid rgb(72, 72, 72, 0.5);
+  border: 0.5px solid rgb(72, 72, 72, 0.2);
   border-radius: 5px;
+}
+
+.form-box-shadow {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 5px;
+}
+
+.form-box-shadow-no-br {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 // Forms - Search-form
@@ -306,11 +317,17 @@ header {
   background-color: rgb(37, 38, 39, 0.9);
 }
 
+.search-form-main {
+  background-color: rgb(37, 38, 39, 0.9);
+}
+
+.search-form-main label,
 .search-form label {
   font-weight: 300;
   opacity: 0.8;
 }
 
+.search-form-main input,
 .search-form input {
   height: 40px;
   background: $secondary-gray-color;
@@ -319,6 +336,7 @@ header {
   font-weight: 300;
 }
 
+.search-form-main input::placeholder,
 .search-form input::placeholder {
   color: white;
   font-weight: 300;
@@ -333,7 +351,20 @@ header {
 // Form - Date picker
 
 .date-search-input::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* This will invert the color */
+  filter: invert(1);
+}
+
+// Form - Create venue
+
+.form-check input {
+  height: 24px;
+  width: 24px;
+  border: 1px solid rgb(72, 72, 72, 0.2);
+  background: #f6f6f6;
+}
+
+.form-check-input:checked {
+  background-color: $secondary-gray-color;
 }
 
 // Utility classes
@@ -390,5 +421,14 @@ header {
   }
   .registration-button-gray {
     height: 105px;
+  }
+  .main-button-gray,
+  .main-button-red {
+    padding: 8px 15px;
+    font-weight: 400;
+  }
+  .main-button-red:hover,
+  .main-button-gray:hover {
+    font-weight: 500;
   }
 }

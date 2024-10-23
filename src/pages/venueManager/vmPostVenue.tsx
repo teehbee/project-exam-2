@@ -1,8 +1,8 @@
+import { CreateVenueForm } from "../../components/forms";
+
 function RentOutVenue() {
   return (
-    <div>
-      <h1>Rent Out Venue</h1>
-    </div>
+    <CreateVenueForm />
   );
 }
 

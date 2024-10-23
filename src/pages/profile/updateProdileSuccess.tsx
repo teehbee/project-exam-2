@@ -1,10 +1,10 @@
 import { useRedirectTimer } from "../../components/utils";
 import SuccessMessage from "../../components/successMessages";
 
-function LoginComplete() {
+function UpdateProfileSuccess() {
   useRedirectTimer("/", 2000);
 
-  return <SuccessMessage title="Message sent" linkTo="/" />;
+  return <SuccessMessage title="Profile Updated" linkTo="/" />;
 }
 
-export default LoginComplete;
+export default UpdateProfileSuccess;
