@@ -1,7 +1,9 @@
 import { venueHeroImageLarge, venueHeroImageSmall } from "../assets/img";
 import { SearchFormMain } from "../components/forms";
+import { useScrollToTop } from "../components/utils";
 
 function Venues() {
+  useScrollToTop();
   return (
     <>
       <picture>

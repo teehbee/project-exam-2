@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { setVenueManager } from "../../redux/actions/registerActions";
 import { RootState } from "../../redux/store";
 import { AppDispatch } from "../../redux/store";
+import { useScrollToTop } from "../../components/utils";
 
 const Register: React.FC = () => {
+  useScrollToTop();
   const dispatch: AppDispatch = useDispatch();
   const isVenueManager = useSelector((state: RootState) => state.register.isVenueManager);
 

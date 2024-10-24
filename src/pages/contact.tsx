@@ -1,9 +1,9 @@
 import { ContactForm } from "../components/forms";
+import { useScrollToTop } from "../components/utils";
 
 function Contact() {
-  return (
-    <ContactForm />
-  );
+  useScrollToTop();
+  return <ContactForm />;
 }
 
 export default Contact;
