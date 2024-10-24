@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -54,6 +55,11 @@ function ProfileUpdateForm() {
       <div className="row my-5">
         <div className="col-12 col-md-6 mx-auto my-5">
           <div className="form-box-shadow text-start p-4">
+            <div className="pb-1 pb-md-2">
+              <Link className="pb-3 font-gray fs-0-75rem-to-1rem text-decoration-none " to="/profile">
+                Back to profile
+              </Link>
+            </div>
             <h1 className="fs-1-5rem-to-2rem">Update profile</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group d-flex flex-column">
