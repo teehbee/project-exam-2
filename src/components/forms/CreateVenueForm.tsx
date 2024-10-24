@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -82,96 +83,59 @@ function CreateVenueForm() {
       <div className="row my-5">
         <div className="col-12 col-md-6 mx-auto my-5">
           <div className="form-box-shadow text-start p-4">
+            <div className="pb-1 pb-md-2">
+              <Link className="pb-3 font-gray fs-0-75rem-to-1rem text-decoration-none " to="/">
+                Back to home page
+              </Link>
+            </div>
             <h1 className="fs-1-5rem-to-2rem">Rent out venue</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenueName"} className="mt-2 fs-0-75rem-to-1rem">
                   Name<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="text"
-                  placeholder="Enter your full name here"
-                  id={id + "-createVenueName"}
-                  {...register("createVenueName")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="Enter your full name here" id={id + "-createVenueName"} {...register("createVenueName")} />
                 {errors.createVenueName && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.createVenueName.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenueLocation"} className="mt-2 fs-0-75rem-to-1rem">
                   Location<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="text"
-                  placeholder="E.g. Fagernes"
-                  id={id + "-createVenueLocation"}
-                  {...register("createVenueLocation")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Fagernes" id={id + "-createVenueLocation"} {...register("createVenueLocation")} />
                 {errors.createVenueLocation && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.createVenueLocation.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenueDescription"} className="mt-2 fs-0-75rem-to-1rem">
                   Description<span className="text-danger">*</span>
                 </label>
-                <textarea
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  placeholder="Write description of venue here"
-                  rows={4}
-                  id={id + "-createVenueDescription"}
-                  {...register("createVenueDescription")}
-                />
+                <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Write description of venue here" rows={4} id={id + "-createVenueDescription"} {...register("createVenueDescription")} />
                 {errors.createVenueDescription && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.createVenueDescription.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenueImage"} className="mt-2 fs-0-75rem-to-1rem">
                   Image<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="url"
-                  placeholder="E.g. Fagernes"
-                  id={id + "-createVenueImage"}
-                  {...register("createVenueImage")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="url" placeholder="E.g. Fagernes" id={id + "-createVenueImage"} {...register("createVenueImage")} />
                 {errors.createVenueImage && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.createVenueImage.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenueImageDescription"} className="mt-2 fs-0-75rem-to-1rem">
                   Image description
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="text"
-                  placeholder="E.g. Beautiful sunset in Valdres"
-                  id={id + "-createVenueImageDescription"}
-                  {...register("createVenueImageDescription")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Beautiful sunset in Valdres" id={id + "-createVenueImageDescription"} {...register("createVenueImageDescription")} />
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenuePrice"} className="mt-2 fs-0-75rem-to-1rem">
                   Price per night in NOK<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="number"
-                  placeholder="E.g. 1000"
-                  id={id + "-createVenuePrice"}
-                  {...register("createVenuePrice")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1000" id={id + "-createVenuePrice"} {...register("createVenuePrice")} />
                 {errors.createVenuePrice && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.createVenuePrice.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-createVenueNumberOfGuests"} className="mt-2 fs-0-75rem-to-1rem">
                   Max number of guests<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="number"
-                  placeholder="E.g. 1"
-                  id={id + "-createVenueNumberOfGuests"}
-                  {...register("createVenueNumberOfGuests")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1" id={id + "-createVenueNumberOfGuests"} {...register("createVenueNumberOfGuests")} />
                 {errors.createVenueNumberOfGuests && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.createVenueNumberOfGuests.message}</p>}
               </div>
 

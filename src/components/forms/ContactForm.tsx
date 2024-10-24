@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -56,6 +57,11 @@ function ContactForm() {
       <div className="row my-5">
         <div className="col-12 col-md-6 mx-auto my-5">
           <div className="form-box-shadow text-start p-4">
+            <div className="pb-1 pb-md-2">
+              <Link className="pb-3 font-gray fs-0-75rem-to-1rem text-decoration-none " to="/">
+                Back to home page
+              </Link>
+            </div>
             <h1 className="fs-1-5rem-to-2rem">Contact</h1>
             <p>We will get back to you within 24 hours</p>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -63,39 +69,21 @@ function ContactForm() {
                 <label htmlFor={id + "-contactName"} className="mt-2 fs-0-75rem-to-1rem">
                   Name<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="text"
-                  placeholder="Enter your full name here"
-                  id={id + "-contactName"}
-                  {...register("contactName")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="Enter your full name here" id={id + "-contactName"} {...register("contactName")} />
                 {errors.contactName && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.contactName.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-contactEmail"} className="mt-2 fs-0-75rem-to-1rem">
                   Email<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="email"
-                  placeholder="iamawesome@stud.noroff.no"
-                  id={id + "-contactEmail"}
-                  {...register("contactEmail")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" id={id + "-contactEmail"} {...register("contactEmail")} />
                 {errors.contactEmail && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.contactEmail.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-contactMessage"} className="mt-2 fs-0-75rem-to-1rem">
                   Message<span className="text-danger">*</span>
                 </label>
-                <textarea
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  placeholder="Write message here"
-                  rows={4}
-                  id={id + "-loginPassword"}
-                  {...register("contactMessage")}
-                />
+                <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Write message here" rows={4} id={id + "-loginPassword"} {...register("contactMessage")} />
                 {errors.contactMessage && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.contactMessage.message}</p>}
               </div>
               <button className="main-button-gray mt-4 mb-2 p-1 p-md-2">Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>

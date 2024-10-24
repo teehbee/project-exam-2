@@ -49,32 +49,25 @@ function LoginForm() {
       <div className="row my-5">
         <div className="col-12 col-md-6 mx-auto my-5">
           <div className="form-box-shadow text-start p-4">
+            <div className="pb-1 pb-md-2">
+              <Link className="pb-3 font-gray fs-0-75rem-to-1rem text-decoration-none " to="/">
+                Back to home page
+              </Link>
+            </div>
             <h1 className="fs-1-5rem-to-2rem">Login</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-loginEmail"} className="mt-2 fs-0-75rem-to-1rem">
                   Email
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="email"
-                  placeholder="iamawesome@stud.noroff.no"
-                  id={id + "-loginEmail"}
-                  {...register("loginEmail")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" id={id + "-loginEmail"} {...register("loginEmail")} />
                 {errors.loginEmail && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.loginEmail.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-loginPassword"} className="mt-2 fs-0-75rem-to-1rem">
                   Password
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="password"
-                  placeholder="********"
-                  id={id + "-loginPassword"}
-                  {...register("loginPassword")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-loginPassword"} {...register("loginPassword")} />
                 {errors.loginPassword && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.loginPassword.message}</p>}
               </div>
               <button className="main-button-gray mt-4 p-1 p-md-2">Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>

@@ -1,8 +1,11 @@
 import { FrontpageTiles, FrontpageVenuePreview } from "../components/frontpageContent";
 import { frontpageHeroImageSmall, frontpageHeroImageLarge } from "../assets/img";
 import { SearchForm } from "../components/forms";
+import { useScrollToTop } from "../components/utils";
 
 function Home() {
+  useScrollToTop();
+
   return (
     <>
       <picture>

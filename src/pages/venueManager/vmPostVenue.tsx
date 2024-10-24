@@ -1,9 +1,9 @@
 import { CreateVenueForm } from "../../components/forms";
+import { useScrollToTop } from "../../components/utils";
 
 function RentOutVenue() {
-  return (
-    <CreateVenueForm />
-  );
+  useScrollToTop();
+  return <CreateVenueForm />;
 }
 
 export default RentOutVenue;

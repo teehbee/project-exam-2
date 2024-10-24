@@ -9,7 +9,7 @@ function FrontpageVenuePreview() {
         <div className="col-6 col-lg-3 fp-img-container">
           <div className="position-relative">
             <Link to="venue">
-              <img className="img-fluid" src={placeHolderImage} alt="placeholder image" />
+              <img className="img-fluid form-box-shadow-no-br" src={placeHolderImage} alt="placeholder image" />
               <div className="fp-img-overlay">
                 <div className="fp-img-overlay-text text-start ps-3">
                   <p className="secondary-font text-light">Name of accommodation</p>
@@ -21,7 +21,7 @@ function FrontpageVenuePreview() {
         <div className="col-6 col-lg-3 fp-img-container">
           <div className="position-relative">
             <Link to="venue">
-              <img className="img-fluid" src={placeHolderImage} alt="placeholder image" />
+              <img className="img-fluid form-box-shadow-no-br" src={placeHolderImage} alt="placeholder image" />
               <div className="fp-img-overlay">
                 <div className="fp-img-overlay-text text-start ps-3">
                   <p className="secondary-font text-light">Name of accommodation</p>
@@ -33,7 +33,7 @@ function FrontpageVenuePreview() {
         <div className="col-6 col-lg-3 fp-img-container">
           <div className="position-relative">
             <Link to="venue">
-              <img className="img-fluid" src={placeHolderImage} alt="placeholder image" />
+              <img className="img-fluid form-box-shadow-no-br" src={placeHolderImage} alt="placeholder image" />
               <div className="fp-img-overlay">
                 <div className="fp-img-overlay-text text-start ps-3">
                   <p className="secondary-font text-light">Name of accommodation</p>
@@ -45,7 +45,7 @@ function FrontpageVenuePreview() {
         <div className="col-6 col-lg-3 fp-img-container">
           <div className="position-relative">
             <Link to="venue">
-              <img className="img-fluid" src={placeHolderImage} alt="placeholder image" />
+              <img className="img-fluid form-box-shadow-no-br" src={placeHolderImage} alt="placeholder image" />
               <div className="fp-img-overlay">
                 <div className="fp-img-overlay-text text-start ps-3">
                   <p className="secondary-font text-light">Name of accommodation</p>
@@ -56,7 +56,7 @@ function FrontpageVenuePreview() {
         </div>
       </div>
       <div className="text-end">
-        <Link className="text-decoration-none" to="venue">
+        <Link className="text-decoration-none" to="venues">
           <p className="secondary-font text-decoration-none dark-font fs-1rem-to-1-5rem">See full list..</p>
         </Link>
       </div>
