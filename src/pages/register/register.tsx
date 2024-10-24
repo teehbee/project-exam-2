@@ -17,6 +17,11 @@ const Register: React.FC = () => {
       <div className="row">
         <div className="col-12 col-md-6 mx-auto my-5">
           <div className="form-box-shadow text-start p-4">
+            <div className="pb-1 pb-md-2">
+              <Link className="pb-3 font-gray fs-0-75rem-to-1rem text-decoration-none " to="/">
+                Back to home page
+              </Link>
+            </div>
             <h1 className="fs-1-5rem-to-2rem">Register user</h1>
             <p className="fs-0-75rem-to-1rem pt-2">Choose whether to register as a customer or as a venue manager</p>
             <div className="d-flex justify-space-between">
