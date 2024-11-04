@@ -51,51 +51,25 @@ function SearchFormMain() {
             <label htmlFor={id + "-venueSearchNameVP"} className="py-2 text-light fs-0-75rem-to-1rem">
               Name of venue
             </label>
-            <input
-              type="text"
-              id={id + "-venueSearchNameVP"}
-              placeholder="Enter name of the venue you want to visit"
-              {...register("venueSearchNameVP")}
-              className="mb-1 fs-0-75rem-to-0-875rem text-light"
-            />
+            <input type="text" id={id + "-venueSearchNameVP"} placeholder="Enter name of the venue you want to visit" {...register("venueSearchNameVP")} className="mb-1 fs-0-75rem-to-0-875rem text-light" />
           </div>
           <div className="col-12 col-md-6 form-group d-flex flex-column">
             <label htmlFor={id + "-venueSearchArrivalDateVP"} className="py-2 text-light fs-0-75rem-to-1rem">
               Arrival date
             </label>
-            <input
-              type="date"
-              id={id + "-venueSearchArrivalDateVP"}
-              min={getTodaysDate()}
-              defaultValue={getTodaysDate()}
-              {...register("venueSearchArrivalDateVP")}
-              className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2"
-            />
+            <input type="date" id={id + "-venueSearchArrivalDateVP"} min={getTodaysDate()} defaultValue={getTodaysDate()} {...register("venueSearchArrivalDateVP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
           </div>
           <div className="col-12 col-md-6 form-group d-flex flex-column">
             <label htmlFor={id + "-venueSearchDepartureDateVP"} className="py-2 text-light fs-0-75rem-to-1rem">
               Departure date
             </label>
-            <input
-              type="date"
-              id={id + "-venueSearchDepartureDateVP"}
-              min={getTomorrowsDate()}
-              defaultValue={getTomorrowsDate()}
-              {...register("venueSearchDepartureDateVP")}
-              className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2"
-            />
+            <input type="date" id={id + "-venueSearchDepartureDateVP"} min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("venueSearchDepartureDateVP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
           </div>
           <div className="col-12 col-md-6 form-group d-flex flex-column">
             <label htmlFor={id + "-venueSearchGuestNumberVP"} className="py-2 text-light fs-0-75rem-to-1rem">
               Number of guests
             </label>
-            <input
-              type="number"
-              id={id + "-venueSearchGuestNumberVP"}
-              defaultValue={1}
-              {...register("venueSearchGuestNumberVP")}
-              className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2"
-            />
+            <input type="number" id={id + "-venueSearchGuestNumberVP"} defaultValue={1} {...register("venueSearchGuestNumberVP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
           </div>
         </div>
         <button className="main-button-red mt-2 mt-md-4 fs-1-125rem">SEARCH</button>
