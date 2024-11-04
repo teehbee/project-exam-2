@@ -16,9 +16,11 @@ function Venues() {
           <SearchFormMain />
         </div>
       </section>
-      <section id="venues-list" className="container pt-5 pt-md-0 my-5">
-        <p className="secondary-font fs-1rem-to-2rem">0 venues match your search</p>
-        <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
+      <section id="venues-list" className="container py-5 pt-md-0 my-5">
+        <div className="py-3 py-lg-5">
+          <p className="secondary-font fs-1rem-to-2rem mb-1">0 venues match your search</p>
+          <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
+        </div>
         <div className="row g-3">
           <VenueTile />
           <VenueTile />
@@ -28,6 +30,9 @@ function Venues() {
           <VenueTile />
           <VenueTile />
           <VenueTile />
+        </div>
+        <div className="text-center pt-5">
+          <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer">Load more venues...</p>
         </div>
       </section>
     </>
