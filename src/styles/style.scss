@@ -179,6 +179,11 @@ $custom-fs-4-rem: 4rem;
   max-width: 540px;
 }
 
+.preview-tile-img {
+  height: 200px;
+  object-fit: cover;
+}
+
 // Colors
 
 .bg-dark-gray-color {
@@ -373,6 +378,8 @@ header {
   text-align: center;
 }
 
+// Venues page
+
 // Utility classes
 
 .cursor-pointer {
@@ -395,6 +402,13 @@ header {
   margin-top: 125px;
 }
 
+.border-radius-start-5px {
+  border-radius: 5px 0 0 5px;
+}
+
+.test {
+  max-width: 25%;
+}
 // Media queries
 
 @media screen and (max-width: 767px) {
@@ -444,6 +458,9 @@ header {
     padding: 50px 0;
     overflow-y: hidden;
   }
+  .preview-tile-img {
+    width: 130px;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -467,5 +484,8 @@ header {
   .main-button-red:hover,
   .main-button-gray:hover {
     font-weight: 500;
+  }
+  .preview-tile-img {
+    width: 200px;
   }
 }
