@@ -1,3 +1,4 @@
 import VenueTile from "./VenuesTile";
+import VenueFiltering from "./filter";
 
-export default VenueTile;
+export { VenueTile, VenueFiltering };

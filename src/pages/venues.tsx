@@ -1,6 +1,6 @@
 import { venueHeroImageLarge, venueHeroImageSmall } from "../assets/img";
 import { SearchFormMain } from "../components/forms";
-import VenueTile from "../components/venues";
+import { VenueTile, VenueFiltering } from "../components/venues";
 import { useScrollToTop } from "../components/utils";
 import MainLoader from "../components/loader";
 
@@ -21,7 +21,9 @@ function Venues() {
         <div className="py-3 py-lg-5">
           <p className="secondary-font fs-1rem-to-2rem mb-1">0 venues match your search</p>
           <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
+          <VenueFiltering />
         </div>
+
         <div className="text-center py-5 d-none">
           <MainLoader />
         </div>
