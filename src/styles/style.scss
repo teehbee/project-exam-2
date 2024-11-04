@@ -378,7 +378,7 @@ header {
   text-align: center;
 }
 
-// Filtering button
+// Filtering
 
 .filter-button {
   width: 100px;
@@ -386,6 +386,12 @@ header {
 
 .filter-icon {
   height: 32px;
+}
+
+.venue-filtering input {
+  height: 24px;
+  width: 24px;
+  margin-right: 5px;
 }
 
 // Utility classes
