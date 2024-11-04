@@ -15,8 +15,9 @@ function Venues() {
           <SearchFormMain />
         </div>
       </section>
-      <section className="container mt-5 pt-5">
-        <h1>Test</h1>
+      <section className="container pt-5 pt-md-0 mt-5">
+        <p className="secondary-font fs-1rem-to-2rem">0 venues match your search</p>
+        <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
       </section>
     </>
   );

@@ -120,6 +120,14 @@ $custom-fs-4-rem: 4rem;
   }
 }
 
+.fs-1rem-to-2rem {
+  font-size: 1rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-2rem;
+  }
+}
+
 .fs-1-25rem-to-1-5rem {
   font-size: $custom-fs-1-25rem;
 
