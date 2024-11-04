@@ -26,6 +26,7 @@ function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
     const isDifferent = Object.keys(checkboxes).some((key) => checkboxes[key] !== filterValues[key]);
     if (isDifferent) {
       onFilterChange(checkboxes);
+      console.log("Current filter status:", checkboxes);
     }
   }, [checkboxes, filterValues, onFilterChange]);
 
@@ -36,10 +37,6 @@ function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
   }, [filterValues, setValue]);
 
   // for now the data is only console.logged. will be used for filtering api data later on
-
-  useEffect(() => {
-    console.log("Current filter status:", checkboxes);
-  }, [checkboxes]);
 
   return (
     <div className="py-3">
