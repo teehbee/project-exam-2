@@ -1,3 +1,4 @@
 import VenueImageAndText from "./VenueImageAndText";
+import VenueCalendar from "./venueCalendar";
 
-export default VenueImageAndText;
+export { VenueImageAndText, VenueCalendar };
