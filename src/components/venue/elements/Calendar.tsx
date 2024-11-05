@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Calendar } from "@demark-pro/react-booking-calendar";
-
+import { Calendar, CalendarSelected } from "@demark-pro/react-booking-calendar"; // Import CalendarSelected type
 import "@demark-pro/react-booking-calendar/dist/react-booking-calendar.css";
 
 const oneDay = 86400000;
@@ -17,7 +16,7 @@ const reserved = Array.from({ length: 3 }, (_, i) => {
 });
 
 export const BookingCalendar = () => {
-  const [selectedDates, setSelectedDates] = useState([]);
+  const [selectedDates, setSelectedDates] = useState<CalendarSelected[]>([]);
 
   return (
     <div className="calendar form-box-shadow mx-auto mt-5 mt-md-3 p-3">
