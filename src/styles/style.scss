@@ -404,7 +404,8 @@ header {
 // Venue page
 
 .calendar,
-.form-venue-container {
+.form-venue-container,
+.booking-sum-container {
   max-width: 350px;
 }
 
@@ -442,6 +443,9 @@ header {
 @media screen and (max-width: 767px) {
   .border-bottom-nav-dropdown {
     border-bottom: 0.2px solid rgb(255, 255, 255, 0.5);
+  }
+  .venue-image-and-text-container {
+    max-width: 350px;
   }
 }
 

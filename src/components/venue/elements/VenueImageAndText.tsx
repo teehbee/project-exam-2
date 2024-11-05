@@ -4,7 +4,7 @@ import { starIcon } from "../../../assets/icon";
 
 function VenueImageAndText() {
   return (
-    <div className="col-12 col-md-5 mx-auto">
+    <div className="venue-image-and-text-container col-12 col-md-5 mx-auto">
       <picture>
         <source media="(min-width: 992px)" srcSet={placeHolderImageLarge} />
         <img className="img-fluid form-box-shadow" src={placeHolderImage} aria-label="placeholder" />

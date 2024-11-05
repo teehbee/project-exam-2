@@ -47,7 +47,7 @@ const BookingNumberOfGuests: React.FC<BookingNumberOfGuestsProps> = ({ onGuestsC
   };
 
   return (
-    <div className="form-venue-container mx-auto pt-3">
+    <div className="form-venue-container form-box-shadow mx-auto p-3 mt-4">
       <div className="form-group d-flex flex-column text-start">
         <label htmlFor="bookVenueNRofGuests" className="mt-2 fs-0-875rem">
           Max number of guests<span className="text-danger">*</span>

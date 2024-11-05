@@ -1,4 +1,4 @@
-import { BookingCalendar, BookingNumberOfGuests } from "./";
+import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
 
 function VenueBooking() {
   const handleGuestsChange = (numberOfGuests: number) => {
@@ -8,6 +8,7 @@ function VenueBooking() {
     <div className="col-12 col-md-7">
       <BookingCalendar />
       <BookingNumberOfGuests onGuestsChange={handleGuestsChange} />
+      <BookingSum />
     </div>
   );
 }
