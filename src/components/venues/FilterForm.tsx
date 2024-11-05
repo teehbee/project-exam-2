@@ -1,43 +1,38 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { checkForFilterChanges, setInitialFilterValues } from "../utils";
 
-interface FilterFormProps {
-  filterValues: {
-    wifi: boolean;
-    restaurant: boolean;
-    parking: boolean;
-    petFriendly: boolean;
-  };
-  onFilterChange: (updatedValues: any) => void;
+interface FilterValues {
+  wifi: boolean;
+  restaurant: boolean;
+  parking: boolean;
+  petFriendly: boolean;
 }
 
-// No validation, but using react hook forms to keep track of states of filtering options
+interface FilterFormProps {
+  filterValues: FilterValues;
+  onFilterChange: (updatedValues: FilterValues) => void;
+}
+
+// No validation due to filtering being optional, but using react hook forms to keep track of states of filtering options
 
 function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
   const { register, watch, setValue } = useForm({
     defaultValues: filterValues,
   });
 
-  // watch is watching for changes in the form
+  // watching for changes in the form
 
   const checkboxes = watch();
 
-  // Check if changes are done to the checkboxes compared to the stored values in "filterValues"
+  // imported components checking for changes and setting initial values
 
   useEffect(() => {
-    const isDifferent = Object.keys(checkboxes).some((key) => {
-      return checkboxes[key as keyof typeof filterValues] !== filterValues[key as keyof typeof filterValues];
-    });
-    if (isDifferent) {
-      onFilterChange(checkboxes);
-      console.log("Current filter status:", checkboxes);
-    }
+    checkForFilterChanges(checkboxes, filterValues, onFilterChange);
   }, [checkboxes, filterValues, onFilterChange]);
 
   useEffect(() => {
-    Object.keys(filterValues).forEach((key) => {
-      setValue(key as keyof typeof filterValues, filterValues[key as keyof typeof filterValues]);
-    });
+    setInitialFilterValues(filterValues, setValue);
   }, [filterValues, setValue]);
 
   return (
