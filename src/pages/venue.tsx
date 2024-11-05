@@ -1,12 +1,9 @@
 import { useScrollToTop } from "../components/utils";
+import SingleVenuePage from "../components/venue";
 
 function Venue() {
   useScrollToTop();
-  return (
-    <div>
-      <h1>Venue</h1>
-    </div>
-  );
+  return <SingleVenuePage />;
 }
 
 export default Venue;

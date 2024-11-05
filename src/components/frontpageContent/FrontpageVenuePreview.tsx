@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import placeHolderImage from "../../assets/placeholderImg";
+import { placeHolderImage } from "../../assets/placeholderImg";
 
 function FrontpageVenuePreview() {
   return (
