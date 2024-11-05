@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile, Venue, ContactSuccess, CreateVenueSuccess, UpdateVenueSuccess, UpdateProfileSuccess } from "../pages";
+import { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile, Venue, ContactSuccess, CreateVenueSuccess, UpdateVenueSuccess, UpdateProfileSuccess, NotFound } from "../pages";
 import MainLayout from "../layouts/mainLayout";
 
 const router = createBrowserRouter([
@@ -82,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: "profile-updated",
         element: <UpdateProfileSuccess />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
