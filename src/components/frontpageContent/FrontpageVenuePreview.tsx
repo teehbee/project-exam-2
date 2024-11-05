@@ -56,7 +56,7 @@ function FrontpageVenuePreview() {
         </div>
       </div>
       <div className="text-end">
-        <Link className="text-decoration-none" to="venues">
+        <Link className="text-decoration-none" to="venues#venues-list">
           <p className="secondary-font text-decoration-none dark-font fs-1rem-to-1-5rem">See full list..</p>
         </Link>
       </div>

@@ -1,6 +1,8 @@
 import { venueHeroImageLarge, venueHeroImageSmall } from "../assets/img";
 import { SearchFormMain } from "../components/forms";
+import { VenueTile, VenueFiltering } from "../components/venues";
 import { useScrollToTop } from "../components/utils";
+import MainLoader from "../components/loader";
 
 function Venues() {
   useScrollToTop();
@@ -15,8 +17,29 @@ function Venues() {
           <SearchFormMain />
         </div>
       </section>
-      <section className="container mt-5 pt-5">
-        <h1>Test</h1>
+      <section id="venues-list" className="container py-5 pt-md-0 my-5">
+        <div className="py-3 py-lg-5">
+          <p className="secondary-font fs-1rem-to-2rem mb-1">0 venues match your search</p>
+          <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
+          <VenueFiltering />
+        </div>
+
+        <div className="text-center py-5 d-none">
+          <MainLoader />
+        </div>
+        <div className="row g-3">
+          <VenueTile />
+          <VenueTile />
+          <VenueTile />
+          <VenueTile />
+          <VenueTile />
+          <VenueTile />
+          <VenueTile />
+          <VenueTile />
+        </div>
+        <div className="text-center pt-5">
+          <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer">Load more venues...</p>
+        </div>
       </section>
     </>
   );
