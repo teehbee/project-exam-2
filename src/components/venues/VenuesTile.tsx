@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { petIcon, wifiIcon, restaurantIcon, parkingIcon } from "../../assets/icon";
 import placeHolderImage from "../../assets/placeholderImg";
 
 function VenueTile() {
+  // State and handling for large or small screens to alter text in book button
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="col-12 col-lg-6">
       <div className="d-flex form-box-shadow pe-2">
@@ -27,9 +40,9 @@ function VenueTile() {
               <p className="fs-0-75rem-to-1rem mb-1">Price</p>
               <p className="fs-0-75rem-to-0-875rem">per night</p>
             </div>
-            <div className="align-items-end">
+            <div className="align-items-end pe-md-3">
               <Link to="/venue">
-                <button className="main-button-red">Book</button>
+                <button className="main-button-red">{isLargeScreen ? "Book now" : "Book"}</button>
               </Link>
             </div>
           </div>
