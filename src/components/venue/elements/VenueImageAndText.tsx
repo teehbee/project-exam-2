@@ -7,9 +7,9 @@ function VenueImageAndText() {
     <div className="col-12 col-md-5 mx-auto">
       <picture>
         <source media="(min-width: 992px)" srcSet={placeHolderImageLarge} />
-        <img className="img-fluid" src={placeHolderImage} aria-label="placeholder" />
+        <img className="img-fluid form-box-shadow" src={placeHolderImage} aria-label="placeholder" />
       </picture>
-      <div className="text-start pt-3">
+      <div className="text-start pt-3 ">
         <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
           Name of accommodation, <span className="secondary-font fs-1-25rem-to-1-5rem">Location</span>
         </h1>
