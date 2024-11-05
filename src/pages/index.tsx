@@ -17,5 +17,6 @@ import Venue from "./venue";
 import CreateVenueSuccess from "./venueManager/vmPostVenueSuccess";
 import UpdateVenueSuccess from "./venueManager/vmUpdateVenueSuccess";
 import UpdateProfileSuccess from "./profile/updateProfileSuccess";
+import NotFound from "./notFOund";
 
-export { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile, Venue, ContactSuccess, CreateVenueSuccess, UpdateVenueSuccess, UpdateProfileSuccess };
+export { Home, Venues, Register, Contact, RentOutVenue, Profile, Login, BookingSuccess, RegisterFormPage, RegistrationComplete, LoginComplete, VenueManagerBookings, UpdateVenue, UpdateProfile, Venue, ContactSuccess, CreateVenueSuccess, UpdateVenueSuccess, UpdateProfileSuccess, NotFound };
