@@ -1,5 +1,5 @@
 import VenueImageAndText from "./VenueImageAndText";
-import VenueCalendar from "./venueCalendar";
+import VenueBooking from "./VenueBooking";
 import { BookingCalendar } from "./Calendar";
 
-export { VenueImageAndText, VenueCalendar, BookingCalendar };
+export { VenueImageAndText, VenueBooking, BookingCalendar };

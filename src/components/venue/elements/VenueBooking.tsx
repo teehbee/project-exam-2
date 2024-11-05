@@ -1,13 +1,11 @@
 import { BookingCalendar } from "./Calendar";
 
-function VenueCalendar() {
+function VenueBooking() {
   return (
     <div className="col-12 col-md-7">
-      <div>
-        <BookingCalendar />
-      </div>
+      <BookingCalendar />
     </div>
   );
 }
 
-export default VenueCalendar;
+export default VenueBooking;
