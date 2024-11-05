@@ -22,8 +22,12 @@ function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
 
   const checkboxes = watch();
 
+  // Check if changes are done to the checkboxes compared to the stored values in "filterValues"
+
   useEffect(() => {
-    const isDifferent = Object.keys(checkboxes).some((key) => checkboxes[key] !== filterValues[key]);
+    const isDifferent = Object.keys(checkboxes).some((key) => {
+      return checkboxes[key as keyof typeof filterValues] !== filterValues[key as keyof typeof filterValues];
+    });
     if (isDifferent) {
       onFilterChange(checkboxes);
       console.log("Current filter status:", checkboxes);
@@ -32,11 +36,9 @@ function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
 
   useEffect(() => {
     Object.keys(filterValues).forEach((key) => {
-      setValue(key, filterValues[key]);
+      setValue(key as keyof typeof filterValues, filterValues[key as keyof typeof filterValues]);
     });
   }, [filterValues, setValue]);
-
-  // for now the data is only console.logged. will be used for filtering api data later on
 
   return (
     <div className="py-3">
@@ -62,7 +64,7 @@ function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
           </div>
           <div className="pe-3 pt-3">
             <label className="d-flex align-items-center">
-              <input type="checkbox" className="form-check-input mt-0" {...register("pet-friendly")} />
+              <input type="checkbox" className="form-check-input mt-0" {...register("petFriendly")} />
               Pet friendly
             </label>
           </div>
