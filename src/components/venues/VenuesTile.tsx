@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { petIcon, wifiIcon, restaurantIcon, parkingIcon } from "../../assets/icon";
-import placeHolderImage from "../../assets/placeholderImg";
+import { placeHolderImage } from "../../assets/placeholderImg";
 
 function VenueTile() {
   // State and handling for large or small screens to alter text in book button

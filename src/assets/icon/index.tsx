@@ -6,5 +6,6 @@ import wifiIcon from "./venueFacilities/material-symbols_wifi.svg";
 import restaurantIcon from "./venueFacilities/ic_outline-restaurant.svg";
 import parkingIcon from "./venueFacilities/rivet-icons_parking.svg";
 import petIcon from "./venueFacilities/material-symbols_pets.svg";
+import starIcon from "./material-symbols_star.svg";
 
-export { profileIcon, bars, signOutIcon, filterIcon, wifiIcon, restaurantIcon, parkingIcon, petIcon };
+export { profileIcon, bars, signOutIcon, filterIcon, wifiIcon, restaurantIcon, parkingIcon, petIcon, starIcon };

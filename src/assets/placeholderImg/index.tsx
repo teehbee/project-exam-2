@@ -1,3 +1,4 @@
 import placeHolderImage from "./placeHolderFrontPageTile.jpg";
+import placeHolderImageLarge from "./placeholderFrontPageTileLarge.jpg";
 
-export default placeHolderImage;
+export { placeHolderImage, placeHolderImageLarge };
