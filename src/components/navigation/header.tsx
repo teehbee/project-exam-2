@@ -3,20 +3,10 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function Header() {
-  // Used to check url for correct background color on nav
-
+  // States related to navbar behavior
   const location = useLocation();
-
-  // State for handling screen size to set background color on nav on smaller screens
-
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 992);
-
-  // State for expanded and not-expanded dropdown menu
-
   const [expanded, setExpanded] = useState(false);
-
-  // Handling transparency of header when needed
-
   const isTransparent = location.pathname === "/" || location.pathname === "/venues";
 
   // Event listener and cleanup for window size

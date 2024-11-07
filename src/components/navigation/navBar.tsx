@@ -22,17 +22,17 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
           </ul>
           <ul className="d-md-flex d-none pe-5">
             <li className="pe-4">
-              <Link className="nav-link-styling fs-0-875rem" to="login">
+              <NavLink className="nav-link-styling fs-0-875rem" to="login">
                 Login
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="nav-link-styling fs-0-875rem" to="register">
+              <NavLink className="nav-link-styling fs-0-875rem" to="register">
                 Register
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="d-none" to="profile">
+              <Link className="ps-2" to="profile">
                 <img className="" src={profileIcon} aria-label="profile link" />
               </Link>
               <img className="d-none ps-2" src={signOutIcon} aria-label="sign out" />
@@ -51,34 +51,34 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
             <Nav className="dropdown-active ms-auto align-items-center">
-              <Link className="nav-link-styling fs-1-125rem m-2" to="/" onClick={handleLinkClick}>
+              <NavLink className="nav-link-styling fs-1-125rem m-2" to="/" onClick={handleLinkClick}>
                 HOME
-              </Link>
-              <Link className="nav-link-styling fs-1-125rem m-2" to="venues" onClick={handleLinkClick}>
+              </NavLink>
+              <NavLink className="nav-link-styling fs-1-125rem m-2" to="venues" onClick={handleLinkClick}>
                 ACCOMMODATIONS
-              </Link>
-              <Link className="nav-link-styling fs-1-125rem m-2" to="contact" onClick={handleLinkClick}>
+              </NavLink>
+              <NavLink className="nav-link-styling fs-1-125rem m-2" to="contact" onClick={handleLinkClick}>
                 CONTACT
-              </Link>
-              <Link className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
+              </NavLink>
+              <NavLink className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
                 RENT OUT
-              </Link>
+              </NavLink>
               <Link to="venues" onClick={handleLinkClick}>
                 <button className="main-button-red fs-1-125rem ms-2">BOOK NOW</button>
               </Link>
               <div className="d-md-none text-center">
-                <Link className="text-light fs-1-125rem fw-light nav-link" to="login" onClick={handleLinkClick}>
+                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="login" onClick={handleLinkClick}>
                   Login
-                </Link>
-                <Link className="text-light fs-1-125rem fw-light nav-link" to="register" onClick={handleLinkClick}>
+                </NavLink>
+                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="register" onClick={handleLinkClick}>
                   Register
-                </Link>
-                <Link className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
+                </NavLink>
+                <NavLink className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
                   Profile
-                </Link>
-                <Link className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
+                </NavLink>
+                <NavLink className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
                   Sign out
-                </Link>
+                </NavLink>
               </div>
             </Nav>
           </Navbar.Collapse>
