@@ -7,7 +7,7 @@ import { getTodaysDate, getTomorrowsDate } from "../utils";
 // Type definition for search data
 
 interface SearchFormInputFP {
-  venueSearchNameFP: string;
+  venueSearchLocationFP: string;
   venueSearchArrFP: Date;
   venueSearchDepFP: Date;
   venueSearchNumberFP: number;
@@ -16,7 +16,7 @@ interface SearchFormInputFP {
 // Yup schema for search inputs
 
 const schema = yup.object().shape({
-  venueSearchNameFP: yup.string().required("Destination is required"),
+  venueSearchLocationFP: yup.string().required("Destination is required"),
   venueSearchArrFP: yup.date().required("Arrival date is required"),
   venueSearchDepFP: yup.date().required("Arrival date is required"),
   venueSearchNumberFP: yup
@@ -48,31 +48,17 @@ function SearchForm() {
         <label htmlFor={id + "-venueSearchNameFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Destination
         </label>
-        <input type="text" id={id + "-venueSearchNameFP"} placeholder="Where do you want to go?" {...register("venueSearchNameFP")} className="mb-1 fs-0-75rem-to-0-875rem text-light" />
-        {errors.venueSearchNameFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchNameFP.message}</p>}
+        <input type="text" id={id + "-venueSearchNameFP"} placeholder="Where do you want to go?" {...register("venueSearchLocationFP")} className="mb-1 fs-0-75rem-to-0-875rem text-light" />
+        {errors.venueSearchLocationFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchLocationFP.message}</p>}
         <label htmlFor={id + "-venueSearchNameFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Arrival date
         </label>
-        <input
-          type="date"
-          id={id + "-venueSearchArrFP"}
-          min={getTodaysDate()}
-          defaultValue={getTodaysDate()}
-          {...register("venueSearchArrFP")}
-          className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2"
-        />
+        <input type="date" id={id + "-venueSearchArrFP"} min={getTodaysDate()} defaultValue={getTodaysDate()} {...register("venueSearchArrFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
         {errors.venueSearchArrFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchArrFP.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Departure date
         </label>
-        <input
-          type="date"
-          id={id + "-venueSearchDepFP"}
-          min={getTomorrowsDate()}
-          defaultValue={getTomorrowsDate()}
-          {...register("venueSearchDepFP")}
-          className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2"
-        />
+        <input type="date" id={id + "-venueSearchDepFP"} min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("venueSearchDepFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
         {errors.venueSearchDepFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchDepFP.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Number of guests
