@@ -72,6 +72,14 @@ $custom-fs-4-rem: 4rem;
   }
 }
 
+.fs-0-625rem-to-0-875rem {
+  font-size: $custom-fs-0-625rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-0-875rem;
+  }
+}
+
 .fs-0-625rem-to-1rem {
   font-size: $custom-fs-0-625rem;
 
@@ -433,6 +441,16 @@ header .active {
   object-fit: cover;
 }
 
+// Profile
+
+.avatar-image {
+  border-radius: 50%;
+  border: 0.5px solid rgb(72, 72, 72, 0.2);
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
 // Utility classes
 
 .cursor-pointer {
@@ -509,6 +527,11 @@ header .active {
     width: 100%;
     height: 300px;
     object-fit: cover;
+  }
+
+  .avatar-image {
+    height: 150px;
+    width: 150px;
   }
 }
 
