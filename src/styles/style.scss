@@ -417,6 +417,18 @@ header .active {
   max-width: 350px;
 }
 
+// Booking confirmation
+
+.booking-success-container {
+  max-height: 150px;
+}
+
+.booking-success-container img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
 // Utility classes
 
 .cursor-pointer {
@@ -443,16 +455,14 @@ header .active {
   border-radius: 5px 0 0 5px;
 }
 
-.test {
-  max-width: 25%;
-}
 // Media queries
 
 @media screen and (max-width: 767px) {
   .border-bottom-nav-dropdown {
     border-bottom: 0.2px solid rgb(255, 255, 255, 0.5);
   }
-  .venue-image-and-text-container {
+  .venue-image-and-text-container,
+  .bookings-buttons-container {
     max-width: 350px;
   }
 }
@@ -485,6 +495,16 @@ header .active {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+  }
+
+  .booking-success-container {
+    max-height: 300px;
+  }
+
+  .booking-success-container img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
   }
 }
 

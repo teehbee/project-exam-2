@@ -1,3 +1,5 @@
 import BookingSuccessContent from "./BookingSuccessContent";
+import BookingSuccessButtons from "./BookingSuccessButtons";
+import BookingSuccessTextBox from "./BookingSuccessTextBox";
 
-export default BookingSuccessContent;
+export { BookingSuccessContent, BookingSuccessTextBox, BookingSuccessButtons };
