@@ -1,11 +1,13 @@
 import { useScrollToTop } from "../components/utils";
+import { BookingSuccessButtons, BookingSuccessContent } from "../components/booking";
 
 function BookingSuccess() {
   useScrollToTop();
   return (
-    <div>
-      <h1>Booking Success</h1>
-    </div>
+    <>
+      <BookingSuccessContent />
+      <BookingSuccessButtons />
+    </>
   );
 }
 

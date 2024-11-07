@@ -1,12 +1,9 @@
 import { useScrollToTop } from "../../components/utils";
+import { BookingsContent } from "../../components/bookings";
 
 function VenueManagerBookings() {
   useScrollToTop();
-  return (
-    <div>
-      <h1>Venue Manager Administration</h1>
-    </div>
-  );
+  return <BookingsContent />;
 }
 
 export default VenueManagerBookings;
