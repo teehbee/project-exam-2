@@ -1,5 +1,5 @@
 function ProfileBookings() {
-  return <div>Administer here</div>;
+  return <div className="col-12 col-md-8">Administer here</div>;
 }
 
 export default ProfileBookings;
