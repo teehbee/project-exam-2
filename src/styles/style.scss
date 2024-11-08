@@ -451,6 +451,12 @@ header .active {
   object-fit: cover;
 }
 
+.profile-bookings-selector:hover,
+.profile-bookings-selector-active {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
 // Utility classes
 
 .cursor-pointer {

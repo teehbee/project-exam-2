@@ -4,5 +4,7 @@ import ProfileBookings from "./ProfileBookings";
 import ProfileImage from "./ProfileImage";
 import ProfileData from "./ProfileData";
 import ProfileBio from "./ProfileBio";
+import ProfileBookingsUpcoming from "./ProfileBookingsUpcoming";
+import ProfileBookingsManaged from "./ProfileBookingsManaged";
 
-export { ProfilePage, ProfileHeader, ProfileBookings, ProfileImage, ProfileData, ProfileBio };
+export { ProfilePage, ProfileHeader, ProfileBookings, ProfileImage, ProfileData, ProfileBio, ProfileBookingsUpcoming, ProfileBookingsManaged };
