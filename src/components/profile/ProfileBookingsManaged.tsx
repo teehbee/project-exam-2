@@ -1,5 +1,16 @@
+import { ProfileBookingsManagedTile } from "./";
+
 function ProfileBookingsManaged() {
-  return <div className="text-start">Managed</div>;
+  return (
+    <div>
+      <ProfileBookingsManagedTile />
+      <ProfileBookingsManagedTile />
+      <ProfileBookingsManagedTile />
+      <ProfileBookingsManagedTile />
+      <ProfileBookingsManagedTile />
+      <ProfileBookingsManagedTile />
+    </div>
+  );
 }
 
 export default ProfileBookingsManaged;
