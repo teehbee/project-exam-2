@@ -1,12 +1,9 @@
 import { useScrollToTop } from "../../components/utils";
+import { ProfilePage } from "../../components/profile";
 
 function Profile() {
   useScrollToTop();
-  return (
-    <div>
-      <h1>Profile page</h1>
-    </div>
-  );
+  return <ProfilePage />;
 }
 
 export default Profile;

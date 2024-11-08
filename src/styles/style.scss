@@ -72,6 +72,14 @@ $custom-fs-4-rem: 4rem;
   }
 }
 
+.fs-0-625rem-to-0-875rem {
+  font-size: $custom-fs-0-625rem;
+
+  @include media-breakpoint-up("md") {
+    font-size: $custom-fs-0-875rem;
+  }
+}
+
 .fs-0-625rem-to-1rem {
   font-size: $custom-fs-0-625rem;
 
@@ -304,7 +312,6 @@ header .active {
 .border-bottom-gray {
   border-bottom: 0.5px solid rgb(72, 72, 72, 0.2);
 }
-
 // Forms - Search-form
 
 .search-form {
@@ -433,6 +440,32 @@ header .active {
   object-fit: cover;
 }
 
+// Profile
+
+.avatar-image {
+  border-radius: 50%;
+  border: 0.5px solid rgb(72, 72, 72, 0.2);
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.profile-bookings-selector:hover,
+.profile-bookings-selector-active {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.profile-booking-container img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.profile-booking-container {
+  max-height: 120px;
+}
+
 // Utility classes
 
 .cursor-pointer {
@@ -510,6 +543,21 @@ header .active {
     height: 300px;
     object-fit: cover;
   }
+
+  .avatar-image {
+    height: 150px;
+    width: 150px;
+  }
+
+  .profile-booking-container img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+  }
+
+  .profile-booking-container {
+    max-height: 190px;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -551,5 +599,8 @@ header .active {
   }
   .preview-tile-img {
     width: 200px;
+  }
+  .right-border {
+    border-right: 0.5px solid rgb(72, 72, 72, 0.2);
   }
 }
