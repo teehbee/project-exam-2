@@ -2,7 +2,7 @@ import { checkIcon } from "../../assets/icon";
 
 function ProfileData() {
   return (
-    <div className="ps-2">
+    <div className="ps-3">
       <h1 className="secondary-font fs-1-5rem-to-2rem">Name of user</h1>
       <p className="fs-0-75rem-to-1rem">Email address</p>
       <div className="d-flex align-items-center">

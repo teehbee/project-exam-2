@@ -2,11 +2,9 @@ import { ProfileHeader, ProfileBookings } from "./";
 
 function ProfilePage() {
   return (
-    <div className="container text-center py-5">
-      <div className="row">
-        <ProfileHeader />
-        <ProfileBookings />
-      </div>
+    <div className="container row mx-auto text-center py-5">
+      <ProfileHeader />
+      <ProfileBookings />
     </div>
   );
 }
