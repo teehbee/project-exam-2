@@ -35,7 +35,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
               <Link className="ps-2" to="profile">
                 <img className="" src={profileIcon} aria-label="profile link" />
               </Link>
-              <img className="d-none ps-2" src={signOutIcon} aria-label="sign out" />
+              <img className="ps-2 cursor-pointer" src={signOutIcon} aria-label="sign out" />
             </li>
           </ul>
         </div>
@@ -73,10 +73,10 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
                 <NavLink className="text-light fs-1-125rem fw-light nav-link" to="register" onClick={handleLinkClick}>
                   Register
                 </NavLink>
-                <NavLink className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
+                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="profile" onClick={handleLinkClick}>
                   Profile
                 </NavLink>
-                <NavLink className="text-light fs-1-125rem fw-light nav-link d-none" to="profile" onClick={handleLinkClick}>
+                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="/" onClick={handleLinkClick}>
                   Sign out
                 </NavLink>
               </div>
