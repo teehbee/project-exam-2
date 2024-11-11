@@ -40,9 +40,8 @@ function SearchForm() {
   });
 
   const onSubmit: SubmitHandler<SearchFormInputFP> = (data) => {
-    dispatch(setFrontpageSearchData(data)); // Save data to Redux
-    console.log(data);
-    navigate("/venues"); // Redirect to /venues
+    dispatch(setFrontpageSearchData(data));
+    navigate("/venues");
   };
   // Setting unique id for input fields
 

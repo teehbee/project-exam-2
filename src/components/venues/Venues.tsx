@@ -1,9 +1,19 @@
 import { venueHeroImageLarge, venueHeroImageSmall } from "../../assets/img";
 import { SearchFormMain } from "../forms";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import { VenueTile, VenueFiltering } from "./";
 import MainLoader from "../loader";
 
-function VenuesPage() {
+const VenuesPage: React.FC = () => {
+  const searchData = useSelector((state: RootState) => state.search.searchData);
+
+  useEffect(() => {
+    // Log the search data to the console
+    console.log("Search Data from frontpage search:", searchData);
+  }, [searchData]);
+
   return (
     <>
       <picture>
@@ -41,6 +51,6 @@ function VenuesPage() {
       </section>
     </>
   );
-}
+};
 
 export default VenuesPage;
