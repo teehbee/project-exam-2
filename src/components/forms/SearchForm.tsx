@@ -6,7 +6,7 @@ import { getTodaysDate, getTomorrowsDate } from "../utils";
 
 // Type definition for search data
 
-interface SearchFormInputFP {
+export interface SearchFormInputFP {
   venueSearchLocationFP: string;
   venueSearchArrFP: Date;
   venueSearchDepFP: Date;
