@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import { useApi } from "../api";
 import { Venue } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
+import { FrontPageLoader, FrontPageError } from "./";
 
 function FrontpageVenuePreview() {
   const { data, error, loading } = useApi<{ data: Venue[] }>(VENUES_ENDPOINT, "GET", null, false);
 
   console.log("Fetched Data:", data);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <FrontPageLoader />;
+  if (error) return <FrontPageError />;
 
   const venues = data?.data || [];
 
