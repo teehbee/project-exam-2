@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setFrontpageSearchData } from "../../redux/actions/frontpageSearchActions";
 import * as yup from "yup";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
 
@@ -26,6 +29,8 @@ const schema = yup.object().shape({
 });
 
 function SearchForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -35,7 +40,9 @@ function SearchForm() {
   });
 
   const onSubmit: SubmitHandler<SearchFormInputFP> = (data) => {
+    dispatch(setFrontpageSearchData(data)); // Save data to Redux
     console.log(data);
+    navigate("/venues"); // Redirect to /venues
   };
   // Setting unique id for input fields
 

@@ -16,10 +16,10 @@ const frontpageSearchReducer = (state: SearchState = initialState, action: any):
     case SET_FRONTPAGE_SEARCH_DATA:
       return {
         ...state,
-        searchData: action.payload, // Update the search data with the payload
+        searchData: action.payload,
       };
     default:
-      return state; // Return the current state if no action matches
+      return state;
   }
 };
 
