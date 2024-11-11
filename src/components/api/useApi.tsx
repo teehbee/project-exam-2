@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 // Reusable api hook for all different methods and endpoints as well as authorized and non-authorized endpoints
 
-const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = null, requiresAuth: boolean = false): [T | null, string | null, boolean] => {
+const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = null, requiresAuth: boolean = false) => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -47,7 +47,7 @@ const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = n
     fetchData();
   }, [endpoint, method, body, apiUrl, apiKey, requiresAuth, bearerToken]);
 
-  return [data, error, loading];
+  return { data, error, loading }; // Return an object
 };
 
 export default useApi;
