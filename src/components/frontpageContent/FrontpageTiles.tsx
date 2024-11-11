@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { frontPageImage1, frontPageImage2 } from "../../assets/frontpageImg";
+import { useApi } from "../api";
 
 function FrontpageTiles() {
   return (
