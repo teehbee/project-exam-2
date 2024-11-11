@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import { placeHolderImage } from "../../assets/placeholderImg";
+import { useApi } from "../api";
+import { Venue } from "../api/interfaces";
+import { VENUES_ENDPOINT } from "../api/const";
 
 function FrontpageVenuePreview() {
+  const { data, error, loading } = useApi<Venue[]>(VENUES_ENDPOINT, "GET", null, false);
+
+  console.log("Fetched Data:", data);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   return (
     <section className="container text-center mt-125px mt-md-4">
       <h2 className=" pb-5 py-md-5 secondary-font fs-1-5rem-to-2-5rem">Find your next getaway</h2>

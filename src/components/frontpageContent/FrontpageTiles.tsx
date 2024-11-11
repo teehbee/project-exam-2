@@ -1,16 +1,7 @@
 import { Link } from "react-router-dom";
 import { frontPageImage1, frontPageImage2 } from "../../assets/frontpageImg";
-import { useApi } from "../api";
-import { Venue } from "../api/interfaces";
 
 function FrontpageTiles() {
-  const { data, error, loading } = useApi<Venue[]>(`holidaze/venues?_bookings=true&_owner=true`, "GET", null, false);
-
-  console.log("Fetched Data:", data);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
   return (
     <section className="container my-5 pb-5">
       <div className="row mb-4 gx-lg-5">
