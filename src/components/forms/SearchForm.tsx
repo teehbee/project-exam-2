@@ -10,19 +10,19 @@ import { getTodaysDate, getTomorrowsDate } from "../utils";
 // Type definition for search data
 
 export interface SearchFormInputFP {
-  venueSearchLocationFP: string;
-  venueSearchArrFP: Date;
-  venueSearchDepFP: Date;
-  venueSearchNumberFP: number;
+  location: string;
+  arrivalDate: Date;
+  departureDate: Date;
+  numberOfGuests: number;
 }
 
 // Yup schema for search inputs
 
 const schema = yup.object().shape({
-  venueSearchLocationFP: yup.string().required("Destination is required"),
-  venueSearchArrFP: yup.date().required("Arrival date is required"),
-  venueSearchDepFP: yup.date().required("Arrival date is required"),
-  venueSearchNumberFP: yup
+  location: yup.string().required("Destination is required"),
+  arrivalDate: yup.date().required("Arrival date is required"),
+  departureDate: yup.date().required("Arrival date is required"),
+  numberOfGuests: yup
     .number()
     .required("Number of guests is required")
     .transform((_, originalValue) => (originalValue === "" ? undefined : Number(originalValue))),
@@ -43,6 +43,7 @@ function SearchForm() {
     dispatch(setFrontpageSearchData(data));
     navigate("/venues");
   };
+
   // Setting unique id for input fields
 
   const id = React.useId();
@@ -54,23 +55,23 @@ function SearchForm() {
         <label htmlFor={id + "-venueSearchNameFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Destination
         </label>
-        <input type="text" id={id + "-venueSearchNameFP"} placeholder="Where do you want to go?" {...register("venueSearchLocationFP")} className="mb-1 fs-0-75rem-to-0-875rem text-light" />
-        {errors.venueSearchLocationFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchLocationFP.message}</p>}
+        <input type="text" id={id + "-venueSearchNameFP"} placeholder="Where do you want to go?" {...register("location")} className="mb-1 fs-0-75rem-to-0-875rem text-light" />
+        {errors.location && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.location.message}</p>}
         <label htmlFor={id + "-venueSearchNameFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Arrival date
         </label>
-        <input type="date" id={id + "-venueSearchArrFP"} min={getTodaysDate()} defaultValue={getTodaysDate()} {...register("venueSearchArrFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
-        {errors.venueSearchArrFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchArrFP.message}</p>}
+        <input type="date" id={id + "-venueSearchArrFP"} min={getTodaysDate()} defaultValue={getTodaysDate()} {...register("arrivalDate")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        {errors.arrivalDate && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.arrivalDate.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Departure date
         </label>
-        <input type="date" id={id + "-venueSearchDepFP"} min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("venueSearchDepFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
-        {errors.venueSearchDepFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchDepFP.message}</p>}
+        <input type="date" id={id + "-venueSearchDepFP"} min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("departureDate")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        {errors.departureDate && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.departureDate.message}</p>}
         <label htmlFor={id + "-venueSearchDepFP"} className="py-2 text-light fs-0-75rem-to-1rem">
           Number of guests
         </label>
-        <input type="number" id={id + "-venueSearchNumberFP"} defaultValue={1} {...register("venueSearchNumberFP")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
-        {errors.venueSearchNumberFP && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.venueSearchNumberFP.message}</p>}
+        <input type="number" id={id + "-venueSearchNumberFP"} defaultValue={1} {...register("numberOfGuests")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        {errors.numberOfGuests && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.numberOfGuests.message}</p>}
         <button className="main-button-red mt-2 mt-md-4 fs-1-125rem">SEARCH</button>
       </form>
     </div>
