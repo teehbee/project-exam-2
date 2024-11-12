@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 
 // Define types for SearchFormInputFP and SerializedSearchFormInputFP
 
-interface SearchFormInputFP {
+export interface SearchFormInputFP {
   location: string;
   arrivalDate: string;
   departureDate: string;
