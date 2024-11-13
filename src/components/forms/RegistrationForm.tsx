@@ -26,7 +26,11 @@ interface RegisterFormInputs {
   registerPasswordConfirm: string;
 }
 
-function RegistrationForm() {
+interface RegisterFormProps {
+  isVenueManager: boolean;
+}
+
+function RegistrationForm({ isVenueManager }: RegisterFormProps) {
   // State for displaying loader in submit button
   const [registrationLoader, setRegistrationLoader] = useState(false);
   // For navigating after login
@@ -49,7 +53,7 @@ function RegistrationForm() {
       setRegistrationLoader(false);
       navigate("/registration-complete");
     }, 1000);
-    console.log(data);
+    console.log(data, isVenueManager);
   };
 
   // useId for setting unique id to form inputs
@@ -69,52 +73,28 @@ function RegistrationForm() {
                 <label htmlFor={id + "-registerName"} className="mt-2 fs-0-75rem-to-1rem">
                   Name<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="text"
-                  placeholder="I hate my life"
-                  id={id + "-registerName"}
-                  {...register("registerName")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="I hate my life" id={id + "-registerName"} {...register("registerName")} />
                 {errors.registerName && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerName.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerEmail"} className="mt-2 fs-0-75rem-to-1rem">
                   Email<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="email"
-                  placeholder="ihatemylife@stud.noroff.no"
-                  id={id + "-registerEmail"}
-                  {...register("registerEmail")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="ihatemylife@stud.noroff.no" id={id + "-registerEmail"} {...register("registerEmail")} />
                 {errors.registerEmail && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerEmail.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerPassword"} className="mt-2 fs-0-75rem-to-1rem">
                   Password<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="password"
-                  placeholder="********"
-                  id={id + "-loginPassword"}
-                  {...register("registerPassword")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-loginPassword"} {...register("registerPassword")} />
                 {errors.registerPassword && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerPassword.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerPasswordConfirm"} className="mt-2 fs-0-75rem-to-1rem">
                   Confirm password<span className="text-danger">*</span>
                 </label>
-                <input
-                  className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem"
-                  type="password"
-                  placeholder="********"
-                  id={id + "-registerPasswordConfirm"}
-                  {...register("registerPasswordConfirm")}
-                />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-registerPasswordConfirm"} {...register("registerPasswordConfirm")} />
                 {errors.registerPasswordConfirm && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerPasswordConfirm.message}</p>}
               </div>
               <button className="main-button-gray mt-4 p-1 p-md-2">Login {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
