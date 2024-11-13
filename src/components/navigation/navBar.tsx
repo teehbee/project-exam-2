@@ -17,8 +17,16 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
       <div className="main-nav">
         <div className="upper-nav d-none d-md-flex py-2 ps-0 justify-content-between border-bottom-white">
           <ul className="d-md-flex flex-row d-none ps-5">
-            <li className="pe-4 text-light fs-0-875rem">+47 123 45 678</li>
-            <li className="text-light fs-0-875rem">example@gmail.com</li>
+            <li className="pe-4 text-light fs-0-875rem">
+              <a className="nav-link-styling-no-hover" href="tel:+4712345678">
+                +47 123 45 678
+              </a>
+            </li>
+            <li className="text-light fs-0-875rem">
+              <a className="nav-link-styling-no-hover" href="mailto:example@gmail.com">
+                example@gmail.com
+              </a>
+            </li>
           </ul>
           <ul className="d-md-flex d-none pe-5">
             <li className="pe-4">

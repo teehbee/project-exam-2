@@ -6,8 +6,7 @@ import { RootState } from "../../redux/store";
 const RegisterFormPage: React.FC = () => {
   useScrollToTop();
   const isVenueManager = useSelector((state: RootState) => state.register.isVenueManager);
-  console.log("Is venue manager", isVenueManager);
-  return <RegistrationForm />;
+  return <RegistrationForm isVenueManager={isVenueManager} />;
 };
 
 export default RegisterFormPage;
