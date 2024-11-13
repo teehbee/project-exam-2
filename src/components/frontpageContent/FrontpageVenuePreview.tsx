@@ -26,8 +26,13 @@ function FrontpageVenuePreview() {
               <Link to={`venue/${venue.id}`}>
                 <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url} alt={venue.media[0]?.alt || "Venue image"} />
                 <div className="fp-img-overlay">
-                  <div className="fp-img-overlay-text text-start ps-3">
-                    <p className="secondary-font text-light">{venue.name}</p>
+                  <div className="fp-img-overlay-text">
+                    <div className="text-start">
+                      <p className="fs-0-75rem-to-1rem secondary-font text-light ps-1 mb-0">{venue.name}</p>
+                    </div>
+                    <div className="text-start">
+                      <p className="fs-0-75rem-to-1rem secondary-font text-light ps-1">NOK {venue.price},- per night</p>
+                    </div>
                   </div>
                 </div>
               </Link>

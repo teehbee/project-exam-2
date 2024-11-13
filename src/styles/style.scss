@@ -238,7 +238,8 @@ header .active {
   font-weight: 400;
 }
 
-.nav-link-styling {
+.nav-link-styling,
+.nav-link-styling-no-hover {
   color: white;
   font-weight: 200;
   text-decoration: none;
@@ -393,14 +394,14 @@ header .active {
 
 .fp-img-overlay-text {
   color: white;
-  font-size: 1rem;
   position: absolute;
   top: 60%;
-  left: 32%;
+  left: 55%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+  width: 100%;
 }
 
 // Filtering
@@ -534,10 +535,8 @@ header .active {
 
   .fp-img-overlay-text {
     color: white;
-    font-size: 20px;
     position: absolute;
-    top: 55%;
-    left: 35%;
+    top: 75%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
