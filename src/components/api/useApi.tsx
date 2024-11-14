@@ -2,16 +2,18 @@ import { useState, useEffect } from "react";
 
 // Reusable api hook for all different methods and endpoints as well as authorized and non-authorized endpoints
 
-const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = null, requiresAuth: boolean = false) => {
+const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = null, requiresAuth: boolean = false, autoFetch: boolean = true) => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const apiUrl = import.meta.env.VITE_NOROFF_API_URL;
   const apiKey = import.meta.env.VITE_API_KEY;
   const bearerToken = localStorage.getItem("bearerToken");
 
   useEffect(() => {
+    if (!autoFetch && !body) return;
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
@@ -47,7 +49,7 @@ const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = n
     fetchData();
   }, [endpoint, method, body, apiUrl, apiKey, requiresAuth, bearerToken]);
 
-  return { data, error, loading }; // Return an object
+  return { data, error, loading };
 };
 
 export default useApi;
