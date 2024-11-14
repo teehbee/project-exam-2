@@ -9,34 +9,33 @@ import { useApi } from "../api";
 import { REGISTER_ENDPOINT } from "../api/const";
 import Spinner from "react-bootstrap/Spinner";
 
-// Yup schema for validation
 const schema = yup.object().shape({
-  registerName: yup.string().required("Name is required"),
-  registerEmail: yup
+  name: yup.string().required("Name is required"),
+  email: yup
     .string()
     .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
     .required("Email is required"),
-  registerPassword: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
-  registerPasswordConfirm: yup
+  password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+  passwordConfirm: yup
     .string()
+    .nullable() // Allow null or undefined
     .required("Please confirm password")
-    .oneOf([yup.ref(`registerPassword`)], "Passwords must match"),
+    .oneOf([yup.ref("password")], "Passwords must match"),
 });
 
 interface RegisterFormInputs {
-  registerName: string;
-  registerEmail: string;
-  registerPassword: string;
-  registerPasswordConfirm: string;
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm?: string;
 }
 
 function RegistrationForm() {
-  const isVenueManager = useSelector((state: RootState) => state.register.isVenueManager);
-  // State for displaying loader in submit button
+  const venueManager = useSelector((state: RootState) => state.register.isVenueManager);
+  const [registrationError, setRegistrationError] = useState<string | null>(null);
   const [registrationLoader, setRegistrationLoader] = useState(false);
-  // For navigating after login
   const navigate = useNavigate();
-  // Form validation
+
   const {
     register,
     handleSubmit,
@@ -46,21 +45,32 @@ function RegistrationForm() {
     mode: "onSubmit",
   });
 
-  const onSubmit: SubmitHandler<RegisterFormInputs> = (data) => {
-    // Combine isVenueManager to form data
-    const registrationData = {
-      ...data,
-      isVenueManager,
+  const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
+
+  const { data: responseData, error } = useApi(REGISTER_ENDPOINT, "POST", combinedData, false);
+
+  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
+    const combinedData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      venueManager,
     };
+
+    console.log(data);
+
     setRegistrationLoader(true);
-    setTimeout(() => {
+    setCombinedData(combinedData);
+
+    if (error) {
+      setRegistrationError(error);
+      setRegistrationLoader(false);
+    } else if (responseData) {
       setRegistrationLoader(false);
       navigate("/registration-complete");
-    }, 10000);
-    console.log(registrationData);
+    }
   };
 
-  // useId for setting unique id to form inputs
   const id = React.useId();
 
   return (
@@ -77,32 +87,32 @@ function RegistrationForm() {
                 <label htmlFor={id + "-registerName"} className="mt-2 fs-0-75rem-to-1rem">
                   Name<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="I hate my life" id={id + "-registerName"} {...register("registerName")} />
-                {errors.registerName && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerName.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="I hate my life" id={id + "-name"} {...register("name")} />
+                {errors.name && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.name.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerEmail"} className="mt-2 fs-0-75rem-to-1rem">
                   Email<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="ihatemylife@stud.noroff.no" id={id + "-registerEmail"} {...register("registerEmail")} />
-                {errors.registerEmail && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerEmail.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="ihatemylife@stud.noroff.no" id={id + "-email"} {...register("email")} />
+                {errors.email && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.email.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerPassword"} className="mt-2 fs-0-75rem-to-1rem">
                   Password<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-loginPassword"} {...register("registerPassword")} />
-                {errors.registerPassword && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerPassword.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-password"} {...register("password")} />
+                {errors.password && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.password.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerPasswordConfirm"} className="mt-2 fs-0-75rem-to-1rem">
                   Confirm password<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-registerPasswordConfirm"} {...register("registerPasswordConfirm")} />
-                {errors.registerPasswordConfirm && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.registerPasswordConfirm.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-passwordConfirm"} {...register("passwordConfirm")} />
+                {errors.passwordConfirm && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.passwordConfirm.message}</p>}
               </div>
-              <button className="main-button-gray mt-4 p-1 p-md-2">Login {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
-              <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>
+              <button className="main-button-gray mt-4 p-1 p-md-2">Sign up {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
+              <p className={`pt-1 m-0 text-danger fs-0-75rem-to-0-875rem ${registrationError ? "" : "d-none"}`}>{registrationError || "Incorrect email address or password"}</p>
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Already have a user?{" "}

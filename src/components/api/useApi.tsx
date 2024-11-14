@@ -47,7 +47,7 @@ const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = n
     fetchData();
   }, [endpoint, method, body, apiUrl, apiKey, requiresAuth, bearerToken]);
 
-  return { data, error, loading }; // Return an object
+  return { data, error, loading };
 };
 
 export default useApi;
