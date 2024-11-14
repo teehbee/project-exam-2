@@ -104,7 +104,7 @@ function RegistrationForm() {
               <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
                 Sign up {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
               </button>
-              {registrationError && <p className="text-danger">{registrationError}</p>}
+              {registrationError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">Name or email address already belongs to a user</p>}
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Already have a user?{" "}
