@@ -22,6 +22,7 @@ function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormInputs>({
     resolver: yupResolver(schema),
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
@@ -65,7 +66,8 @@ function LoginForm() {
                 {errors.password && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.password.message}</p>}
               </div>
               <button className="main-button-gray mt-4 p-1 p-md-2">Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
-              <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>
+              {loginError && <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>}
+
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Not registered?{" "}
