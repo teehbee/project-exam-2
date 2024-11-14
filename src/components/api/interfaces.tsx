@@ -34,3 +34,11 @@ export interface Venue {
   location: Location;
   bookings: Bookings[];
 }
+
+// Interface for registration form
+
+export interface RegisterFormInputs {
+  name: string;
+  email: string;
+  password: string;
+}

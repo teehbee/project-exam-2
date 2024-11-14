@@ -7,7 +7,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useApi } from "../api";
 import { REGISTER_ENDPOINT } from "../api/const";
+import { RegisterFormInputs } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
+
+// form validation schema
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -17,12 +20,6 @@ const schema = yup.object().shape({
     .required("Email is required"),
   password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
 });
-
-interface RegisterFormInputs {
-  name: string;
-  email: string;
-  password: string;
-}
 
 function RegistrationForm() {
   const [registrationError, setRegistrationError] = useState<string | null>(null);
@@ -39,7 +36,11 @@ function RegistrationForm() {
     mode: "onSubmit",
   });
 
+  // State for combined data from form and from imported venueManager state
+
   const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
+
+  // Api call for registering user
 
   const { data: responseData, error, loading } = useApi(REGISTER_ENDPOINT, "POST", combinedData, false, false);
 
@@ -63,9 +64,7 @@ function RegistrationForm() {
     };
 
     setRegistrationLoader(true);
-    setCombinedData(combinedData); // This will trigger the API call
-
-    // No need to handle the API call here; it's managed by the useApi hook
+    setCombinedData(combinedData);
   };
 
   const id = React.useId();
