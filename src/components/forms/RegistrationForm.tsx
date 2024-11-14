@@ -7,7 +7,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useApi } from "../api";
 import { REGISTER_ENDPOINT } from "../api/const";
+import { RegisterFormInputs } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
+
+// form validation schema
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -17,12 +20,6 @@ const schema = yup.object().shape({
     .required("Email is required"),
   password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
 });
-
-interface RegisterFormInputs {
-  name: string;
-  email: string;
-  password: string;
-}
 
 function RegistrationForm() {
   const [registrationError, setRegistrationError] = useState<string | null>(null);
@@ -39,7 +36,11 @@ function RegistrationForm() {
     mode: "onSubmit",
   });
 
+  // State for combined data from form and from imported venueManager state
+
   const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
+
+  // Api call for registering user
 
   const { data: responseData, error, loading } = useApi(REGISTER_ENDPOINT, "POST", combinedData, false, false);
 
@@ -54,6 +55,8 @@ function RegistrationForm() {
     }
   }, [error, responseData, navigate]);
 
+  // onSubmit changes combinedData which again runs api call
+
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     const combinedData = {
       name: data.name,
@@ -63,10 +66,11 @@ function RegistrationForm() {
     };
 
     setRegistrationLoader(true);
-    setCombinedData(combinedData); // This will trigger the API call
-
-    // No need to handle the API call here; it's managed by the useApi hook
+    // Trigger for api call
+    setCombinedData(combinedData);
   };
+
+  // Set unique id for each form input
 
   const id = React.useId();
 
@@ -104,7 +108,7 @@ function RegistrationForm() {
               <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
                 Sign up {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
               </button>
-              {registrationError && <p className="text-danger">{registrationError}</p>}
+              {registrationError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">Name or email address already belongs to a user</p>}
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Already have a user?{" "}

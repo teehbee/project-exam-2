@@ -34,3 +34,42 @@ export interface Venue {
   location: Location;
   bookings: Bookings[];
 }
+
+export interface VenueResponse {
+  data: Venue[];
+  meta: {
+    isFirstPage: boolean;
+    isLastPage: boolean;
+    currentPage: number;
+    previousPage: number | null;
+    nextPage: number | null;
+  };
+}
+
+// Interface for registration form
+
+export interface RegisterFormInputs {
+  name: string;
+  email: string;
+  password: string;
+}
+
+// Interface for login form and response
+
+interface UserData {
+  accessToken: string;
+  name: string;
+  avatar?: { url: string; alt: string };
+  banner?: { url: string; alt: string };
+  bio?: string | null;
+  email: string;
+}
+
+export interface LoginFormInputs {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  data: UserData;
+}

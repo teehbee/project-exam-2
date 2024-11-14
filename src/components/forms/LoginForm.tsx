@@ -1,44 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
+import { useApi } from "../api";
+import { LOGIN_ENDPOINT } from "../api/const";
+import { LoginFormInputs, LoginResponse } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation
 const schema = yup.object().shape({
-  loginEmail: yup.string().email("Please enter a valid email address").required("Email is required"),
-  loginPassword: yup.string().required("Password is required"),
+  email: yup.string().email("Please enter a valid email address").required("Email is required"),
+  password: yup.string().required("Password is required"),
 });
 
-interface LoginFormInputs {
-  loginEmail: string;
-  loginPassword: string;
-}
-
 function LoginForm() {
-  // State for displaying loader in submit button
+  const [loginError, setLoginError] = useState<string | null>(null);
   const [loginLoader, setLoginLoader] = useState(false);
-  // For navigating after login
   const navigate = useNavigate();
-  // Form validation
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>({
     resolver: yupResolver(schema),
+    mode: "onSubmit",
   });
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    // Set loader and navigate to success page for demonstration. Will later be connected to API
-    // Console logs login data for now
-    setLoginLoader(true);
-    setTimeout(() => {
+  // State for loginData
+
+  const [loginData, setLoginData] = useState<LoginFormInputs | null>(null);
+
+  // Api call for login
+
+  const { data: responseData, error, loading } = useApi<LoginFormInputs, LoginResponse>(LOGIN_ENDPOINT, "POST", loginData, false, false);
+
+  useEffect(() => {
+    if (error) {
+      setLoginError(error);
       setLoginLoader(false);
+    }
+    if (responseData) {
+      setLoginLoader(false);
+      console.log("API Response:", responseData);
+      localStorage.setItem("accessToken", responseData.data.accessToken);
+      localStorage.setItem("name", responseData.data.name);
       navigate("/login-complete");
-    }, 1000);
-    console.log(data);
+    }
+  }, [error, responseData, navigate]);
+
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    const loginData = {
+      email: data.email,
+      password: data.password,
+    };
+
+    setLoginLoader(true);
+    // Trigger for api call
+    setLoginData(loginData);
   };
 
   // useId for setting unique id to form inputs
@@ -60,18 +79,21 @@ function LoginForm() {
                 <label htmlFor={id + "-loginEmail"} className="mt-2 fs-0-75rem-to-1rem">
                   Email
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" id={id + "-loginEmail"} {...register("loginEmail")} />
-                {errors.loginEmail && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.loginEmail.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" id={id + "-loginEmail"} {...register("email")} />
+                {errors.email && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.email.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-loginPassword"} className="mt-2 fs-0-75rem-to-1rem">
                   Password
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-loginPassword"} {...register("loginPassword")} />
-                {errors.loginPassword && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.loginPassword.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-loginPassword"} {...register("password")} />
+                {errors.password && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.password.message}</p>}
               </div>
-              <button className="main-button-gray mt-4 p-1 p-md-2">Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
-              <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>
+              <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
+                Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
+              </button>
+              {loginError && <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>}
+
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Not registered?{" "}

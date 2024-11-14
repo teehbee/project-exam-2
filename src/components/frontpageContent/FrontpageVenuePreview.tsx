@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useApi } from "../api";
-import { Venue } from "../api/interfaces";
+import { Venue, VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { FrontPageLoader, FrontPageError } from "./";
 
 function FrontpageVenuePreview() {
-  const { data, error, loading } = useApi<{ data: Venue[] }>(VENUES_ENDPOINT, "GET", null, false);
+  const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false);
 
   console.log("Fetched Data:", data);
 
@@ -20,7 +20,7 @@ function FrontpageVenuePreview() {
     <section className="container text-center mt-125px mt-md-4">
       <h2 className="pb-5 py-md-5 secondary-font fs-1-5rem-to-2-5rem">Find your next getaway</h2>
       <div className="row pb-5 gy-4">
-        {venues.slice(0, 4).map((venue) => (
+        {venues.slice(0, 4).map((venue: Venue) => (
           <div key={venue.id} className="col-6 col-lg-3 fp-img-container">
             <div className="position-relative">
               <Link to={`venue/${venue.id}`}>

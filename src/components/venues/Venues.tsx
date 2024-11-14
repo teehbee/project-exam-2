@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { VenueTile, VenueFiltering } from "./";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
-import { Venue } from "../api/interfaces";
+import { VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
@@ -18,7 +18,7 @@ const VenuesPage: React.FC = () => {
     console.log("Search Data from frontpage search:", searchData);
   }, [searchData]);
 
-  const { data, error, loading } = useApi<{ data: Venue[] }>(VENUES_ENDPOINT, "GET", null, false);
+  const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false);
 
   console.log("Fetched Data:", data);
 
