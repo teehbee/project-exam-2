@@ -13,11 +13,9 @@ const schema = yup.object().shape({
 });
 
 function LoginForm() {
-  // State for displaying loader in submit button
+  const [loginError, setLoginError] = useState<string | null>(null);
   const [loginLoader, setLoginLoader] = useState(false);
-  // For navigating after login
   const navigate = useNavigate();
-  // Form validation
   const {
     register,
     handleSubmit,
