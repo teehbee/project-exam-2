@@ -5,6 +5,8 @@ import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { useApi } from "../api";
+import { REGISTER_ENDPOINT } from "../api/const";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation
@@ -45,6 +47,7 @@ function RegistrationForm() {
   });
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = (data) => {
+    // Combine isVenueManager to form data
     const registrationData = {
       ...data,
       isVenueManager,
