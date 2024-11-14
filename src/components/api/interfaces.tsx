@@ -35,6 +35,17 @@ export interface Venue {
   bookings: Bookings[];
 }
 
+export interface VenueResponse {
+  data: Venue[];
+  meta: {
+    isFirstPage: boolean;
+    isLastPage: boolean;
+    currentPage: number;
+    previousPage: number | null;
+    nextPage: number | null;
+  };
+}
+
 // Interface for registration form
 
 export interface RegisterFormInputs {
