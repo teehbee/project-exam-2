@@ -6,7 +6,7 @@ function LoginComplete() {
   useScrollToTop();
   useRedirectTimer("/", 2000);
 
-  return <SuccessMessage title="Message sent" linkTo="/" />;
+  return <SuccessMessage title="Login successful" linkTo="/" />;
 }
 
 export default LoginComplete;
