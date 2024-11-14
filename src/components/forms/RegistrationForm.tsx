@@ -55,6 +55,8 @@ function RegistrationForm() {
     }
   }, [error, responseData, navigate]);
 
+  // onSubmit changes combinedData which again runs api call
+
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     const combinedData = {
       name: data.name,
@@ -64,8 +66,11 @@ function RegistrationForm() {
     };
 
     setRegistrationLoader(true);
+    // Trigger for api call
     setCombinedData(combinedData);
   };
+
+  // Set unique id for each form input
 
   const id = React.useId();
 
