@@ -16,18 +16,12 @@ const schema = yup.object().shape({
     .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
     .required("Email is required"),
   password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
-  passwordConfirm: yup
-    .string()
-    .nullable() // Allow null or undefined
-    .required("Please confirm password")
-    .oneOf([yup.ref("password")], "Passwords must match"),
 });
 
 interface RegisterFormInputs {
   name: string;
   email: string;
   password: string;
-  passwordConfirm?: string;
 }
 
 function RegistrationForm() {
@@ -103,13 +97,6 @@ function RegistrationForm() {
                 </label>
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-password"} {...register("password")} />
                 {errors.password && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.password.message}</p>}
-              </div>
-              <div className="form-group d-flex flex-column">
-                <label htmlFor={id + "-registerPasswordConfirm"} className="mt-2 fs-0-75rem-to-1rem">
-                  Confirm password<span className="text-danger">*</span>
-                </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-passwordConfirm"} {...register("passwordConfirm")} />
-                {errors.passwordConfirm && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.passwordConfirm.message}</p>}
               </div>
               <button className="main-button-gray mt-4 p-1 p-md-2">Sign up {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
               <p className={`pt-1 m-0 text-danger fs-0-75rem-to-0-875rem ${registrationError ? "" : "d-none"}`}>{registrationError || "Incorrect email address or password"}</p>
