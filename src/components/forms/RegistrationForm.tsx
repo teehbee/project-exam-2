@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import Spinner from "react-bootstrap/Spinner";
 
@@ -28,11 +28,9 @@ interface RegisterFormInputs {
   registerPasswordConfirm: string;
 }
 
-interface RegisterFormProps {
-  isVenueManager: boolean;
-}
-
-function RegistrationForm({ isVenueManager }: RegisterFormProps) {
+function RegistrationForm() {
+  const isVenueManager = useSelector((state: RootState) => state.register.isVenueManager);
+  console.log("Is venue manager:", isVenueManager);
   // State for displaying loader in submit button
   const [registrationLoader, setRegistrationLoader] = useState(false);
   // For navigating after login
