@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -41,7 +41,18 @@ function RegistrationForm() {
 
   const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
 
-  const { data: responseData, error } = useApi(REGISTER_ENDPOINT, "POST", combinedData, false);
+  const { data: responseData, error, loading } = useApi(REGISTER_ENDPOINT, "POST", combinedData, false);
+
+  useEffect(() => {
+    if (error) {
+      setRegistrationError(error);
+      setRegistrationLoader(false);
+    }
+    if (responseData) {
+      setRegistrationLoader(false);
+      navigate("/registration-complete");
+    }
+  }, [error, responseData, navigate]);
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     const combinedData = {
@@ -51,18 +62,10 @@ function RegistrationForm() {
       venueManager,
     };
 
-    console.log(data);
-
     setRegistrationLoader(true);
-    setCombinedData(combinedData);
+    setCombinedData(combinedData); // This will trigger the API call
 
-    if (error) {
-      setRegistrationError(error);
-      setRegistrationLoader(false);
-    } else if (responseData) {
-      setRegistrationLoader(false);
-      navigate("/registration-complete");
-    }
+    // No need to handle the API call here; it's managed by the useApi hook
   };
 
   const id = React.useId();
@@ -98,8 +101,10 @@ function RegistrationForm() {
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="password" placeholder="********" id={id + "-password"} {...register("password")} />
                 {errors.password && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.password.message}</p>}
               </div>
-              <button className="main-button-gray mt-4 p-1 p-md-2">Sign up {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
-              <p className={`pt-1 m-0 text-danger fs-0-75rem-to-0-875rem ${registrationError ? "" : "d-none"}`}>{registrationError || "Incorrect email address or password"}</p>
+              <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
+                Sign up {registrationLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
+              </button>
+              {registrationError && <p className="text-danger">{registrationError}</p>}
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Already have a user?{" "}
