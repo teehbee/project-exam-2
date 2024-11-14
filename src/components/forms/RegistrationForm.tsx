@@ -30,7 +30,6 @@ interface RegisterFormInputs {
 
 function RegistrationForm() {
   const isVenueManager = useSelector((state: RootState) => state.register.isVenueManager);
-  console.log("Is venue manager:", isVenueManager);
   // State for displaying loader in submit button
   const [registrationLoader, setRegistrationLoader] = useState(false);
   // For navigating after login
@@ -46,14 +45,16 @@ function RegistrationForm() {
   });
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = (data) => {
-    // Set loader and navigate to success page for demonstration. Will later be connected to API
-    // Console logs login data for now
+    const registrationData = {
+      ...data,
+      isVenueManager,
+    };
     setRegistrationLoader(true);
     setTimeout(() => {
       setRegistrationLoader(false);
       navigate("/registration-complete");
-    }, 1000);
-    console.log(data, isVenueManager);
+    }, 10000);
+    console.log(registrationData);
   };
 
   // useId for setting unique id to form inputs
