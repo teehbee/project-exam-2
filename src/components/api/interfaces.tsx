@@ -42,3 +42,10 @@ export interface RegisterFormInputs {
   email: string;
   password: string;
 }
+
+// Interface for login form
+
+export interface LoginFormInputs {
+  email: string;
+  password: string;
+}

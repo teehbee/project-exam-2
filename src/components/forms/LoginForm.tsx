@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginFormInputs } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation
@@ -10,11 +11,6 @@ const schema = yup.object().shape({
   email: yup.string().email("Please enter a valid email address").required("Email is required"),
   password: yup.string().required("Password is required"),
 });
-
-interface LoginFormInputs {
-  email: string;
-  password: string;
-}
 
 function LoginForm() {
   // State for displaying loader in submit button
