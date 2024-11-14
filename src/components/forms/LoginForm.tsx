@@ -27,6 +27,8 @@ function LoginForm() {
     mode: "onSubmit",
   });
 
+  const [loginData, setLoginData] = useState<LoginFormInputs | null>(null);
+
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
     // Set loader and navigate to success page for demonstration. Will later be connected to API
     // Console logs login data for now
