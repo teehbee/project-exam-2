@@ -43,9 +43,22 @@ export interface RegisterFormInputs {
   password: string;
 }
 
-// Interface for login form
+// Interface for login form and response
+
+interface UserData {
+  accessToken: string;
+  name: string;
+  avatar?: { url: string; alt: string };
+  banner?: { url: string; alt: string };
+  bio?: string | null;
+  email: string;
+}
 
 export interface LoginFormInputs {
   email: string;
   password: string;
+}
+
+export interface LoginResponse {
+  data: UserData;
 }

@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useApi } from "../api";
 import { LOGIN_ENDPOINT } from "../api/const";
-import { LoginFormInputs } from "../api/interfaces";
+import { LoginFormInputs, LoginResponse } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation
@@ -33,7 +33,7 @@ function LoginForm() {
 
   // Api call for login
 
-  const { data: responseData, error, loading } = useApi(LOGIN_ENDPOINT, "POST", loginData, false, false);
+  const { data: responseData, error, loading } = useApi<LoginFormInputs, LoginResponse>(LOGIN_ENDPOINT, "POST", loginData, false, false);
 
   useEffect(() => {
     if (error) {
@@ -42,6 +42,9 @@ function LoginForm() {
     }
     if (responseData) {
       setLoginLoader(false);
+      console.log("API Response:", responseData);
+      localStorage.setItem("accessToken", responseData.data.accessToken);
+      localStorage.setItem("name", responseData.data.name);
       navigate("/login-complete");
     }
   }, [error, responseData, navigate]);
@@ -55,7 +58,6 @@ function LoginForm() {
     setLoginLoader(true);
     // Trigger for api call
     setLoginData(loginData);
-    console.log(responseData);
   };
 
   // useId for setting unique id to form inputs

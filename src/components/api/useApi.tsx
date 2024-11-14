@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 
 // Reusable api hook for all different methods and endpoints as well as authorized and non-authorized endpoints
 
-const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = null, requiresAuth: boolean = false, autoFetch: boolean = true) => {
-  const [data, setData] = useState<T | null>(null);
+// autoFetch is used for api calls where there is content in the body to avoid immediate calls upon render
+
+// TRequest and TResponse makes sure that user can have separate interfaces for payload and response
+
+const useApi = <TRequest, TResponse>(endpoint: string, method: string = "GET", body: TRequest | null = null, requiresAuth: boolean = false, autoFetch: boolean = true) => {
+  const [data, setData] = useState<TResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -33,7 +37,7 @@ const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = n
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
-        const result: T = await response.json();
+        const result: TResponse = await response.json();
         setData(result);
       } catch (err: unknown) {
         if (err instanceof Error) {
@@ -47,7 +51,7 @@ const useApi = <T,>(endpoint: string, method: string = "GET", body: T | null = n
     };
 
     fetchData();
-  }, [endpoint, method, body, apiUrl, apiKey, requiresAuth, bearerToken]);
+  }, [endpoint, method, body, apiUrl, apiKey, requiresAuth, bearerToken, autoFetch]);
 
   return { data, error, loading };
 };
