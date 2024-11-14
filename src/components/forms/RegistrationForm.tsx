@@ -25,10 +25,10 @@ interface RegisterFormInputs {
 }
 
 function RegistrationForm() {
-  const venueManager = useSelector((state: RootState) => state.register.isVenueManager);
   const [registrationError, setRegistrationError] = useState<string | null>(null);
   const [registrationLoader, setRegistrationLoader] = useState(false);
   const navigate = useNavigate();
+  const venueManager = useSelector((state: RootState) => state.register.isVenueManager);
 
   const {
     register,
@@ -41,7 +41,7 @@ function RegistrationForm() {
 
   const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
 
-  const { data: responseData, error, loading } = useApi(REGISTER_ENDPOINT, "POST", combinedData, false);
+  const { data: responseData, error, loading } = useApi(REGISTER_ENDPOINT, "POST", combinedData, false, false);
 
   useEffect(() => {
     if (error) {
