@@ -32,22 +32,29 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
             </li>
           </ul>
           <ul className="d-md-flex d-none pe-5">
-            <li className="pe-4">
-              <NavLink className="nav-link-styling fs-0-875rem" to="login">
-                Login
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="nav-link-styling fs-0-875rem" to="register">
-                Register
-              </NavLink>
-            </li>
-            <li>
-              <Link className="ps-2" to="profile">
-                <img className="" src={profileIcon} aria-label="profile link" />
-              </Link>
-              <img className="ps-2 cursor-pointer" src={signOutIcon} aria-label="sign out" />
-            </li>
+            {!loggedIn ? (
+              <>
+                <li className="pe-4">
+                  <NavLink className="nav-link-styling fs-0-875rem" to="login">
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link-styling fs-0-875rem" to="register">
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link className="ps-2" to="profile">
+                    <img className="" src={profileIcon} aria-label="profile link" />
+                  </Link>
+                  <img className="ps-2 cursor-pointer" src={signOutIcon} aria-label="sign out" />
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <Navbar expand="lg" className={`py-3 ${addDarkBackground ? "bg-dark-gray-color" : ""}`} expanded={expanded}>
