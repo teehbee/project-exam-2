@@ -9,8 +9,12 @@ import { LoginFormInputs, LoginResponse } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation
+
 const schema = yup.object().shape({
-  email: yup.string().email("Please enter a valid email address").required("Email is required"),
+  email: yup
+    .string()
+    .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
+    .required("Email is required"),
   password: yup.string().required("Password is required"),
 });
 
@@ -56,11 +60,14 @@ function LoginForm() {
     };
 
     setLoginLoader(true);
+
     // Trigger for api call
+
     setLoginData(loginData);
   };
 
   // useId for setting unique id to form inputs
+
   const id = React.useId();
 
   return (
@@ -92,8 +99,7 @@ function LoginForm() {
               <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
                 Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
               </button>
-              {loginError && <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>}
-
+              {loginError && <p className="pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>}
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Not registered?{" "}
