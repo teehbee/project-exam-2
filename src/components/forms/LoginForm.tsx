@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/authActions";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -33,6 +33,8 @@ function LoginForm() {
     mode: "onSubmit",
   });
 
+  const dispatch = useDispatch();
+
   // State for loginData
 
   const [loginData, setLoginData] = useState<LoginFormInputs | null>(null);
@@ -49,11 +51,10 @@ function LoginForm() {
     if (responseData) {
       setLoginLoader(false);
       console.log("API Response:", responseData);
-      localStorage.setItem("accessToken", responseData.data.accessToken);
-      localStorage.setItem("name", responseData.data.name);
+      dispatch(login(responseData.data.accessToken, responseData.data.name));
       navigate("/login-complete");
     }
-  }, [error, responseData, navigate]);
+  }, [error, responseData, navigate, dispatch]);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     const loginData = {
