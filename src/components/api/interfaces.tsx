@@ -54,7 +54,7 @@ export interface RegisterFormInputs {
   password: string;
 }
 
-// Interface for login form and response
+// Interface for login form
 
 interface UserData {
   accessToken: string;

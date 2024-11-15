@@ -2,9 +2,18 @@ import { FrontpageTiles, FrontpageVenuePreview } from "../components/frontpageCo
 import { frontpageHeroImageSmall, frontpageHeroImageLarge } from "../assets/img";
 import { SearchForm } from "../components/forms";
 import { useScrollToTop } from "../components/utils";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 function Home() {
   useScrollToTop();
+
+  const { token, name, loggedIn } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    console.log("User Profile:", { token, name, loggedIn });
+  }, [token, name, loggedIn]);
 
   return (
     <>

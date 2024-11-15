@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions/authActions";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,8 +11,12 @@ import { LoginFormInputs, LoginResponse } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation
+
 const schema = yup.object().shape({
-  email: yup.string().email("Please enter a valid email address").required("Email is required"),
+  email: yup
+    .string()
+    .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
+    .required("Email is required"),
   password: yup.string().required("Password is required"),
 });
 
@@ -27,6 +33,8 @@ function LoginForm() {
     mode: "onSubmit",
   });
 
+  const dispatch = useDispatch();
+
   // State for loginData
 
   const [loginData, setLoginData] = useState<LoginFormInputs | null>(null);
@@ -42,12 +50,13 @@ function LoginForm() {
     }
     if (responseData) {
       setLoginLoader(false);
-      console.log("API Response:", responseData);
-      localStorage.setItem("accessToken", responseData.data.accessToken);
-      localStorage.setItem("name", responseData.data.name);
+
+      // Save token and name to redux reducer
+
+      dispatch(login(responseData.data.accessToken, responseData.data.name));
       navigate("/login-complete");
     }
-  }, [error, responseData, navigate]);
+  }, [error, responseData, navigate, dispatch]);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     const loginData = {
@@ -56,11 +65,14 @@ function LoginForm() {
     };
 
     setLoginLoader(true);
+
     // Trigger for api call
+
     setLoginData(loginData);
   };
 
   // useId for setting unique id to form inputs
+
   const id = React.useId();
 
   return (
@@ -92,8 +104,7 @@ function LoginForm() {
               <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
                 Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
               </button>
-              {loginError && <p className="d-none pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>}
-
+              {loginError && <p className="pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>}
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Not registered?{" "}
