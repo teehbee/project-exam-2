@@ -86,12 +86,7 @@ interface ProfileVenues {
   id: string;
   name: string;
   description: string;
-  media: ProfileMedia;
-}
-
-interface VenuesMedia {
-  url: string;
-  alt: string;
+  media: ProfileMedia[];
 }
 
 export interface ProfileBookings {
@@ -106,7 +101,6 @@ export interface ProfileBookings {
     country: string;
   };
   price: number;
-  media: VenuesMedia[];
 }
 
 export interface ProfileContent {
