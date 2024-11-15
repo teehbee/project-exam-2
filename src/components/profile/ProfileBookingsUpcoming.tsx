@@ -1,7 +1,6 @@
-import { placeHolderImage } from "../../assets/placeholderImg";
 import { Link } from "react-router-dom";
 import { ProfileBookings } from "../api/interfaces";
-import { formatDate } from "../utils";
+import { useFormatDate } from "../utils";
 
 interface bookingData {
   booking: ProfileBookings;
@@ -9,22 +8,24 @@ interface bookingData {
 
 const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   // Variables
-  const img = booking.venue.media.url;
+  const id = booking.venue.id;
+  const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "";
+  const alt = booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Accommodation image";
   const name = booking.venue.name;
   const city = booking.venue.location.city;
   const country = booking.venue.location.country;
   const dateFrom = booking.dateFrom;
   const dateTo = booking.dateTo;
   // Formatted dates
-  const formattedDateFrom = formatDate(dateFrom);
-  const formattedDateTo = formatDate(dateTo);
+  const formattedDateFrom = useFormatDate(dateFrom);
+  const formattedDateTo = useFormatDate(dateTo);
 
   console.log("booking", booking);
   return (
     <div className="profile-booking-container form-box-shadow mt-3 row mx-1 mx-md-0">
       <div className="col-4 col-md-3 px-0">
-        <Link to="/venue">
-          <img className="form-box-shadow" src={img} aria-label="placeholder" />
+        <Link to={`/venue/${id}`}>
+          <img className="form-box-shadow" src={img} aria-label={alt} />
         </Link>
       </div>
       <div className="col-8 col-md-9 text-start ps-3 ps-md-5">
