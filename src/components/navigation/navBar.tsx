@@ -5,6 +5,8 @@ import { profileIcon, bars, signOutIcon } from "../../assets/icon";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions/authActions";
 
 interface NavBarProps {
   handleLinkClick: () => void;
@@ -14,7 +16,13 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
+  const dispatch = useDispatch();
   const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
+
+  const handleSignOut = () => {
+    dispatch(logout());
+  };
+
   return (
     <header className={`position-relative ${addDarkBackground ? "bg-dark-gray-color" : ""}`}>
       <div className="main-nav">
@@ -51,12 +59,13 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
                   <Link className="ps-2" to="profile">
                     <img className="" src={profileIcon} aria-label="profile link" />
                   </Link>
-                  <img className="ps-2 cursor-pointer" src={signOutIcon} aria-label="sign out" />
+                  <img className="ps-2 cursor-pointer" src={signOutIcon} aria-label="sign out" onClick={handleSignOut} />
                 </li>
               </>
             )}
           </ul>
         </div>
+
         <Navbar expand="lg" className={`py-3 ${addDarkBackground ? "bg-dark-gray-color" : ""}`} expanded={expanded}>
           <Link to="/" className="ps-3 ps-md-5">
             <picture className="cursor-pointer">
@@ -85,18 +94,32 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
                 <button className="main-button-red fs-1-125rem ms-2">BOOK NOW</button>
               </Link>
               <div className="d-md-none text-center">
-                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="login" onClick={handleLinkClick}>
-                  Login
-                </NavLink>
-                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="register" onClick={handleLinkClick}>
-                  Register
-                </NavLink>
-                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="profile" onClick={handleLinkClick}>
-                  Profile
-                </NavLink>
-                <NavLink className="text-light fs-1-125rem fw-light nav-link" to="/" onClick={handleLinkClick}>
-                  Sign out
-                </NavLink>
+                {!loggedIn ? (
+                  <>
+                    <NavLink className="text-light fs-1-125rem fw-light nav-link" to="login" onClick={handleLinkClick}>
+                      Login
+                    </NavLink>
+                    <NavLink className="text-light fs-1-125rem fw-light nav-link" to="register" onClick={handleLinkClick}>
+                      Register
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <NavLink className="text-light fs-1-125rem fw-light nav-link" to="profile" onClick={handleLinkClick}>
+                      Profile
+                    </NavLink>
+                    <NavLink
+                      className="text-light fs-1-125rem fw-light nav-link"
+                      to="/"
+                      onClick={() => {
+                        handleSignOut();
+                        handleLinkClick();
+                      }}
+                    >
+                      Sign out
+                    </NavLink>
+                  </>
+                )}
               </div>
             </Nav>
           </Navbar.Collapse>
