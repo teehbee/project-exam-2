@@ -1,14 +1,11 @@
-import { avatarIcon, avatarIconLarge } from "../../assets/avatar";
+import { ProfileMedia } from "../api/interfaces";
 
-function ProfileImage() {
+const ProfileImage: React.FC<ProfileMedia> = ({ url, alt }) => {
   return (
     <div>
-      <picture>
-        <source media="(min-width: 992px)" srcSet={avatarIconLarge} />
-        <img className="avatar-image img-fluid" src={avatarIcon} aria-label="placeholder" />
-      </picture>
+      <img className="avatar-image" src={url} aria-label={alt} />
     </div>
   );
-}
+};
 
 export default ProfileImage;

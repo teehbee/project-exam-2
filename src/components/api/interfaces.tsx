@@ -6,7 +6,8 @@ export interface Media {
 }
 
 export interface Location {
-  city: string;
+  city?: string;
+  country?: string;
 }
 
 export interface Meta {
@@ -72,4 +73,50 @@ export interface LoginFormInputs {
 
 export interface LoginResponse {
   data: UserData;
+}
+
+// Interface for profile
+
+export interface ProfileMedia {
+  url: string;
+  alt: string;
+}
+
+interface ProfileVenues {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  media: ProfileMedia[];
+}
+
+export interface ProfileBookings {
+  id: string;
+  name: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  venue: ProfileVenues;
+  location?: {
+    city: string;
+    country: string;
+  };
+}
+
+export interface ProfileContent {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: ProfileMedia;
+  venueManager: boolean;
+  venues: ProfileVenues;
+  bookings: ProfileBookings[];
+  location?: {
+    city?: string;
+    country?: string;
+  };
+}
+
+export interface ProfileData {
+  data: ProfileContent;
 }
