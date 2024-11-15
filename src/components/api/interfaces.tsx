@@ -108,7 +108,7 @@ export interface ProfileContent {
   name: string;
   email: string;
   bio: string;
-  avatar: ProfileMedia[];
+  avatar: ProfileMedia;
   venueManager: boolean;
   venues: ProfileVenues;
   bookings: ProfileBookings[];

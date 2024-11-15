@@ -12,11 +12,10 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profileData }) => {
     return null;
   }
 
-  const avatarUrl = profileData.data.avatar.length > 0 ? profileData.data.avatar[0].url : "";
   return (
     <div className="col-12 col-lg-4 d-flex text-start align-items-start flex-column right-border">
       <div className="d-flex align-items-center">
-        <ProfileImage avatar={profileData.data.avatar.url} alt={avatarUrl} />
+        <ProfileImage avatar={profileData.data.avatar.url} alt={profileData.data.avatar.alt} />
         <ProfileData name={profileData.data.name} email={profileData.data.email} venueManager={profileData.data.venueManager} />
       </div>
       <div className="">
