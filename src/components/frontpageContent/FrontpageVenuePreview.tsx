@@ -7,7 +7,7 @@ import { FrontPageLoader, FrontPageError } from "./";
 function FrontpageVenuePreview() {
   const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false);
 
-  console.log("Fetched Data:", data);
+  // console.log("Fetched Data:", data);
 
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
