@@ -13,9 +13,11 @@ const useApi = <TRequest, TResponse>(endpoint: string, method: string = "GET", b
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  //import base url and api key from .env file
   const apiUrl = import.meta.env.VITE_NOROFF_API_URL;
   const apiKey = import.meta.env.VITE_API_KEY;
-  const bearerToken = localStorage.getItem("bearerToken");
+  // Import token from redux
+  const bearerToken = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
     if (!autoFetch && !body) return;
