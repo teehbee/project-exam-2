@@ -18,9 +18,9 @@ const VenuesPage: React.FC = () => {
     console.log("Search Data from frontpage search:", searchData);
   }, [searchData]);
 
-  const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false);
+  const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false, true);
 
-  console.log("Fetched Data:", data);
+  console.log("Fetched Data:");
 
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;

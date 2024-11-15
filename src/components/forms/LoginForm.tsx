@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/actions/authActions";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
@@ -53,7 +52,9 @@ function LoginForm() {
 
       // Save token and name to redux reducer
 
-      dispatch(login(responseData.data.accessToken, responseData.data.name));
+      localStorage.setItem("accessToken", responseData.data.accessToken);
+      localStorage.setItem("name", responseData.data.name);
+      localStorage.setItem("loggedIn", "true");
       navigate("/login-complete");
     }
   }, [error, responseData, navigate, dispatch]);

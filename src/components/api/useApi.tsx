@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 
 // Reusable api hook for all different methods and endpoints as well as authorized and non-authorized endpoints
 
@@ -17,7 +15,7 @@ const useApi = <TRequest, TResponse>(endpoint: string, method: string = "GET", b
   const apiUrl = import.meta.env.VITE_NOROFF_API_URL;
   const apiKey = import.meta.env.VITE_API_KEY;
   // Import token from redux
-  const bearerToken = useSelector((state: RootState) => state.auth.token);
+  const bearerToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if (!autoFetch && !body) return;

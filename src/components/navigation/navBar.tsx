@@ -3,10 +3,6 @@ import Navbar from "react-bootstrap/Navbar";
 import { logoSmall, logoLarge } from "../../assets/logo";
 import { profileIcon, bars, signOutIcon } from "../../assets/icon";
 import { NavLink, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/actions/authActions";
 
 interface NavBarProps {
   handleLinkClick: () => void;
@@ -16,11 +12,13 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
-  const dispatch = useDispatch();
-  const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
+  const loggedIn = localStorage.getItem("loggedIn");
 
   const handleSignOut = () => {
-    dispatch(logout());
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("name");
+    localStorage.removeItem("loggedIn");
+    window.location.reload();
   };
 
   return (
