@@ -9,6 +9,6 @@ export const VENUES_ENDPOINT = "holidaze/venues?_bookings=true&_owner=true";
 
 // profile (dynamically adding name from localStorage)
 
-export const getProfileEndpoint = (name: string) => {
+export const getProfileEndpoint = (name: string): string => {
   return `holidaze/profiles/${name}?_bookings=true&_venues=true`;
 };
