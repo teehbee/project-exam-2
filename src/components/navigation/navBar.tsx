@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { logoSmall, logoLarge } from "../../assets/logo";
 import { profileIcon, bars, signOutIcon } from "../../assets/icon";
 import { NavLink, Link } from "react-router-dom";
-import { UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
 interface NavBarProps {
@@ -14,6 +14,7 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
+  const loggedIn = useSelector((state: RootState) => state.auth.loggedIn);
   return (
     <header className={`position-relative ${addDarkBackground ? "bg-dark-gray-color" : ""}`}>
       <div className="main-nav">
