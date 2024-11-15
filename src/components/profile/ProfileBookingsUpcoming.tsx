@@ -17,6 +17,7 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   const dateFrom = booking.dateFrom;
   const dateTo = booking.dateTo;
   const guests = booking.guests;
+  const price = booking.price;
   // Formatted dates
   const formattedDateFrom = useFormatDate(dateFrom);
   const formattedDateTo = useFormatDate(dateTo);
