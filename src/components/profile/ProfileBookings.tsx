@@ -17,6 +17,8 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
 
   console.log("profile booking data", profileData.data.venueManager);
 
+  const bookings = profileData.data.bookings;
+
   const handleTabClick = (tab: "bookings" | "manage") => {
     setActiveTab(tab);
   };
@@ -33,7 +35,7 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
           </h3>
         )}
       </div>
-      {activeTab === "bookings" && <ProfileBookingsUpcoming />}
+      {activeTab === "bookings" && <div>{bookings.length > 0 ? bookings.map((booking, index) => <ProfileBookingsUpcoming key={index} booking={booking} />) : <p>No upcoming bookings</p>}</div>}
       {activeTab === "manage" && <ProfileBookingsManaged />}
     </div>
   );
