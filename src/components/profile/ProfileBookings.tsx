@@ -1,10 +1,21 @@
 import { useState } from "react";
 import { ProfileBookingsUpcoming, ProfileBookingsManaged } from "./";
+import { ProfileData as ProfileDataType } from "../api/interfaces";
 
 // section for managing bookings is set to bookings default
 
-const ProfileBookings: React.FC = () => {
+interface ProfileHeaderProps {
+  profileData: ProfileDataType;
+}
+
+const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
   const [activeTab, setActiveTab] = useState<"bookings" | "manage">("bookings");
+
+  if (!profileData || !profileData.data) {
+    return null;
+  }
+
+  console.log("profile booking data", profileData.data.venueManager);
 
   const handleTabClick = (tab: "bookings" | "manage") => {
     setActiveTab(tab);
@@ -16,9 +27,11 @@ const ProfileBookings: React.FC = () => {
         <h3 className={`secondary-font cursor-pointer fs-1rem-to-2rem profile-bookings-selector ${activeTab === "bookings" ? "profile-bookings-selector-active" : ""}`} onClick={() => handleTabClick("bookings")}>
           Upcoming bookings
         </h3>
-        <h3 className={`secondary-font cursor-pointer fs-1rem-to-2rem profile-bookings-selector ${activeTab === "manage" ? "profile-bookings-selector-active" : ""}`} onClick={() => handleTabClick("manage")}>
-          Manage venues
-        </h3>
+        {profileData.data.venueManager && (
+          <h3 className={`secondary-font cursor-pointer fs-1rem-to-2rem profile-bookings-selector ${activeTab === "manage" ? "profile-bookings-selector-active" : ""}`} onClick={() => handleTabClick("manage")}>
+            Manage venues
+          </h3>
+        )}
       </div>
       {activeTab === "bookings" && <ProfileBookingsUpcoming />}
       {activeTab === "manage" && <ProfileBookingsManaged />}

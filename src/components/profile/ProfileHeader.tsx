@@ -6,8 +6,6 @@ interface ProfileHeaderProps {
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profileData }) => {
-  console.log("Profile data received", profileData);
-
   if (!profileData || !profileData.data) {
     return null;
   }
