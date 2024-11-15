@@ -12,10 +12,11 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "";
   const alt = booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Accommodation image";
   const name = booking.venue.name;
-  const city = booking.venue.location.city;
-  const country = booking.venue.location.country;
+  const city = booking.location?.city || "Unknown city";
+  const country = booking.location?.country || "Unknown country";
   const dateFrom = booking.dateFrom;
   const dateTo = booking.dateTo;
+  const guests = booking.guests;
   // Formatted dates
   const formattedDateFrom = useFormatDate(dateFrom);
   const formattedDateTo = useFormatDate(dateTo);
@@ -31,12 +32,12 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
       <div className="col-8 col-md-9 text-start ps-3 ps-md-5">
         <h4 className="secondary-font fs-1rem-to-1-5rem mt-1 mb-0">{name}</h4>
         <p className="fw-light fs-0-625rem-to-1rem mt-md-1">
-          {city ? city : "No location added"}, {country ? country : ""}
+          {city}, {country}
         </p>
         <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-4">
           {formattedDateFrom} to {formattedDateTo}
         </p>
-        <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-2">Number of guests</p>
+        <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-2">{guests} persons</p>
         <p className="fs-0-625rem-to-1rem mt-md-2">Total sum</p>
       </div>
     </div>

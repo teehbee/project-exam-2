@@ -6,8 +6,8 @@ export interface Media {
 }
 
 export interface Location {
-  city: string;
-  country: string;
+  city?: string;
+  country?: string;
 }
 
 export interface Meta {
@@ -101,7 +101,10 @@ export interface ProfileBookings {
   dateTo: string;
   guests: number;
   venue: ProfileVenues;
-  location: Location;
+  location?: {
+    city: string;
+    country: string;
+  };
   price: number;
   media: VenuesMedia[];
 }
@@ -114,7 +117,10 @@ export interface ProfileContent {
   venueManager: boolean;
   venues: ProfileVenues;
   bookings: ProfileBookings[];
-  location: Location;
+  location?: {
+    city?: string;
+    country?: string;
+  };
 }
 
 export interface ProfileData {
