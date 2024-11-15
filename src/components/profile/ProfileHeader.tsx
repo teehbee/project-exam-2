@@ -15,11 +15,11 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profileData }) => {
   return (
     <div className="col-12 col-lg-4 d-flex text-start align-items-start flex-column right-border">
       <div className="d-flex align-items-center">
-        <ProfileImage avatar={profileData.data.avatar.url} alt={profileData.data.avatar.alt} />
+        <ProfileImage url={profileData.data.avatar.url} alt={profileData.data.avatar.alt} />
         <ProfileData name={profileData.data.name} email={profileData.data.email} venueManager={profileData.data.venueManager} />
       </div>
-      <div className="">
-        <ProfileBio />
+      <div className="w-100">
+        <ProfileBio bio={profileData.data.bio} />
       </div>
     </div>
   );
