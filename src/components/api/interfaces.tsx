@@ -73,3 +73,47 @@ export interface LoginFormInputs {
 export interface LoginResponse {
   data: UserData;
 }
+
+// Interface for profile
+
+export interface ProfileMedia {
+  url: string;
+  alt: string;
+}
+
+interface ProfileVenues {
+  id: string;
+  name: string;
+  description: string;
+  media: ProfileMedia;
+}
+
+interface ProfileBookings {
+  id: string;
+  name: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  venue: ProfileVenues;
+  location: ProfileBookingLocation;
+  price: number;
+}
+
+interface ProfileBookingLocation {
+  city: string;
+  country: string;
+}
+
+export interface ProfileContent {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: ProfileMedia[];
+  venueManager: boolean;
+  venues: ProfileVenues;
+  bookings: ProfileBookings[];
+}
+
+export interface ProfileData {
+  data: ProfileContent;
+}
