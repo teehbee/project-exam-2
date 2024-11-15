@@ -3,5 +3,6 @@ import { getTodaysDate, getTomorrowsDate } from "./dateUtils";
 import useScrollToTop from "./useScrollToTop";
 import { checkForFilterChanges, setInitialFilterValues } from "./filterVenuesUtils";
 import useFormatDate from "./useFormatDate";
+import { useCalculateTotalCost } from "./useCalculateCost";
 
-export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, useFormatDate };
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, useFormatDate, useCalculateTotalCost };

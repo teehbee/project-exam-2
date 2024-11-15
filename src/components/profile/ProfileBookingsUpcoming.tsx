@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ProfileBookings } from "../api/interfaces";
 import { useFormatDate } from "../utils";
+import { useCalculateTotalCost } from "../utils";
 
 interface bookingData {
   booking: ProfileBookings;
@@ -17,14 +18,18 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   const dateFrom = booking.dateFrom;
   const dateTo = booking.dateTo;
   const guests = booking.guests;
-  const price = booking.price;
+  const price = booking.venue.price;
   // Formatted dates
   const formattedDateFrom = useFormatDate(dateFrom);
   const formattedDateTo = useFormatDate(dateTo);
 
-  console.log("booking", booking);
+  // Calculate total sum of stay
+
+  const sum = useCalculateTotalCost(formattedDateFrom, formattedDateTo, price);
+
+  // console.log("booking", booking);
   return (
-    <div className="profile-booking-container form-box-shadow mt-3 row mx-1 mx-md-0">
+    <div className="profile-booking-container form-box-shadow mt-3 row mx-1 mx-md-0 mb-4 mb-md-5">
       <div className="col-4 col-md-3 px-0">
         <Link to={`/venue/${id}`}>
           <img className="form-box-shadow" src={img} aria-label={alt} />
@@ -39,7 +44,7 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
           {formattedDateFrom} to {formattedDateTo}
         </p>
         <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-2">{guests} persons</p>
-        <p className="fs-0-625rem-to-1rem mt-md-2">Total sum</p>
+        <p className="fs-0-625rem-to-1rem mt-md-2">NOK {sum}</p>
       </div>
     </div>
   );
