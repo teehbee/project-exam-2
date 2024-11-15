@@ -1,7 +1,7 @@
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
-interface LoginAction {
+export interface LoginAction {
   type: typeof LOGIN;
   payload: {
     token: string;
@@ -9,7 +9,7 @@ interface LoginAction {
   };
 }
 
-interface LogoutAction {
+export interface LogoutAction {
   type: typeof LOGOUT;
 }
 

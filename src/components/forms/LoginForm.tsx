@@ -50,7 +50,9 @@ function LoginForm() {
     }
     if (responseData) {
       setLoginLoader(false);
-      console.log("API Response:", responseData);
+
+      // Save token and name to redux reducer
+
       dispatch(login(responseData.data.accessToken, responseData.data.name));
       navigate("/login-complete");
     }
