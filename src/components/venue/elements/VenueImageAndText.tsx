@@ -1,5 +1,5 @@
 import { SingleVenueProp } from "../../api/const/interfaces";
-import { petIcon, wifiIcon, restaurantIcon, parkingIcon } from "../../../assets/icon";
+import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
 
 const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
@@ -9,7 +9,6 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
   const alt = venueData.media.length > 0 ? venue.data.media[0].alt : "no alt text provided";
   const city = venueData.location.city || "Mystery destination";
   const country = venueData.location.country || "";
-  const rating = venueData.rating;
 
   return (
     <div className="venue-image-and-text-container col-12 col-md-5 mx-auto">
@@ -23,7 +22,7 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
         </h1>
         <p className="mb-2 fs-0-75rem-to-1rem">NOK {venueData.price} per night</p>
         <div className="mb-3">
-          {[...Array({ rating })].map((_, index) => (
+          {[...Array(venueData.rating)].map((_, index) => (
             <img key={index} src={starIcon} alt="star" />
           ))}
         </div>
@@ -33,30 +32,10 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
       <div className="text-start">
         <h2 className="fs-1rem-to-1-5rem pt-3 pt-md-4">Facilities</h2>
         <div className="mt-md-2 d-flex flex-wrap pt-3">
-          {venueData.meta.wifi && (
-            <div className="d-flex me-2 me-md-5 mt-1">
-              <img className="facility-icon me-2" src={wifiIcon} alt="" />
-              <p className="fs-0-75rem-to-1rem">Wi-Fi Available</p>
-            </div>
-          )}
-          {venueData.meta.breakfast && (
-            <div className="d-flex me-2 me-md-5 mt-1">
-              <img className="facility-icon me-2" src={restaurantIcon} alt="" />
-              <p className="fs-0-75rem-to-1rem">Restaurant</p>
-            </div>
-          )}
-          {venueData.meta.parking && (
-            <div className="d-flex me-2 me-md-5 mt-1">
-              <img className="facility-icon me-2 " src={parkingIcon} alt="" />
-              <p className="fs-0-75rem-to-1rem">Parking</p>
-            </div>
-          )}
-          {venueData.meta.pets && (
-            <div className="d-flex me-2 me-md-5 mt-1">
-              <img className="facility-icon me-2" src={petIcon} alt="" />
-              <p className="fs-0-75rem-to-1rem">Pet friendly</p>
-            </div>
-          )}
+          {venueData.meta.wifi && <WifiFacility />}
+          {venueData.meta.breakfast && <BreakfastFacility />}
+          {venueData.meta.parking && <ParkingFacility />}
+          {venueData.meta.pets && <PetsFacility />}
         </div>
       </div>
     </div>
