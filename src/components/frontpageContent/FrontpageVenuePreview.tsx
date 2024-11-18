@@ -14,7 +14,6 @@ function FrontpageVenuePreview() {
 
   const venues = data?.data || [];
 
-  console.log(venues);
   // Will display the 4 newest venues
 
   return (

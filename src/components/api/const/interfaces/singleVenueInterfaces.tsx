@@ -11,9 +11,23 @@ interface Media {
   alt: string;
 }
 
+interface Customer {
+  name: string;
+  email: string;
+}
+
+interface Bookings {
+  customer: Customer;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+}
+
 export interface SingleVenueResponseContent {
   created: string;
+  guests: number;
   description: string;
+  bookings: Bookings[];
   id: string;
   location: {
     address: string;

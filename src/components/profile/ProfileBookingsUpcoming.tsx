@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProfileBookings } from "../api/interfaces";
-import { useFormatDate } from "../utils";
+import { formatDate } from "../utils";
 import { useCalculateTotalCost } from "../utils";
 
 interface bookingData {
@@ -20,8 +20,8 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   const guests = booking.guests;
   const price = booking.venue.price;
   // Formatted dates
-  const formattedDateFrom = useFormatDate(dateFrom);
-  const formattedDateTo = useFormatDate(dateTo);
+  const formattedDateFrom = formatDate(dateFrom);
+  const formattedDateTo = formatDate(dateTo);
 
   // Calculate total sum of stay
 

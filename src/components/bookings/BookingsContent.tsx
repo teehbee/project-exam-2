@@ -23,10 +23,10 @@ const BookingsContent: React.FC = () => {
     <div className="container my-5">
       <div className="row text-center">
         <VenueImageAndText venue={data} />
-        <BookingsList />
+        <BookingsList venue={data} />
       </div>
       <div>
-        <BookingsButtons />
+        <BookingsButtons venue={data} />
       </div>
     </div>
   );
