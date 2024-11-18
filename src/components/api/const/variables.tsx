@@ -9,7 +9,7 @@ export const VENUES_ENDPOINT = "holidaze/venues?_bookings=true&_owner=true&sort=
 
 // single venue
 
-export const VENUE_ENDPOINT = (id: string) => `/holidaze/venues/${id}?_bookings=true`;
+export const getVenueEndpoint = (id: string) => `holidaze/venues/${id}?_bookings=true`;
 
 // profile (dynamically adding name from localStorage)
 

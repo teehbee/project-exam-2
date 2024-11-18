@@ -1,11 +1,22 @@
 import { VenueImageAndText, VenueBooking } from "./elements";
 import { useParams } from "react-router-dom";
-// import { VENUE_ENDPOINT } from "../api/const/variables";
-// import { useApi } from "../api";
+import { FrontPageLoader, FrontPageError } from "../frontpageContent";
+import { getVenueEndpoint } from "../api/const";
+import { useApi } from "../api";
 
 const SingleVenuePage: React.FC = () => {
+  // find id from url
   const { id } = useParams<{ id: string }>();
-  console.log(id);
+
+  //Api call for single venue data
+  const { data, error, loading } = useApi<null, null>(getVenueEndpoint(id as string), "GET", null, true, true);
+
+  if (loading) return <FrontPageLoader />;
+  if (error) return <FrontPageError />;
+
+  const venue = data;
+
+  console.log(venue);
   return (
     <div className="container my-5">
       <div className="row text-center">
