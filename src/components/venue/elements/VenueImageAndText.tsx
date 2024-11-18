@@ -7,10 +7,8 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
 
   const img = venueData.media.length > 0 ? venue.data.media[0].url : "";
   const alt = venueData.media.length > 0 ? venue.data.media[0].alt : "no alt text provided";
-  const name = venueData.name;
   const city = venueData.location.city || "Mystery destination";
   const country = venueData.location.country || "";
-  const price = venueData.price;
   const rating = venueData.rating;
 
   return (
@@ -18,19 +16,19 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
       <img className="img-fluid form-box-shadow" src={img} alt={alt} />
       <div className="text-start pt-3 pt-md-4">
         <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
-          {name},{" "}
+          {venueData.name},{" "}
           <span className="secondary-font fs-1-25rem-to-1-5rem">
             {city}, {country}
           </span>
         </h1>
-        <p className="mb-2 fs-0-75rem-to-1rem">NOK {price} per night</p>
+        <p className="mb-2 fs-0-75rem-to-1rem">NOK {venueData.price} per night</p>
         <div className="mb-3">
           {[...Array({ rating })].map((_, index) => (
             <img key={index} src={starIcon} alt="star" />
           ))}
         </div>
-        <p className="mb-2 fs-0-75rem-to-1-125rem mb-md-3">Description of venue goes here</p>
-        <p className="fs-0-75rem-to-1-125rem">Maximum X amount of people</p>
+        <p className="mb-2 fs-0-75rem-to-1-125rem mb-md-3">{venueData.description}</p>
+        <p className="fs-0-75rem-to-1-125rem">Max number of guests: {venueData.maxGuests}</p>
       </div>
       <div className="text-start">
         <h2 className="fs-1rem-to-1-5rem pt-3 pt-md-4">Facilities</h2>
