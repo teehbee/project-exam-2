@@ -36,11 +36,11 @@ const router = createBrowserRouter([
         element: <RentOutVenue />,
       },
       {
-        path: "venue-manager-administration",
+        path: "venue-manager-administration:id",
         element: <VenueManagerBookings />,
       },
       {
-        path: "update-venue",
+        path: "update-venue:id",
         element: <UpdateVenue />,
       },
       {
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         element: <BookingSuccess />,
       },
       {
-        path: "venue",
+        path: "venue:id",
         element: <Venue />,
       },
       {
