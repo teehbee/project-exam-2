@@ -26,7 +26,7 @@ const BookingsContent: React.FC = () => {
         <BookingsList venue={data} />
       </div>
       <div>
-        <BookingsButtons />
+        <BookingsButtons venue={data} />
       </div>
     </div>
   );
