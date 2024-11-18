@@ -17,7 +17,6 @@ interface Customer {
 }
 
 interface Bookings {
-  [x: string]: ReactNode;
   customer: Customer;
   dateFrom: string;
   dateTo: string;
