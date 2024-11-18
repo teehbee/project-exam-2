@@ -3,24 +3,23 @@ import { useParams } from "react-router-dom";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
 import { getVenueEndpoint } from "../api/const";
 import { useApi } from "../api";
+import { SingleVenueResponse } from "../api/const/interfaces";
 
 const SingleVenuePage: React.FC = () => {
   // find id from url
   const { id } = useParams<{ id: string }>();
 
   //Api call for single venue data
-  const { data, error, loading } = useApi<null, null>(getVenueEndpoint(id as string), "GET", null, true, true);
+  const { data, error, loading } = useApi<null, SingleVenueResponse>(getVenueEndpoint(id as string), "GET", null, true, true);
 
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
-  const venue = data;
-
-  console.log(venue);
+  console.log("data is", data);
   return (
     <div className="container my-5">
       <div className="row text-center">
-        <VenueImageAndText />
+        <VenueImageAndText venue={data} />
         <VenueBooking />
       </div>
     </div>

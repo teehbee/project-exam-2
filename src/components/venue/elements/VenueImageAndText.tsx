@@ -1,17 +1,19 @@
-import { placeHolderImage, placeHolderImageLarge } from "../../../assets/placeholderImg";
+import { SingleVenueProp } from "../../api/const/interfaces";
 import { petIcon, wifiIcon, restaurantIcon, parkingIcon } from "../../../assets/icon";
 import { starIcon } from "../../../assets/icon";
 
-function VenueImageAndText() {
+const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
+  const img = venue.data.media.length > 0 ? venue.data.media[0].url : "";
+  const alt = venue.data.media.length > 0 ? venue.data.media[0].alt : "no alt text provided";
+
+  console.log(venue);
+
   return (
     <div className="venue-image-and-text-container col-12 col-md-5 mx-auto">
-      <picture>
-        <source media="(min-width: 992px)" srcSet={placeHolderImageLarge} />
-        <img className="img-fluid form-box-shadow" src={placeHolderImage} aria-label="placeholder" />
-      </picture>
-      <div className="text-start pt-3 ">
+      <img className="img-fluid form-box-shadow" src={img} aria-label="placeholder" />
+      <div className="text-start pt-3 pt-md-4">
         <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
-          Name of accommodation, <span className="secondary-font fs-1-25rem-to-1-5rem">Location</span>
+          {venue.data.name}, <span className="secondary-font fs-1-25rem-to-1-5rem">Location</span>
         </h1>
         <p className="mb-2 fs-0-75rem-to-1rem">Price per night</p>
         <div className="mb-3">
@@ -47,6 +49,6 @@ function VenueImageAndText() {
       </div>
     </div>
   );
-}
+};
 
 export default VenueImageAndText;
