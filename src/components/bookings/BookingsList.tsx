@@ -1,8 +1,10 @@
 import { SingleVenueProp } from "../api/const/interfaces";
 import { formatDate } from "../utils";
 
-const BookingsList: React.FC<SingleVenueProp> = (venue) => {
-  const bookingData = venue.venue.data.bookings;
+const BookingsList: React.FC<SingleVenueProp> = ({ venue }) => {
+  const bookingData = venue.data.bookings;
+
+  console.log("here", bookingData);
 
   return (
     <div className="col-12 col-md-6">

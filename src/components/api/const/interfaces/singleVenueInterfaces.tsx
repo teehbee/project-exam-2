@@ -20,10 +20,12 @@ interface Bookings {
   customer: Customer;
   dateFrom: string;
   dateTo: string;
+  guests: number;
 }
 
 export interface SingleVenueResponseContent {
   created: string;
+  guests: number;
   description: string;
   bookings: Bookings[];
   id: string;
@@ -35,7 +37,6 @@ export interface SingleVenueResponseContent {
     continent: string;
   };
   maxGuests: number;
-  guests: number;
   media: Media[];
   meta: {
     wifi: boolean;
