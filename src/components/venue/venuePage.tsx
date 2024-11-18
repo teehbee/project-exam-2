@@ -1,4 +1,6 @@
 import { VenueImageAndText, VenueBooking } from "./elements";
+import { useParams } from "react-router-dom";
+import { useApi } from "../api";
 
 function SingleVenuePage() {
   return (
