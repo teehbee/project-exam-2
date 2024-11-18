@@ -2,7 +2,7 @@ import { VenueImageAndText, VenueBooking } from "./elements";
 import { useParams } from "react-router-dom";
 import { useApi } from "../api";
 
-function SingleVenuePage() {
+const SingleVenuePage: React.FC = () => {
   return (
     <div className="container my-5">
       <div className="row text-center">
@@ -11,6 +11,6 @@ function SingleVenuePage() {
       </div>
     </div>
   );
-}
+};
 
 export default SingleVenuePage;
