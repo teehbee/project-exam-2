@@ -11,9 +11,22 @@ interface Media {
   alt: string;
 }
 
+interface Customer {
+  name: string;
+  email: string;
+}
+
+interface Bookings {
+  [x: string]: ReactNode;
+  customer: Customer;
+  dateFrom: string;
+  dateTo: string;
+}
+
 export interface SingleVenueResponseContent {
   created: string;
   description: string;
+  bookings: Bookings[];
   id: string;
   location: {
     address: string;
@@ -23,6 +36,7 @@ export interface SingleVenueResponseContent {
     continent: string;
   };
   maxGuests: number;
+  guests: number;
   media: Media[];
   meta: {
     wifi: boolean;
