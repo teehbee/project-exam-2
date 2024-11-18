@@ -2,10 +2,6 @@ export interface SingleVenueResponse {
   data: SingleVenueResponseContent;
 }
 
-export interface SingleVenueResponseData {
-  venue: SingleVenueResponseContent;
-}
-
 export interface SingleVenueProp {
   venue: SingleVenueResponse;
 }

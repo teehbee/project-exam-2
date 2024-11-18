@@ -1,3 +1,3 @@
-import { SingleVenueResponse, SingleVenueResponseContent, SingleVenueResponseData, SingleVenueProp } from "./singleVenueInterfaces";
+import { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp } from "./singleVenueInterfaces";
 
-export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueResponseData, SingleVenueProp };
+export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp };

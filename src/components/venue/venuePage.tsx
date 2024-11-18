@@ -15,6 +15,10 @@ const SingleVenuePage: React.FC = () => {
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
+  if (!data) {
+    return <FrontPageError />;
+  }
+
   console.log("data is", data);
   return (
     <div className="container my-5">
