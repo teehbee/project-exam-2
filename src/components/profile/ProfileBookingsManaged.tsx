@@ -24,7 +24,7 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
           </Link>
         </div>
         <div className="d-flex flex-column justify-content-between p-md-3">
-          <Link to="/update-venue">
+          <Link to={`/update-venue/${id}`}>
             <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem">Update</button>
           </Link>
           <Link to="/venue-manager-administration">
