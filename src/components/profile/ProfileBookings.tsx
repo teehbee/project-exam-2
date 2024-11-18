@@ -18,6 +18,9 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
   console.log("profile booking data", profileData.data.venueManager);
 
   const bookings = profileData.data.bookings;
+  const managedVenues = profileData.data.venues;
+
+  console.log("You manage these", managedVenues);
 
   const handleTabClick = (tab: "bookings" | "manage") => {
     setActiveTab(tab);
