@@ -27,12 +27,10 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
           <Link to={`/update-venue/${id}`}>
             <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem">Update</button>
           </Link>
-          <Link to="/venue-manager-administration">
+          <Link to={`/venue-manager-administration/${id}`}>
             <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem">Bookings</button>
           </Link>
-          <Link to="/">
-            <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem">Delete</button>
-          </Link>
+          <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem">Delete</button>
         </div>
       </div>
     </div>
