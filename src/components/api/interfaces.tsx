@@ -117,6 +117,11 @@ export interface ProfileContent {
   };
 }
 
+export interface ProfileBioText {
+  bio: string;
+  name: string;
+}
+
 export interface ProfileData {
   data: ProfileContent;
 }

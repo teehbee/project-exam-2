@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
+import { ProfileBioText } from "../api/interfaces";
 
-import { ProfileContent } from "../api/interfaces";
-
-const ProfileBio: React.FC<ProfileContent> = ({ bio, name }) => {
+const ProfileBio: React.FC<ProfileBioText> = ({ bio, name }) => {
   return (
     <div>
       <h2 className="fs-0-75rem-to-1rem py-3">Biography</h2>
