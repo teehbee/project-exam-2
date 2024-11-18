@@ -5,7 +5,7 @@ export const REGISTER_ENDPOINT = "auth/register";
 
 // venues
 
-export const VENUES_ENDPOINT = "holidaze/venues?_bookings=true&_owner=true";
+export const VENUES_ENDPOINT = "holidaze/venues?_bookings=true&_owner=true&sort=created";
 
 // profile (dynamically adding name from localStorage)
 

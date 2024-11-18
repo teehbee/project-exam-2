@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { ProfileBookingsUpcoming, ProfileBookingsManaged } from "./";
-import { ProfileData as ProfileDataType } from "../api/interfaces";
+import { ProfileData } from "../api/interfaces";
 
 // section for managing bookings is set to bookings default
 
 interface ProfileHeaderProps {
-  profileData: ProfileDataType;
+  profileData: ProfileData;
 }
 
 const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
@@ -15,9 +15,12 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
     return null;
   }
 
-  console.log("profile booking data", profileData.data.venueManager);
+  // console.log("profile booking data", profileData.data.venueManager);
 
   const bookings = profileData.data.bookings;
+  const managedVenues = profileData.data.venues;
+
+  console.log("You manage these", managedVenues);
 
   const handleTabClick = (tab: "bookings" | "manage") => {
     setActiveTab(tab);
@@ -36,7 +39,7 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
         )}
       </div>
       {activeTab === "bookings" && <div>{bookings.length > 0 ? bookings.map((booking, index) => <ProfileBookingsUpcoming key={index} booking={booking} />) : <p>No upcoming bookings</p>}</div>}
-      {activeTab === "manage" && <ProfileBookingsManaged />}
+      {activeTab === "manage" && <div>{managedVenues.length > 0 ? managedVenues.map((venue, index) => <ProfileBookingsManaged key={index} venue={venue} />) : <p>No upcoming bookings</p>}</div>}
     </div>
   );
 };

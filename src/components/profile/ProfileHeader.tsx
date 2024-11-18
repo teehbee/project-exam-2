@@ -17,7 +17,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profileData }) => {
         <ProfileData name={profileData.data.name} email={profileData.data.email} venueManager={profileData.data.venueManager} />
       </div>
       <div className="w-100">
-        <ProfileBio bio={profileData.data.bio} />
+        <ProfileBio bio={profileData.data.bio} name={profileData.data.name} />
       </div>
     </div>
   );

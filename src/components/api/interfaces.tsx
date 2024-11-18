@@ -109,7 +109,7 @@ export interface ProfileContent {
   bio: string;
   avatar: ProfileMedia;
   venueManager: boolean;
-  venues: ProfileVenues;
+  venues: ProfileVenues[];
   bookings: ProfileBookings[];
   location?: {
     city?: string;
@@ -117,6 +117,17 @@ export interface ProfileContent {
   };
 }
 
+export interface ProfileBioText {
+  bio: string;
+  name: string;
+}
+
 export interface ProfileData {
   data: ProfileContent;
+}
+
+export interface VenueManagerBookings {
+  name: string;
+  id: string;
+  media: Media[];
 }

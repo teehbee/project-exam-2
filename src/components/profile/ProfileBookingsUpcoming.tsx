@@ -13,8 +13,8 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "";
   const alt = booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Accommodation image";
   const name = booking.venue.name;
-  const city = booking.location?.city || "Unknown city";
-  const country = booking.location?.country || "Unknown country";
+  const city = booking.location?.city || "Surprise destination";
+  const country = booking.location?.country || "";
   const dateFrom = booking.dateFrom;
   const dateTo = booking.dateTo;
   const guests = booking.guests;
@@ -35,10 +35,10 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
           <img className="form-box-shadow" src={img} aria-label={alt} />
         </Link>
       </div>
-      <div className="col-8 col-md-9 text-start ps-3 ps-md-5">
+      <div className="col-8 col-md-9 text-start ps-3 ps-md-5 pt-1">
         <h4 className="secondary-font fs-1rem-to-1-5rem mt-1 mb-0">{name}</h4>
         <p className="fw-light fs-0-625rem-to-1rem mt-md-1">
-          {city}, {country}
+          {city} {country}
         </p>
         <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-4">
           {formattedDateFrom} to {formattedDateTo}
