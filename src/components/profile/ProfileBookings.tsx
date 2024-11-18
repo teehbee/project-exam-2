@@ -39,7 +39,7 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
         )}
       </div>
       {activeTab === "bookings" && <div>{bookings.length > 0 ? bookings.map((booking, index) => <ProfileBookingsUpcoming key={index} booking={booking} />) : <p>No upcoming bookings</p>}</div>}
-      {activeTab === "manage" && <div>{managedVenues.length > 0 ? managedVenues.map((venue, index) => <ProfileBookingsManaged key={index} managedVenues={venue} />) : <p>No upcoming bookings</p>}</div>}
+      {activeTab === "manage" && <div>{managedVenues.length > 0 ? managedVenues.map((venue, index) => <ProfileBookingsManaged key={index} venue={venue} />) : <p>No upcoming bookings</p>}</div>}
     </div>
   );
 };

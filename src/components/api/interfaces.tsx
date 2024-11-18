@@ -125,3 +125,9 @@ export interface ProfileBioText {
 export interface ProfileData {
   data: ProfileContent;
 }
+
+export interface VenueManagerBookings {
+  name: string;
+  id: string;
+  media: Media[];
+}
