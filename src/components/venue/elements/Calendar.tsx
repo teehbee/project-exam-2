@@ -3,26 +3,17 @@ import { SingleVenueProp } from "../../api/const/interfaces";
 import { Calendar, CalendarSelected } from "@demark-pro/react-booking-calendar";
 import "@demark-pro/react-booking-calendar/dist/react-booking-calendar.css";
 
-const oneDay = 86400000;
-const today = new Date().getTime() + oneDay;
+export const BookingCalendar: React.FC<{ venue: SingleVenueProp }> = ({ venue }) => {
+  const bookingDates = venue.data.bookings;
 
-const reserved = Array.from({ length: 3 }, (_, i) => {
-  const daysCount = Math.floor(Math.random() * (7 - 4) + 3);
-  const startDate = new Date(today + oneDay * 8 * i);
-
-  return {
-    startDate,
-    endDate: new Date(startDate.getTime() + oneDay * daysCount),
-  };
-});
-
-export const BookingCalendar: React.FC<SingleVenueProp> = ({ venue }) => {
-  console.log("calendar-test", venue.data);
-  const [selectedDates, setSelectedDates] = useState<CalendarSelected[]>([]);
+  const reservedDates = bookingDates.map((booking) => ({
+    startDate: new Date(booking.dateFrom),
+    endDate: new Date(booking.dateTo),
+  }));
 
   return (
     <div className="calendar form-box-shadow mx-auto mt-5 mt-md-3 p-3">
-      <Calendar selected={selectedDates} reserved={reserved} onChange={setSelectedDates} />
+      <Calendar reserved={reservedDates} />
     </div>
   );
 };
