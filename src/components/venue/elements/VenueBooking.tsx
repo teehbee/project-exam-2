@@ -4,6 +4,7 @@ import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
 
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   console.log("calendar", venue.data.bookings);
+  console.log("id is", venue.data.id);
   // state for number of guests
   const [numberOfGuests, setNumberOfGuests] = useState(1);
 
