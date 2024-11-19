@@ -52,3 +52,8 @@ export interface SingleVenueResponseContent {
     bookings: number;
   };
 }
+
+export interface BookingCalendarProps {
+  onDateChange: (fromDate: string | null, toDate: string | null) => void;
+  venue: SingleVenueResponse;
+}

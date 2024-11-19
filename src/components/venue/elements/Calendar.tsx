@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
-import { SingleVenueResponse } from "../../api/const/interfaces";
+import { BookingCalendarProps } from "../../api/const/interfaces";
 import { Calendar, CalendarSelected } from "@demark-pro/react-booking-calendar";
 import "@demark-pro/react-booking-calendar/dist/react-booking-calendar.css";
-
-// Move to interface file
-
-interface BookingCalendarProps {
-  onDateChange: (fromDate: string | null, toDate: string | null) => void;
-  venue: SingleVenueResponse;
-}
 
 export const BookingCalendar: React.FC<BookingCalendarProps> = ({ venue, onDateChange }) => {
   const bookingDates = venue.data.bookings;
@@ -19,6 +12,8 @@ export const BookingCalendar: React.FC<BookingCalendarProps> = ({ venue, onDateC
   }));
 
   const [selectedDates, setSelectedDates] = useState<CalendarSelected[]>([]);
+
+  // Handling of dates from calendar array and correctly parsing before hoisting to parent component
 
   useEffect(() => {
     if (selectedDates.length === 2) {
