@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { SingleVenueProp } from "../../api/const/interfaces";
 import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
 
-function VenueBooking() {
+const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
+  console.log("calendar", venue.data.bookings);
   // state for number of guests
   const [numberOfGuests, setNumberOfGuests] = useState(1);
 
@@ -16,6 +18,6 @@ function VenueBooking() {
       <BookingSum numberOfGuests={numberOfGuests} />
     </div>
   );
-}
+};
 
 export default VenueBooking;
