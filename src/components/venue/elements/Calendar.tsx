@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Calendar, CalendarSelected } from "@demark-pro/react-booking-calendar"; // Import CalendarSelected type
+import { SingleVenueProp } from "../../api/const/interfaces";
+import { Calendar, CalendarSelected } from "@demark-pro/react-booking-calendar";
 import "@demark-pro/react-booking-calendar/dist/react-booking-calendar.css";
 
 const oneDay = 86400000;
@@ -15,7 +16,7 @@ const reserved = Array.from({ length: 3 }, (_, i) => {
   };
 });
 
-export const BookingCalendar = ({ venue }) => {
+export const BookingCalendar: React.FC<SingleVenueProp> = ({ venue }) => {
   console.log("calendar-test", venue.data);
   const [selectedDates, setSelectedDates] = useState<CalendarSelected[]>([]);
 
