@@ -1,9 +1,21 @@
 import { useState } from "react";
+import { SingleVenueProp } from "../../api/const/interfaces";
 import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
 
-function VenueBooking() {
+const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
+  console.log("id is", venue.data.id);
   // state for number of guests
   const [numberOfGuests, setNumberOfGuests] = useState(1);
+  const [fromDate, setFromDate] = useState<string | null>(null);
+  const [toDate, setToDate] = useState<string | null>(null);
+
+  console.log("From Date:", fromDate);
+  console.log("To Date:", toDate);
+
+  const handleBookingDates = (from: string | null, to: string | null) => {
+    setFromDate(from);
+    setToDate(to);
+  };
 
   // handling of change in number of guests to be displayed in booking sum
   const handleGuestsChange = (newNumberOfGuests: number) => {
@@ -11,11 +23,11 @@ function VenueBooking() {
   };
   return (
     <div className="col-12 col-md-7">
-      <BookingCalendar />
+      <BookingCalendar venue={venue} onDateChange={handleBookingDates} />
       <BookingNumberOfGuests onGuestsChange={handleGuestsChange} />
       <BookingSum numberOfGuests={numberOfGuests} />
     </div>
   );
-}
+};
 
 export default VenueBooking;
