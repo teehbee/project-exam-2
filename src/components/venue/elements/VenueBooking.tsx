@@ -13,7 +13,7 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   };
   return (
     <div className="col-12 col-md-7">
-      <BookingCalendar />
+      <BookingCalendar venue={venue} />
       <BookingNumberOfGuests onGuestsChange={handleGuestsChange} />
       <BookingSum numberOfGuests={numberOfGuests} />
     </div>

@@ -15,7 +15,8 @@ const reserved = Array.from({ length: 3 }, (_, i) => {
   };
 });
 
-export const BookingCalendar = () => {
+export const BookingCalendar = ({ venue }) => {
+  console.log("calendar-test", venue.data);
   const [selectedDates, setSelectedDates] = useState<CalendarSelected[]>([]);
 
   return (
