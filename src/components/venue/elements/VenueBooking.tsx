@@ -7,6 +7,8 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   console.log("id is", venue.data.id);
   // state for number of guests
   const [numberOfGuests, setNumberOfGuests] = useState(1);
+  const [fromDate, setFromDate] = useState<Date | null>(null);
+  const [toDate, setToDate] = useState<Date | null>(null);
 
   // handling of change in number of guests to be displayed in booking sum
   const handleGuestsChange = (newNumberOfGuests: number) => {
