@@ -24,7 +24,6 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
             </span>
           </h1>
         </Link>
-
         <p className="mb-2 fs-0-75rem-to-1rem">NOK {venueData.price} per night</p>
         <div className="mb-3">
           {[...Array(venueData.rating)].map((_, index) => (

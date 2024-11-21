@@ -12,8 +12,6 @@ function ProfilePage() {
 
   const profileData = data;
 
-  console.log("Fetched Data from:", profileData);
-
   if (loading) return <FrontPageLoader />;
   if (error || !profileData) return <PageNotFound />;
 
