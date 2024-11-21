@@ -8,13 +8,14 @@ interface bookingData {
 }
 
 const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
+  console.log(booking);
   // Variables
   const id = booking.venue.id;
   const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "";
   const alt = booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Accommodation image";
   const name = booking.venue.name;
-  const city = booking.location?.city || "Surprise destination";
-  const country = booking.location?.country || "";
+  const city = booking.venue.location?.city || "Surprise destination";
+  const country = booking.venue.location?.country || "";
   const dateFrom = booking.dateFrom;
   const dateTo = booking.dateTo;
   const guests = booking.guests;
@@ -22,6 +23,8 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   // Formatted dates
   const formattedDateFrom = formatDate(dateFrom);
   const formattedDateTo = formatDate(dateTo);
+
+  console.log("city", city);
 
   // Calculate total sum of stay
 
