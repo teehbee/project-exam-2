@@ -15,12 +15,18 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
     return null;
   }
 
-  // console.log("profile booking data", profileData.data.venueManager);
-
   const bookings = profileData.data.bookings;
   const managedVenues = profileData.data.venues;
 
-  console.log("You manage these", managedVenues);
+  // find current date
+
+  const currentDate = new Date();
+
+  // filter through venues to only show upcoming stays
+
+  const upComingBookings = bookings.filter((booking) => new Date(booking.dateFrom) > currentDate);
+
+  console.log("You manage these", bookings);
 
   const handleTabClick = (tab: "bookings" | "manage") => {
     setActiveTab(tab);
@@ -38,7 +44,7 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
           </h3>
         )}
       </div>
-      {activeTab === "bookings" && <div>{bookings.length > 0 ? bookings.map((booking, index) => <ProfileBookingsUpcoming key={index} booking={booking} />) : <p>No upcoming bookings</p>}</div>}
+      {activeTab === "bookings" && <div>{upComingBookings.length > 0 ? upComingBookings.map((booking, index) => <ProfileBookingsUpcoming key={index} booking={booking} />) : <p>No upcoming bookings</p>}</div>}
       {activeTab === "manage" && <div>{managedVenues.length > 0 ? managedVenues.map((venue, index) => <ProfileBookingsManaged key={index} venue={venue} />) : <p>No upcoming bookings</p>}</div>}
     </div>
   );
