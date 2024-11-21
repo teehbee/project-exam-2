@@ -14,15 +14,16 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
 
   const formattedFromDate = fromDate ? formatDate(fromDate) : null;
   const formattedToDate = toDate ? formatDate(toDate) : null;
-  const calculatedCost = useCalculateTotalCost(formattedFromDate || "", formattedToDate || "", venuePrice);
-
-  console.log("From Date:", fromDate);
-  console.log("To Date:", toDate);
+  const { totalCost, numberOfNights } = useCalculateTotalCost(formattedFromDate || "", formattedToDate || "", venuePrice);
 
   const handleBookingDates = (from: string | null, to: string | null) => {
     setFromDate(from);
     setToDate(to);
   };
+
+  // console.log("From Date:", fromDate);
+  // console.log("To Date:", toDate);
+  // console.log("nights", numberOfNights);
 
   // handling of change in number of guests to be displayed in booking sum
   const handleGuestsChange = (newNumberOfGuests: number) => {
@@ -32,7 +33,7 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     <div className="col-12 col-md-7">
       <BookingCalendar venue={venue} onDateChange={handleBookingDates} />
       <BookingNumberOfGuests onGuestsChange={handleGuestsChange} />
-      <BookingSum numberOfGuests={numberOfGuests} sum={calculatedCost} />
+      <BookingSum numberOfGuests={numberOfGuests} sum={totalCost} nights={numberOfNights} />
     </div>
   );
 };
