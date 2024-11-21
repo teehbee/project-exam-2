@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface BookingSumProps {
   numberOfGuests: number;
   sum: number;
@@ -6,14 +8,24 @@ interface BookingSumProps {
 }
 
 function BookingSum({ numberOfGuests, nights, sum, onBooking }: BookingSumProps) {
+  const loggedIn = localStorage.getItem("loggedIn");
   return (
     <div className="form-box-shadow px-3 py-4 mt-4 booking-sum-container mx-auto text-start">
       <h3 className="fs-1-25rem-to-1-5rem pb-3">Price of stay: NOK {sum},-</h3>
       <p className="fs-1rem-to-1-25rem fw-light">Number of nights: {nights}</p>
       <p className="fs-1rem-to-1-25rem pb-3 fw-light">Number of people: {numberOfGuests}</p>
-      <button className="main-button-red w-100" onClick={onBooking}>
-        BOOK NOW
-      </button>
+      {loggedIn === "true" ? (
+        <button className="main-button-red w-100" onClick={onBooking}>
+          BOOK NOW
+        </button>
+      ) : (
+        <>
+          <p className="text-danger mb-2">You must be logged in to book this venue</p>
+          <Link to="/login" className="font-gray">
+            Login here
+          </Link>
+        </>
+      )}
     </div>
   );
 }

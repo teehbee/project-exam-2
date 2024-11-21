@@ -6,6 +6,13 @@ import { useApi } from "../../api";
 import { BOOK_VENUE_ENDPOINT } from "../../api/const";
 import { useCalculateTotalCost } from "../../utils";
 
+interface bookingDate {
+  venueId: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+}
+
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   console.log("id is", venue.data.id);
   const [numberOfGuests, setNumberOfGuests] = useState(1);
@@ -15,7 +22,7 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   // State to trigger booking call to api
 
   const [isBooking, setIsBooking] = useState(false);
-  const [bookingData, setBookingData] = useState<any>(null);
+  const [bookingData, setBookingData] = useState<bookingDate>(null);
 
   const venueId = venue.data.id;
   const venuePrice = venue.data.price;
