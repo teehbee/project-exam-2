@@ -8,7 +8,6 @@ import { BOOK_VENUE_ENDPOINT } from "../../api/const";
 import { useCalculateTotalCost } from "../../utils";
 
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
-  console.log("id is", venue.data.id);
   const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [fromDate, setFromDate] = useState<string | null>(null);
   const [toDate, setToDate] = useState<string | null>(null);
