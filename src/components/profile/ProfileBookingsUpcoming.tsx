@@ -42,16 +42,16 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
         <Link className="text-decoration-none font-gray" to={`/venue/${id}`}>
           <h4 className="secondary-font fs-1rem-to-1-5rem mt-1 mb-0">{name}</h4>
         </Link>
-        <p className="fw-light fs-0-625rem-to-1rem mt-md-1">
+        <p className="fs-0-625rem-to-1rem mt-md-1">
           {city} {country}
         </p>
-        <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-4">
+        <p className="fs-0-625rem-to-1rem mb-0 mt-md-4">
           {formattedDateFrom} to {formattedDateTo}
         </p>
-        <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-2">
+        <p className="fs-0-625rem-to-1rem mb-0 mt-md-2">
           {guests} {guests === 1 ? "guest" : "guests"}
         </p>
-        <p className="fs-0-625rem-to-1rem mt-md-2">NOK {totalCost}</p>
+        <p className="fs-0-625rem-to-1rem mt-md-2 ">NOK {totalCost},-</p>
       </div>
     </div>
   );
