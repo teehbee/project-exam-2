@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { SingleVenueProp } from "../../api/const/interfaces";
 import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
+import { formatDate } from "../../utils";
+import { useCalculateTotalCost } from "../../utils";
 
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   console.log("id is", venue.data.id);
-  // state for number of guests
   const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [fromDate, setFromDate] = useState<string | null>(null);
   const [toDate, setToDate] = useState<string | null>(null);
+
+  const venuePrice = venue.data.price;
+
+  const formattedFromDate = fromDate ? formatDate(fromDate) : null;
+  const formattedToDate = toDate ? formatDate(toDate) : null;
+  const calculatedCost = useCalculateTotalCost(formattedFromDate || "", formattedToDate || "", venuePrice);
 
   console.log("From Date:", fromDate);
   console.log("To Date:", toDate);
@@ -25,7 +32,7 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     <div className="col-12 col-md-7">
       <BookingCalendar venue={venue} onDateChange={handleBookingDates} />
       <BookingNumberOfGuests onGuestsChange={handleGuestsChange} />
-      <BookingSum numberOfGuests={numberOfGuests} />
+      <BookingSum numberOfGuests={numberOfGuests} sum={calculatedCost} />
     </div>
   );
 };
