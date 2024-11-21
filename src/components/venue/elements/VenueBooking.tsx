@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SingleVenueProp } from "../../api/const/interfaces";
 import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
 import { formatDate } from "../../utils";
@@ -34,9 +34,12 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     setNumberOfGuests(newNumberOfGuests);
   };
 
-  const handleBooking() {
-
-  }
+  const bookingData = {
+    venueId,
+    fromDate: formattedFromDate,
+    toDate: formattedToDate,
+    numberOfGuests,
+  };
 
   return (
     <div className="col-12 col-md-7">
