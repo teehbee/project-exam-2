@@ -1,10 +1,10 @@
-import { placeHolderImage, placeHolderImageLarge } from "../../assets/placeholderImg";
 import { useParams } from "react-router-dom";
 import { SingleVenueResponse } from "../api/const/interfaces";
 import { Link } from "react-router-dom";
 import { useApi } from "../api";
 import { getVenueEndpoint } from "../api/const";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
+import { formatDate } from "../utils";
 
 const BookingSuccessTextBox: React.FC = () => {
   // find id from url
@@ -27,6 +27,12 @@ const BookingSuccessTextBox: React.FC = () => {
   const name = venue.name;
   const city = venue.location.city;
   const country = venue.location.country;
+  // find fromDate and toDate from the last created booking
+  const dateFrom = venue.bookings.length > 0 ? venue.bookings[0].dateFrom : "";
+  const dateTo = venue.bookings.length > 0 ? venue.bookings[0].dateTo : "";
+  const guests = venue.bookings.length > 0 ? venue.bookings[0].guests : "";
+  const formattedDateFrom = dateFrom ? formatDate(dateFrom) : null;
+  const formattedDateTo = dateTo ? formatDate(dateTo) : null;
 
   console.log("data is", venue);
 
@@ -44,8 +50,10 @@ const BookingSuccessTextBox: React.FC = () => {
           <p className="fs-0-625rem-to-1rem mb-1 mb-md-3 pt-3 pt-md-5">
             {city} {country}
           </p>
-          <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">From and to date</p>
-          <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">Number of guests</p>
+          <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">
+            {formattedDateFrom} - {formattedDateTo}
+          </p>
+          <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">{guests} guest or guests</p>
           <p className="fs-0-625rem-to-1rem mb-0 mb-md-3">Total sum</p>
         </div>
       </div>
