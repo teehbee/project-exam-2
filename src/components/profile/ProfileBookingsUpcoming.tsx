@@ -43,7 +43,9 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
         <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-4">
           {formattedDateFrom} to {formattedDateTo}
         </p>
-        <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-2">{guests} persons</p>
+        <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-2">
+          {guests} {guests === 1 ? "guest" : "guests"}
+        </p>
         <p className="fs-0-625rem-to-1rem mt-md-2">NOK {totalCost}</p>
       </div>
     </div>
