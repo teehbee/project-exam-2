@@ -15,7 +15,6 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
     return null;
   }
 
-  const bookings = profileData.data.bookings;
   const managedVenues = profileData.data.venues;
 
   // find current date
@@ -23,10 +22,8 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
   const currentDate = new Date();
 
   // filter through venues to only show upcoming stays
-
-  const upComingBookings = bookings.filter((booking) => new Date(booking.dateFrom) > currentDate);
-
-  console.log("You manage these", bookings);
+  // sort through displayed bookings to show first upcoming stay first
+  const upComingBookings = profileData.data.bookings.filter((booking) => new Date(booking.dateFrom) > currentDate).sort((a, b) => new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime());
 
   const handleTabClick = (tab: "bookings" | "manage") => {
     setActiveTab(tab);
