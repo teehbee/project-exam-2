@@ -55,7 +55,7 @@ const BookingSuccessTextBox: React.FC = () => {
             {city} {country}
           </p>
           <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">
-            {formattedDateFrom} - {formattedDateTo} ({numberOfNights} night/nights)
+            {formattedDateFrom} - {formattedDateTo} ({numberOfNights} {numberOfNights === 1 ? "night" : "nights"})
           </p>
           <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">
             {guests} {guests === 1 ? "guest" : "guests"}
