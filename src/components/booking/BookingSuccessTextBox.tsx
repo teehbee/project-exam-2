@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useApi } from "../api";
 import { getVenueEndpoint } from "../api/const";
 
-function BookingSuccessTextBox() {
+const BookingSuccessTextBox: React.FC = () => {
   return (
     <div className="container py-5 text-center">
       <h1 className="secondary-font fs-1-5rem-to-2-5rem">Booking confirmation</h1>
@@ -26,6 +26,6 @@ function BookingSuccessTextBox() {
       </div>
     </div>
   );
-}
+};
 
 export default BookingSuccessTextBox;
