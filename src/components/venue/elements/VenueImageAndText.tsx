@@ -1,10 +1,12 @@
 import { SingleVenueProp } from "../../api/const/interfaces";
+import { Link } from "react-router-dom";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
 
 const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
   const venueData = venue.data;
 
+  const id = venue.data.id;
   const img = venueData.media.length > 0 ? venue.data.media[0].url : "";
   const alt = venueData.media.length > 0 ? venue.data.media[0].alt : "no alt text provided";
   const city = venueData.location.city || "Mystery destination";
@@ -14,12 +16,14 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
     <div className="venue-image-and-text-container col-12 col-md-5 mx-auto">
       <img className="img-fluid form-box-shadow" src={img} alt={alt} />
       <div className="text-start pt-3 pt-md-4">
-        <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
-          {venueData.name},{" "}
-          <span className="secondary-font fs-1-25rem-to-1-5rem">
-            {city}, {country}
-          </span>
-        </h1>
+        <Link className="text-decoration-none font-gray" to={`/venue/${id}`}>
+          <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
+            {venueData.name},{" "}
+            <span className="secondary-font fs-1-25rem-to-1-5rem">
+              {city}, {country}
+            </span>
+          </h1>
+        </Link>
         <p className="mb-2 fs-0-75rem-to-1rem">NOK {venueData.price} per night</p>
         <div className="mb-3">
           {[...Array(venueData.rating)].map((_, index) => (

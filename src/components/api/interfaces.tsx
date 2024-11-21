@@ -87,6 +87,7 @@ interface ProfileVenues {
   name: string;
   price: number;
   description: string;
+  location: Location;
   media: ProfileMedia[];
 }
 

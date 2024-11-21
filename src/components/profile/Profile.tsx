@@ -6,13 +6,15 @@ import { FrontPageLoader } from "../frontpageContent";
 import PageNotFound from "../error";
 
 function ProfilePage() {
+  // fetching name from localStorage to add add dynamically to endpoint
+
   const name = localStorage.getItem("name");
+
+  // api call to fetch profile date
 
   const { data, error, loading } = useApi<null, ProfileData>(name ? getProfileEndpoint(name) : "", "GET", null, true);
 
   const profileData = data;
-
-  console.log("Fetched Data from:", profileData);
 
   if (loading) return <FrontPageLoader />;
   if (error || !profileData) return <PageNotFound />;

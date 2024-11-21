@@ -60,7 +60,7 @@ const router = createBrowserRouter([
         element: <LoginComplete />,
       },
       {
-        path: "success",
+        path: "success/:id",
         element: <BookingSuccess />,
       },
       {

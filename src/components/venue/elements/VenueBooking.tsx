@@ -8,26 +8,29 @@ import { BOOK_VENUE_ENDPOINT } from "../../api/const";
 import { useCalculateTotalCost } from "../../utils";
 
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
-  console.log("id is", venue.data.id);
+  const navigate = useNavigate();
+
   const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [fromDate, setFromDate] = useState<string | null>(null);
   const [toDate, setToDate] = useState<string | null>(null);
   const [bookingloading, setBookingLoading] = useState(false);
   const [bookingError, setBookingError] = useState<string | null>(null);
-
-  // State to trigger booking call to api
-
   const [isBooking, setIsBooking] = useState(false);
   const [bookingData, setBookingData] = useState<bookingDate | null>(null);
 
-  const venueId = venue.data.id;
+  const id = venue.data.id;
   const venuePrice = venue.data.price;
 
-  const navigate = useNavigate();
+  // Convert dates for calculating cost of stay
 
   const formattedFromDate = fromDate ? formatDate(fromDate) : null;
   const formattedToDate = toDate ? formatDate(toDate) : null;
+
+  // Calculate cost of stay
+
   const { totalCost, numberOfNights } = useCalculateTotalCost(formattedFromDate || "", formattedToDate || "", venuePrice);
+
+  // Handler for receiving and converting booking dates from calendar component
 
   const handleBookingDates = (from: string | null, to: string | null) => {
     setFromDate(from);
@@ -39,20 +42,19 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     setNumberOfGuests(newNumberOfGuests);
   };
 
-  // Api call
+  // Api call for booking venue
 
   useEffect(() => {
     if (isBooking && fromDate && toDate) {
       const bookingDetails = {
-        venueId,
+        venueId: id,
         dateFrom: fromDate,
         dateTo: toDate,
         guests: numberOfGuests,
       };
-      // updates the bookingData state when isBooking is triggered
       setBookingData(bookingDetails);
     }
-  }, [isBooking, fromDate, toDate, venueId, numberOfGuests]);
+  }, [isBooking, fromDate, toDate, id, numberOfGuests]);
 
   const { data: responseData, error, loading } = useApi(BOOK_VENUE_ENDPOINT, "POST", bookingData, true, false);
 
@@ -61,24 +63,25 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
       setBookingLoading(true);
     }
     if (error) {
-      console.error("Booking, error", error);
+      // console.error("Booking, error", error);
       setBookingError("Something went wrong with you booking, please try again later");
       setBookingLoading(false);
     }
     if (responseData) {
-      console.log("Booking successful", responseData);
+      // console.log("Booking successful", responseData);
       setIsBooking(false);
       setBookingLoading(false);
       setBookingError(null);
-      navigate("/success");
+      navigate(`/success/${id}`);
     }
-  }, [error, responseData, loading, navigate]);
+  }, [error, responseData, loading, navigate, id]);
 
-  // Trigger api call when booking button is clicked
+  // Trigger api call when booking button is clicked or return
+  // error not both dates are selected
 
   const handleBooking = () => {
     if (!fromDate || !toDate) {
-      console.log("Please select both dates");
+      setBookingError("Select departure date before you can proceed with booking");
       return;
     }
     setIsBooking(true);
