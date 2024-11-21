@@ -14,7 +14,7 @@ const ProfileData: React.FC<ProfileDataProps> = ({ name, email, venueManager }) 
       <div className="d-flex align-items-center">
         {venueManager && (
           <>
-            <p className="mb-0 pe-1 fs-0-625rem-to-0-875rem fw-light">Certified venue manager</p>
+            <p className="mb-0 pe-1 fs-0-625rem-to-0-875rem">Certified venue manager</p>
             <img src={checkIcon} alt="" />
           </>
         )}
