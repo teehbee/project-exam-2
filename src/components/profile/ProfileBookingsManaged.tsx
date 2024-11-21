@@ -20,7 +20,7 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
       <div className="col-8 col-md-9 text-start ps-3 ps-md-5 py-3 d-flex justify-content-between">
         <div>
           <Link className="text-decoration-none font-gray" to={`/venue/${id}`}>
-            <h4 className="secondary-font fs-1rem-to-1-5rem mt-1 mb-0">{name}</h4>
+            <h4 className="secondary-font fs-1rem-to-1-5rem mt-1 mb-0 fw-bold">{name}</h4>
           </Link>
         </div>
         <div className="d-flex flex-column justify-content-between p-md-3">
