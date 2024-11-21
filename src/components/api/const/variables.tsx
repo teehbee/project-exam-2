@@ -16,3 +16,7 @@ export const getVenueEndpoint = (id: string) => `holidaze/venues/${id}?_bookings
 export const getProfileEndpoint = (name: string): string => {
   return `holidaze/profiles/${name}?_bookings=true&_venues=true`;
 };
+
+// booking
+
+export const BOOK_VENUE_ENDPOINT = "holidaze/bookings";

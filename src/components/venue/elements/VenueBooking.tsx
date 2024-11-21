@@ -3,6 +3,7 @@ import { SingleVenueProp } from "../../api/const/interfaces";
 import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
 import { formatDate } from "../../utils";
 import { useApi } from "../../api";
+import { BOOK_VENUE_ENDPOINT } from "../../api/const";
 import { useCalculateTotalCost } from "../../utils";
 
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
