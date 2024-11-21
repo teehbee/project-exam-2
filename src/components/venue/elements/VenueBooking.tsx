@@ -72,9 +72,9 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
       setIsBooking(false);
       setBookingLoading(false);
       setBookingError(null);
-      navigate("/success");
+      navigate(`/success/${id}`);
     }
-  }, [error, responseData, loading, navigate]);
+  }, [error, responseData, loading, navigate, id]);
 
   // Trigger api call when booking button is clicked or return
   // error not both dates are selected
