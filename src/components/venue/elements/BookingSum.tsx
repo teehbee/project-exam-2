@@ -2,9 +2,10 @@ interface BookingSumProps {
   numberOfGuests: number;
   sum: number;
   nights: number;
+  onBooking: () => void;
 }
 
-function BookingSum({ numberOfGuests, nights, sum }: BookingSumProps) {
+function BookingSum({ numberOfGuests, nights, sum, onBooking }: BookingSumProps) {
   return (
     <div className="form-box-shadow px-3 py-4 mt-4 booking-sum-container mx-auto text-start">
       <h3 className="fs-1-25rem-to-1-5rem pb-3">Price of stay: NOK {sum},-</h3>

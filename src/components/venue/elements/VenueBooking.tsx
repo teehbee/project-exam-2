@@ -12,6 +12,11 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   const [fromDate, setFromDate] = useState<string | null>(null);
   const [toDate, setToDate] = useState<string | null>(null);
 
+  // State to trigger booking call to api
+
+  const [isBooking, setIsBooking] = useState(false);
+  const [bookingData, setBookingData] = useState<any>(null);
+
   const venueId = venue.data.id;
   const venuePrice = venue.data.price;
 
@@ -19,10 +24,10 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   const formattedToDate = toDate ? formatDate(toDate) : null;
   const { totalCost, numberOfNights } = useCalculateTotalCost(formattedFromDate || "", formattedToDate || "", venuePrice);
 
-  console.log(venueId);
-  console.log(formattedFromDate);
-  console.log(formattedToDate);
-  console.log(numberOfGuests);
+  // console.log(venueId);
+  // console.log(formattedFromDate);
+  // console.log(formattedToDate);
+  // console.log(numberOfGuests);
 
   const handleBookingDates = (from: string | null, to: string | null) => {
     setFromDate(from);
@@ -34,11 +39,44 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     setNumberOfGuests(newNumberOfGuests);
   };
 
-  const bookingData = {
-    venueId,
-    fromDate: formattedFromDate,
-    toDate: formattedToDate,
-    numberOfGuests,
+  // Api call
+
+  useEffect(() => {
+    if (isBooking && fromDate && toDate) {
+      const bookingDetails = {
+        venueId,
+        dateFrom: fromDate,
+        dateTo: toDate,
+        guests: numberOfGuests,
+      };
+      // updates the bookingData state when isBooking is triggered
+      setBookingData(bookingDetails);
+    }
+  }, [isBooking, fromDate, toDate, venueId, numberOfGuests]);
+
+  const { data: responseData, error, loading } = useApi(BOOK_VENUE_ENDPOINT, "POST", bookingData, true, false);
+
+  useEffect(() => {
+    if (loading) {
+      console.log("Booking is in progress...");
+    }
+    if (error) {
+      console.error("Booking, error", error);
+    }
+    if (responseData) {
+      console.log("Booking successful", responseData);
+      setIsBooking(false);
+    }
+  }, [error, responseData, loading]);
+
+  // Trigger api call when booking button is clicked
+
+  const handleBooking = () => {
+    if (!fromDate || !toDate) {
+      console.log("Please select both dates");
+      return;
+    }
+    setIsBooking(true);
   };
 
   return (
