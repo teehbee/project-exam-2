@@ -4,10 +4,8 @@ import { formatDate } from "../utils";
 const BookingsList: React.FC<SingleVenueProp> = ({ venue }) => {
   const bookingData = venue.data.bookings;
 
-  console.log("here", bookingData);
-
   return (
-    <div className="col-12 col-md-6">
+    <div className="col-10 col-md-6 mx-auto">
       <h2 className="secondary-font">Bookings</h2>
       {bookingData.length > 0 ? (
         bookingData.map((booking, index) => (
@@ -20,11 +18,13 @@ const BookingsList: React.FC<SingleVenueProp> = ({ venue }) => {
             <div className="d-flex">
               <div className="pe-2">
                 <p className="mb-1 fs-0-75rem-to-0-875rem">
-                  {formatDate(booking.dateFrom)}- {formatDate(booking.dateTo)} -
+                  {formatDate(booking.dateFrom)} - {formatDate(booking.dateTo)} -
                 </p>
               </div>
               <div>
-                <p className="mb-1 fs-0-75rem-to-0-875rem">{booking.guests} guest</p>
+                <p className="mb-1 fs-0-75rem-to-0-875rem">
+                  {booking.guests} {booking.guests === 1 ? "guest" : "guests"}
+                </p>
               </div>
             </div>
           </div>
