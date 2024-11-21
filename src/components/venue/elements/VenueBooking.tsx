@@ -1,18 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SingleVenueProp } from "../../api/const/interfaces";
+import { SingleVenueProp, bookingDate } from "../../api/const/interfaces";
 import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
 import { formatDate } from "../../utils";
 import { useApi } from "../../api";
 import { BOOK_VENUE_ENDPOINT } from "../../api/const";
 import { useCalculateTotalCost } from "../../utils";
-
-interface bookingDate {
-  venueId: string;
-  dateFrom: string;
-  dateTo: string;
-  guests: number;
-}
 
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   console.log("id is", venue.data.id);
