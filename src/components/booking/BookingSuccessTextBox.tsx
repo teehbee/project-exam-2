@@ -5,21 +5,32 @@ import { useApi } from "../api";
 import { getVenueEndpoint } from "../api/const";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
 import { formatDate } from "../utils";
+import { useCalculateTotalCost } from "../utils";
 
 const BookingSuccessTextBox: React.FC = () => {
-  // find id from url
-
+  // Get the id from the URL
   const { id } = useParams<{ id: string }>();
 
+  // API call to fetch the needed venue
   const { data, error, loading } = useApi<null, SingleVenueResponse>(getVenueEndpoint(id as string), "GET", null, true, true);
 
+  // Prepare the data for cost calculation before any returns
+  const dateFrom = data?.data?.bookings && data.data.bookings.length > 0 ? data.data.bookings[0].dateFrom : "";
+  const dateTo = data?.data?.bookings && data.data.bookings.length > 0 ? data.data.bookings[0].dateTo : "";
+  const price = data?.data?.price || 0;
+
+  // Format dates before calling the hook for calculating costs and number of nights
+  const formattedDateFrom = dateFrom ? formatDate(dateFrom) : null;
+  const formattedDateTo = dateTo ? formatDate(dateTo) : null;
+
+  // Calculate cost and number of nights of stay
+  const { totalCost, numberOfNights } = useCalculateTotalCost(formattedDateFrom || "", formattedDateTo || "", price);
+
+  // Return early if loading or error
   if (loading) return <FrontPageLoader />;
-  if (error) return <FrontPageError />;
+  if (error || !data) return <FrontPageError />;
 
-  if (!data) {
-    return <FrontPageError />;
-  }
-
+  // Rest of data needed for rendering component
   const venue = data.data;
 
   const img = venue.media.length > 0 ? venue.media[0].url : "";
@@ -27,14 +38,7 @@ const BookingSuccessTextBox: React.FC = () => {
   const name = venue.name;
   const city = venue.location.city;
   const country = venue.location.country;
-  // find fromDate and toDate from the last created booking
-  const dateFrom = venue.bookings.length > 0 ? venue.bookings[0].dateFrom : "";
-  const dateTo = venue.bookings.length > 0 ? venue.bookings[0].dateTo : "";
   const guests = venue.bookings.length > 0 ? venue.bookings[0].guests : "";
-  const formattedDateFrom = dateFrom ? formatDate(dateFrom) : null;
-  const formattedDateTo = dateTo ? formatDate(dateTo) : null;
-
-  console.log("data is", venue);
 
   return (
     <div className="container py-5 text-center">
@@ -51,10 +55,10 @@ const BookingSuccessTextBox: React.FC = () => {
             {city} {country}
           </p>
           <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">
-            {formattedDateFrom} - {formattedDateTo}
+            {formattedDateFrom} - {formattedDateTo} ({numberOfNights} night/nights)
           </p>
           <p className="fs-0-625rem-to-1rem mb-1 mb-md-3">{guests} guest or guests</p>
-          <p className="fs-0-625rem-to-1rem mb-0 mb-md-3">Total sum</p>
+          <p className="fs-0-625rem-to-1rem mb-0 mb-md-3">NOK: {totalCost},-</p>
         </div>
       </div>
     </div>
