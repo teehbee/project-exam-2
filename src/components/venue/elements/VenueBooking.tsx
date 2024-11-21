@@ -15,7 +15,6 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   const [bookingError, setBookingError] = useState<string | null>(null);
 
   // State to trigger booking call to api
-
   const [isBooking, setIsBooking] = useState(false);
   const [bookingData, setBookingData] = useState<bookingDate | null>(null);
 
@@ -38,7 +37,7 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     setNumberOfGuests(newNumberOfGuests);
   };
 
-  // Api call
+  // Api call for booking venue
 
   useEffect(() => {
     if (isBooking && fromDate && toDate) {
@@ -60,12 +59,12 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
       setBookingLoading(true);
     }
     if (error) {
-      console.error("Booking, error", error);
+      // console.error("Booking, error", error);
       setBookingError("Something went wrong with you booking, please try again later");
       setBookingLoading(false);
     }
     if (responseData) {
-      console.log("Booking successful", responseData);
+      // console.log("Booking successful", responseData);
       setIsBooking(false);
       setBookingLoading(false);
       setBookingError(null);
@@ -77,7 +76,7 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
 
   const handleBooking = () => {
     if (!fromDate || !toDate) {
-      console.log("Please select both dates");
+      setBookingError("Select departure date before you can proceed with booking");
       return;
     }
     setIsBooking(true);
