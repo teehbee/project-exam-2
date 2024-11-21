@@ -25,7 +25,7 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
 
   // Calculate total sum of stay
 
-  const sum = useCalculateTotalCost(formattedDateFrom, formattedDateTo, price);
+  const { totalCost } = useCalculateTotalCost(formattedDateFrom, formattedDateTo, price);
 
   // console.log("booking", booking);
   return (
@@ -44,7 +44,7 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
           {formattedDateFrom} to {formattedDateTo}
         </p>
         <p className="fw-light fs-0-625rem-to-1rem mb-0 mt-md-2">{guests} persons</p>
-        <p className="fs-0-625rem-to-1rem mt-md-2">NOK {sum}</p>
+        <p className="fs-0-625rem-to-1rem mt-md-2">NOK {totalCost}</p>
       </div>
     </div>
   );
