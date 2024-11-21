@@ -1,5 +1,7 @@
 import { placeHolderImage, placeHolderImageLarge } from "../../assets/placeholderImg";
 import { Link } from "react-router-dom";
+import { useApi } from "../api";
+import { getVenueEndpoint } from "../api/const";
 
 function BookingSuccessTextBox() {
   return (
