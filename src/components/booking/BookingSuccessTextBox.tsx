@@ -43,14 +43,17 @@ const BookingSuccessTextBox: React.FC = () => {
   return (
     <div className="container py-5 text-center">
       <h1 className="secondary-font fs-1-5rem-to-2-5rem">Booking confirmation</h1>
+
       <div className="booking-success-container form-box-shadow mt-5 row mx-1 mx-md-0">
         <div className="col-4 col-md-3 px-0">
-          <Link to="/venue">
+          <Link to={`venue/${id}`}>
             <img className="form-box-shadow" src={img} alt={alt} />
           </Link>
         </div>
         <div className="col-8 col-md-9 text-start py-2 py-md-4 ps-3 ps-md-5">
-          <h2 className="secondary-font fs-1rem-to-2rem">{name}</h2>
+          <Link className="text-decoration-none font-gray" to={`venue/${id}`}>
+            <h2 className="secondary-font fs-1rem-to-2rem">{name}</h2>
+          </Link>
           <p className="fs-0-625rem-to-1rem mb-1 mb-md-3 pt-3 pt-md-5">
             {city} {country}
           </p>
