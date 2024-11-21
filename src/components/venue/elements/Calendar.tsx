@@ -25,7 +25,7 @@ export const BookingCalendar: React.FC<BookingCalendarProps> = ({ venue, onDateC
 
   return (
     <div className="calendar form-box-shadow mx-auto mt-5 mt-md-3 p-3">
-      <Calendar reserved={reservedDates} onChange={setSelectedDates} selected={selectedDates} range={true} />
+      <Calendar reserved={reservedDates} onChange={setSelectedDates} selected={selectedDates} range={true} options={{ weekStartsOn: 1 }} />
     </div>
   );
 };
