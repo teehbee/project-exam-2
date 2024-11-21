@@ -1,9 +1,12 @@
 import { placeHolderImage, placeHolderImageLarge } from "../../assets/placeholderImg";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useApi } from "../api";
 import { getVenueEndpoint } from "../api/const";
 
 const BookingSuccessTextBox: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  console.log("id is", id);
   return (
     <div className="container py-5 text-center">
       <h1 className="secondary-font fs-1-5rem-to-2-5rem">Booking confirmation</h1>
