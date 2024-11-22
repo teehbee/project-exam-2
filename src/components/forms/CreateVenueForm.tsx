@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -41,7 +41,7 @@ const schema = yup.object().shape({
 function CreateVenueForm() {
   // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
-  // For navigating after login
+  const [createVenueError, setCreateVenueError] = useState<string | null>(null);
   const navigate = useNavigate();
   // Form validation including default values for checkboxes
   const {
@@ -59,15 +59,28 @@ function CreateVenueForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<CreateVenueFormInputs> = (data) => {
-    // Set loader and navigate to success page for demonstration
-    // Content is logged for now
-    setLoginLoader(true);
-    setTimeout(() => {
+  // State for setting data for creating venue, triggered by the onSubmit
+  const [createVenueData, setCreateVenueData] = useState<CreateVenueFormInputs | null>(null);
+
+  const { data: responseData, error, loading } = useApi<CreateVenueFormInputs, null>(CREATE_VENUE_ENDPOINT, "POST", createVenueData, true, false);
+
+  useEffect(() => {
+    if (error) {
+      setCreateVenueError(error);
+      console.log("1", error);
+      setLoginLoader(false);
+    }
+    if (responseData) {
       setLoginLoader(false);
       navigate("/venue-created");
-    }, 100000);
-    console.log("CV is", data);
+      console.log("success");
+    }
+  }, [error, responseData, navigate, loading]);
+
+  const onSubmit: SubmitHandler<CreateVenueFormInputs> = async (data) => {
+    const createVenueData = data;
+    setLoginLoader(true);
+    setCreateVenueData(createVenueData);
   };
 
   // useId for setting unique id to form inputs
@@ -169,6 +182,7 @@ function CreateVenueForm() {
                 </div>
               </div>
               <button className="main-button-gray mt-4 mb-2 p-1 p-md-2">Create venue {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
+              {createVenueError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">Something went wrong, don't try again.</p>}
             </form>
           </div>
         </div>

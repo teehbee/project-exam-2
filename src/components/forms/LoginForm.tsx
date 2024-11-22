@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
@@ -32,8 +31,6 @@ function LoginForm() {
     mode: "onSubmit",
   });
 
-  const dispatch = useDispatch();
-
   // State for loginData
 
   const [loginData, setLoginData] = useState<LoginFormInputs | null>(null);
@@ -57,7 +54,7 @@ function LoginForm() {
       localStorage.setItem("loggedIn", "true");
       navigate("/login-complete");
     }
-  }, [error, responseData, navigate, dispatch]);
+  }, [error, responseData, navigate]);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     const loginData = {
