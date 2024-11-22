@@ -1,10 +1,18 @@
-export interface CreateVenueFormInputs {
-  name: string;
+interface Location {
   city: string;
   country: string;
-  description: string;
+}
+
+interface Media {
   url: string;
-  alt?: string;
+  alt: string;
+}
+
+export interface CreateVenueFormInputs {
+  name: string;
+  location: Location;
+  media?: Media[];
+  description: string;
   price: number;
   maxGuests: number;
   wifi?: boolean;

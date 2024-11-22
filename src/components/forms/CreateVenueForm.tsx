@@ -5,16 +5,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
-import { CreateVenueFormInputs } from "../api/const/interfaces/venueFormInterface";
+import { CreateVenueFormInputs } from "../api/const/interfaces";
 
 // Yup schema for validation
 const schema = yup.object().shape({
   name: yup.string().required("Please enter name of venue"),
-  city: yup.string().required("Please enter city where venue is located"),
-  country: yup.string().required("Please enter country where venue is located"),
+  location: yup.object().shape({
+    city: yup.string().required("Please enter city where venue is located"),
+    country: yup.string().required("Please enter country where venue is located"),
+  }),
   description: yup.string().required("Please enter description of venue"),
-  url: yup.string().required("Please enter a full url"),
-  alt: yup.string(),
+  media: yup.array().of(
+    yup.object().shape({
+      url: yup.string().required("Image URL is required"),
+      alt: yup.string().required("Alt text is required"),
+    })
+  ),
   price: yup
     .number()
     .required("Price per night is required")
@@ -47,6 +53,7 @@ function CreateVenueForm() {
       parking: false,
       breakfast: false,
       pets: false,
+      media: [{ url: "", alt: "" }],
     },
   });
 
@@ -57,7 +64,7 @@ function CreateVenueForm() {
     setTimeout(() => {
       setLoginLoader(false);
       navigate("/venue-created");
-    }, 1000);
+    }, 100000);
     console.log("CV is", data);
   };
 
@@ -87,15 +94,15 @@ function CreateVenueForm() {
                 <label htmlFor={id + "-city"} className="mt-2 fs-0-75rem-to-1rem">
                   City<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Fagernes" id={id + "-city"} {...register("city")} />
-                {errors.city && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.city.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Fagernes" id={id + "-city"} {...register("location.city")} />
+                {errors.location?.city && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.location.city.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-country"} className="mt-2 fs-0-75rem-to-1rem">
                   Country<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Norway" id={id + "-country"} {...register("country")} />
-                {errors.country && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.country.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Norway" id={id + "-country"} {...register("location.country")} />
+                {errors.location?.country && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.location.country.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-description"} className="mt-2 fs-0-75rem-to-1rem">
@@ -108,14 +115,14 @@ function CreateVenueForm() {
                 <label htmlFor={id + "-url"} className="mt-2 fs-0-75rem-to-1rem">
                   Image<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="url" placeholder="E.g. https://image.com" id={id + "-url"} {...register("url")} />
-                {errors.url && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.url.message}</p>}
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="url" placeholder="E.g. https://image.com" id={id + "-url"} {...register("media.0.url")} />
+                {errors.media?.[0]?.url && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.media[0].url.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-alt"} className="mt-2 fs-0-75rem-to-1rem">
                   Image description
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Beautiful sunset in Valdres" id={id + "-alt"} {...register("alt")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Beautiful sunset in Valdres" id={id + "-alt"} {...register("media.0.alt")} />
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-price"} className="mt-2 fs-0-75rem-to-1rem">
