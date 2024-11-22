@@ -32,10 +32,10 @@ const schema = yup.object().shape({
     .required("Max number of guests is required")
     .transform((_, originalValue) => (originalValue === "" ? undefined : Number(originalValue)))
     .min(1, "Number of guests must be at least 1"),
-  createVenueWifi: yup.boolean(),
-  createVenueParking: yup.boolean(),
-  createVenueRestaurant: yup.boolean(),
-  createVenuePets: yup.boolean(),
+  wifi: yup.boolean(),
+  parking: yup.boolean(),
+  breakfast: yup.boolean(),
+  pets: yup.boolean(),
 });
 
 function CreateVenueForm() {
