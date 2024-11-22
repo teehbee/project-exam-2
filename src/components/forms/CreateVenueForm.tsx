@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import { CreateVenueFormInputs } from "../api/const/interfaces/venueFormInterface";
 
 // Yup schema for validation
 const schema = yup.object().shape({
@@ -28,23 +29,6 @@ const schema = yup.object().shape({
   createVenueRestaurant: yup.boolean(),
   createVenuePets: yup.boolean(),
 });
-
-// Types for rental form message
-
-interface CreateVenueFormInputs {
-  name: string;
-  city: string;
-  country: string;
-  description: string;
-  url: string;
-  alt?: string;
-  price: number;
-  maxGuests: number;
-  wifi?: boolean;
-  parking?: boolean;
-  breakfast?: boolean;
-  pets?: boolean;
-}
 
 function CreateVenueForm() {
   // State for displaying loader in submit button
