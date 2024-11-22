@@ -18,6 +18,8 @@ const SingleVenuePage: React.FC = () => {
   if (!data) {
     return <FrontPageError />;
   }
+
+  console.log(data);
   return (
     <div className="container my-5">
       <div className="row text-center">
