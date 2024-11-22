@@ -67,23 +67,33 @@ function CreateVenueForm() {
   useEffect(() => {
     if (error) {
       setCreateVenueError(error);
-      console.log("1", error);
       setLoginLoader(false);
     }
     if (responseData) {
       setLoginLoader(false);
       navigate("/venue-created");
-      console.log("success");
     }
   }, [error, responseData, navigate, loading]);
 
+  // Trigger for api call
+
   const onSubmit: SubmitHandler<CreateVenueFormInputs> = async (data) => {
-    const createVenueData = data;
+    const meta = {
+      wifi: data.wifi,
+      parking: data.parking,
+      breakfast: data.breakfast,
+      pets: data.pets,
+    };
+
+    const createVenueData = {
+      ...data,
+      meta,
+    };
+
     setLoginLoader(true);
     setCreateVenueData(createVenueData);
   };
 
-  // useId for setting unique id to form inputs
   const id = React.useId();
 
   return (
