@@ -58,7 +58,7 @@ function CreateVenueForm() {
       setLoginLoader(false);
       navigate("/venue-created");
     }, 1000);
-    console.log(data);
+    console.log("CV is", data);
   };
 
   // useId for setting unique id to form inputs
@@ -101,7 +101,7 @@ function CreateVenueForm() {
                 <label htmlFor={id + "-description"} className="mt-2 fs-0-75rem-to-1rem">
                   Description<span className="text-danger">*</span>
                 </label>
-                <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Write description of venue here" rows={4} id={id + "-description"} {...register("description")} />
+                <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Description of venue" rows={4} id={id + "-description"} {...register("description")} />
                 {errors.description && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.description.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
