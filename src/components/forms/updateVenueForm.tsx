@@ -69,6 +69,23 @@ function UpdateVenueForm() {
     console.log(data);
   };
 
+  // const onSubmit: SubmitHandler<CreateVenueFormInputs> = async (data) => {
+  //   const meta = {
+  //     wifi: data.wifi,
+  //     parking: data.parking,
+  //     breakfast: data.breakfast,
+  //     pets: data.pets,
+  //   };
+
+  //   const createVenueData = {
+  //     ...data,
+  //     meta,
+  //   };
+
+  //   setLoginLoader(true);
+  //   setCreateVenueData(createVenueData);
+  // };
+
   // useId for setting unique id to form inputs
   const id = React.useId();
 

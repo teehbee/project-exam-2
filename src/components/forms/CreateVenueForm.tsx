@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { createVenueSchema } from "./schemas";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { CreateVenueFormInputs } from "../api/const/interfaces";
@@ -10,33 +10,6 @@ import { useApi } from "../api";
 import { CREATE_VENUE_ENDPOINT } from "../api/const";
 
 // Yup schema for validation
-const schema = yup.object().shape({
-  name: yup.string().required("Please enter name of venue"),
-  location: yup.object().shape({
-    city: yup.string().required("Please enter city where venue is located"),
-    country: yup.string().required("Please enter country where venue is located"),
-  }),
-  description: yup.string().required("Please enter description of venue"),
-  media: yup.array().of(
-    yup.object().shape({
-      url: yup.string().required("Image URL is required"),
-      alt: yup.string().required("Alt text is required"),
-    })
-  ),
-  price: yup
-    .number()
-    .required("Price per night is required")
-    .transform((_, originalValue) => (originalValue === "" ? undefined : Number(originalValue))),
-  maxGuests: yup
-    .number()
-    .required("Max number of guests is required")
-    .transform((_, originalValue) => (originalValue === "" ? undefined : Number(originalValue)))
-    .min(1, "Number of guests must be at least 1"),
-  wifi: yup.boolean(),
-  parking: yup.boolean(),
-  breakfast: yup.boolean(),
-  pets: yup.boolean(),
-});
 
 function CreateVenueForm() {
   // State for displaying loader in submit button
@@ -49,7 +22,7 @@ function CreateVenueForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<CreateVenueFormInputs>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(createVenueSchema),
     defaultValues: {
       wifi: false,
       parking: false,
