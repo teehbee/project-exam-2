@@ -83,7 +83,7 @@ function UpdateVenueForm() {
   //   setCreateVenueData(createVenueData);
   // };
 
-  // Trigger validation after setting initial values
+  // Set initial values for correct validation
   useEffect(() => {
     if (responseData) {
       setValue("name", responseData.data.name);
@@ -96,8 +96,6 @@ function UpdateVenueForm() {
       setValue("parking", responseData.data.meta.parking || false);
       setValue("breakfast", responseData.data.meta.breakfast || false);
       setValue("pets", responseData.data.meta.pets || false);
-
-      // Trigger validation after setting values
       trigger();
     }
   }, [responseData, setValue, trigger]);
@@ -174,13 +172,13 @@ function UpdateVenueForm() {
               </div>
               <div className="ms-1 row pt-3 pt-md-4 pb-3">
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="form-check-input cursor-pointer" type="checkbox" value="" id="updateWifi" {...register("wifi")} checked={responseData?.data.meta.wifi || false} />
+                  <input className="form-check-input cursor-pointer" type="checkbox" id="updateWifi" {...register("wifi")} defaultChecked={responseData?.data.meta.wifi} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updateWifi">
                     Wifi
                   </label>
                 </div>
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="form-check-input cursor-pointer" type="checkbox" value="" id="updateParking" defaultChecked={responseData?.data.meta.parking || false} />
+                  <input className="form-check-input cursor-pointer" type="checkbox" id="updateParking" defaultChecked={responseData?.data.meta.parking} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updateParking" {...register("parking")}>
                     Parking
                   </label>
@@ -188,13 +186,13 @@ function UpdateVenueForm() {
               </div>
               <div className="ms-1 row pb-2 justify-content-center w-100">
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="cursor-pointer form-check-input" type="checkbox" value="" id="updateBreakfast" defaultChecked={responseData?.data.meta.breakfast || false} />
+                  <input className="cursor-pointer form-check-input" type="checkbox" id="updateBreakfast" defaultChecked={responseData?.data.meta.breakfast} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updateBreakfast" {...register("breakfast")}>
                     Breakfast
                   </label>
                 </div>
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="cursor-pointer form-check-input" type="checkbox" value="" id="updatePets" {...register("pets")} defaultChecked={responseData?.data.meta.pets || false} />
+                  <input className="cursor-pointer form-check-input" type="checkbox" id="updatePets" {...register("pets")} defaultChecked={responseData?.data.meta.pets} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updatePets">
                     Pets allowed
                   </label>
