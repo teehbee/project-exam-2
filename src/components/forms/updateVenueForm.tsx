@@ -1,21 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
-import { CreateVenueFormInputs } from "../api/const/interfaces";
+import { CreateVenueFormInputs, SingleVenueResponse } from "../api/const/interfaces";
 import { createVenueSchema } from "./schemas";
+import { useApi } from "../api";
+import { getVenueEndpoint } from "../api/const";
 
 // Types for rental form message
 
 function UpdateVenueForm() {
   const [loginLoader, setLoginLoader] = useState(false);
+  const [initialLoader, setInitialLoader] = useState(false);
   const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
-  console.log("id is", id);
+  // fetch initial venue data for inserting into form
+
+  const { data: responseData, error, loading } = useApi<null, SingleVenueResponse>(getVenueEndpoint(id as string), "GET", null, true, true);
+
+  useEffect(() => {
+    if (loading) {
+      setInitialLoader(true);
+    }
+    if (error) {
+      console.error(error);
+      setInitialLoader(false);
+    }
+    if (responseData) {
+      setInitialLoader(false);
+    }
+  }, [error, responseData, navigate, loading]);
+
+  console.log(responseData);
 
   // Form validation including default values for checkboxes
   const {
@@ -73,72 +93,75 @@ function UpdateVenueForm() {
                 Back to profile
               </Link>
             </div>
-            <h1 className="fs-1-5rem-to-2rem">Update venue</h1>
+            <div className="d-flex align-items-center">
+              <h1 className="fs-1-5rem-to-2rem">Update venue</h1>
+              {initialLoader && <Spinner className="ms-3" animation="border" size="sm" />}
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updateName" className="mt-2 fs-0-75rem-to-1rem">
                   Name<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="Enter name of venue here" id="updateName" {...register("name")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="Enter name of venue here" id="updateName" {...register("name")} value={responseData?.data.name} />
                 {errors.name && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.name.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updateCity" className="mt-2 fs-0-75rem-to-1rem">
                   City<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Fagernes" id="updateCity" {...register("location.city")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Fagernes" id="updateCity" {...register("location.city")} value={responseData?.data.location.city} />
                 {errors.location?.city && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.location.city.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updateCountry" className="mt-2 fs-0-75rem-to-1rem">
                   Country<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Norway" id="updateCountry" {...register("location.country")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Norway" id="updateCountry" {...register("location.country")} value={responseData?.data.location.country} />
                 {errors.location?.country && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.location.country.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updateDescription" className="mt-2 fs-0-75rem-to-1rem">
                   Description<span className="text-danger">*</span>
                 </label>
-                <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Description of venue" rows={4} id="updateDescription" {...register("description")} />
+                <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Description of venue" rows={4} id="updateDescription" {...register("description")} value={responseData?.data.description} />
                 {errors.description && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.description.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updateUrl" className="mt-2 fs-0-75rem-to-1rem">
                   Image<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="url" placeholder="E.g. https://image.com" id="updateUrl" {...register("media.0.url")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="url" placeholder="E.g. https://image.com" id="updateUrl" {...register("media.0.url")} value={responseData?.data.media[0].url} />
                 {errors.media?.[0]?.url && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.media[0].url.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updateAlt" className="mt-2 fs-0-75rem-to-1rem">
                   Image description
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Beautiful sunset in Valdres" id="updateAlt" {...register("media.0.alt")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="E.g. Beautiful sunset in Valdres" id="updateAlt" {...register("media.0.alt")} value={responseData?.data.media[0].alt} />
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updatePrice" className="mt-2 fs-0-75rem-to-1rem">
                   Price per night in NOK<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1000" id="updatePrice" {...register("price")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1000" id="updatePrice" {...register("price")} value={responseData?.data.price} />
                 {errors.price && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.price.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor="updateGuests" className="mt-2 fs-0-75rem-to-1rem">
                   Max number of guests<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1" id="updateGuests" {...register("maxGuests")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1" id="updateGuests" {...register("maxGuests")} value={responseData?.data.maxGuests} />
                 {errors.maxGuests && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.maxGuests.message}</p>}
               </div>
               <div className="ms-1 row pt-3 pt-md-4 pb-3">
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="form-check-input cursor-pointer" type="checkbox" value="" id="updateWifi" {...register("wifi")} />
+                  <input className="form-check-input cursor-pointer" type="checkbox" value="" id="updateWifi" {...register("wifi")} checked={responseData?.data.meta.wifi || false} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updateWifi">
                     Wifi
                   </label>
                 </div>
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="form-check-input cursor-pointer" type="checkbox" value="" id="updateParking" />
+                  <input className="form-check-input cursor-pointer" type="checkbox" value="" id="updateParking" checked={responseData?.data.meta.parking || false} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updateParking" {...register("parking")}>
                     Parking
                   </label>
@@ -146,13 +169,13 @@ function UpdateVenueForm() {
               </div>
               <div className="ms-1 row pb-2 justify-content-center w-100">
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="cursor-pointer form-check-input" type="checkbox" value="" id="updateBreakfast" />
+                  <input className="cursor-pointer form-check-input" type="checkbox" value="" id="updateBreakfast" checked={responseData?.data.meta.breakfast || false} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updateBreakfast" {...register("breakfast")}>
                     Breakfast
                   </label>
                 </div>
                 <div className="col-6 form-check d-flex align-items-center">
-                  <input className="cursor-pointer form-check-input" type="checkbox" value="" id="updatePets" {...register("pets")} />
+                  <input className="cursor-pointer form-check-input" type="checkbox" value="" id="updatePets" {...register("pets")} checked={responseData?.data.meta.pets || false} />
                   <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor="updatePets">
                     Pets allowed
                   </label>
