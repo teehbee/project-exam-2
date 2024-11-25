@@ -18,7 +18,9 @@ const useApi = <TRequest, TResponse>(endpoint: string, method: string = "GET", b
   const bearerToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    if (!autoFetch && !body) return;
+    if (!autoFetch && !body) {
+      return;
+    }
 
     const fetchData = async () => {
       setLoading(true);
@@ -39,8 +41,12 @@ const useApi = <TRequest, TResponse>(endpoint: string, method: string = "GET", b
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
-        const result: TResponse = await response.json();
-        setData(result);
+        if (response.status === 204) {
+          setData(null); // Handle empty response for DELETE (204)
+        } else {
+          const result: TResponse = await response.json();
+          setData(result);
+        }
       } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message);
@@ -51,7 +57,6 @@ const useApi = <TRequest, TResponse>(endpoint: string, method: string = "GET", b
         setLoading(false);
       }
     };
-
     fetchData();
   }, [endpoint, method, body, apiUrl, apiKey, requiresAuth, bearerToken, autoFetch]);
 

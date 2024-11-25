@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProfileBookingsUpcoming, ProfileBookingsManaged } from "./";
 import { ProfileData } from "../api/interfaces";
 
@@ -9,7 +9,14 @@ interface ProfileHeaderProps {
 }
 
 const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
-  const [activeTab, setActiveTab] = useState<"bookings" | "manage">("bookings");
+  // initialize with stored open tab between manage and bookings
+  const storedTab = localStorage.getItem("activeTab") as "bookings" | "manage" | null;
+  const [activeTab, setActiveTab] = useState<"bookings" | "manage">(storedTab || "bookings");
+
+  // set active tab
+  useEffect(() => {
+    localStorage.setItem("activeTab", activeTab);
+  });
 
   if (!profileData || !profileData.data) {
     return null;
