@@ -53,8 +53,8 @@ function UpdateVenueForm() {
     //   return;
     // }
     if (updateVenueResponse) {
-      console.log("Venue updated successfully");
-      navigate("/some-page-after-update");
+      // console.log("Venue updated successfully");
+      navigate("/venue-updated");
       setLoginLoader(false);
     }
   }, [updateVenueResponse, apiError, isLoading, navigate, updateVenueData, setUpdateError]);
