@@ -65,6 +65,7 @@ function CreateVenueForm() {
 
     setLoginLoader(true);
     setCreateVenueData(createVenueData);
+    console.log("create is", createVenueData);
   };
 
   const id = React.useId();

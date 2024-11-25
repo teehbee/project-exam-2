@@ -12,8 +12,9 @@ import { getVenueEndpoint } from "../api/const";
 // Types for rental form message
 
 function UpdateVenueForm() {
-  // [updateVenueData, setUpdateVenueData] = useState<CreateVenueFormInputs | null>(null);
+  const [updateVenueData, setUpdateVenueData] = useState<CreateVenueFormInputs | null>(null);
   const [loginLoader, setLoginLoader] = useState(false);
+  const [updateError, setUpdateError] = useState(false);
   const [initialLoader, setInitialLoader] = useState(false);
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ function UpdateVenueForm() {
     }
   }, [error, responseData, navigate, loading]);
 
-  console.log(responseData);
+  // console.log(responseData);
 
   // Form validation including default values for checkboxes
   const {
@@ -57,13 +58,33 @@ function UpdateVenueForm() {
   });
 
   const onSubmit: SubmitHandler<CreateVenueFormInputs> = async (data) => {
-    // Set loader and navigate to success page for demonstration
-    // Content is logged for now
-    setLoginLoader(true);
-    setTimeout(() => {
-      setLoginLoader(false);
-    }, 1000);
-    console.log("updated date is", data);
+    try {
+      const meta = {
+        wifi: data.wifi,
+        parking: data.parking,
+        breakfast: data.breakfast,
+        pets: data.pets,
+      };
+      const createUpdateData = {
+        ...data,
+        meta,
+      };
+      setUpdateVenueData(createUpdateData);
+      if (!updateVenueData) {
+        setUpdateError(true);
+        return;
+      }
+      console.log("create is", updateVenueData);
+    } catch (error) {
+      console.error("Error updating venue:", error);
+    }
+    // // Set loader and navigate to success page for demonstration
+    // // Content is logged for now
+    // setLoginLoader(true);
+    // setTimeout(() => {
+    //   setLoginLoader(false);
+    // }, 1000);
+    // console.log("updated date is", data);
   };
 
   // const onSubmit: SubmitHandler<CreateVenueFormInputs> = async (data) => {
@@ -199,6 +220,7 @@ function UpdateVenueForm() {
                 </div>
               </div>
               <button className="main-button-gray mt-4 mb-2 p-1 p-md-2">Create venue {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
+              {updateError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">No updates were made.</p>}
             </form>
           </div>
         </div>
