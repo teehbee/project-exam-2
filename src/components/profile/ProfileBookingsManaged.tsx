@@ -3,6 +3,8 @@ import { VenueManagerBookings } from "../api/interfaces";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
+import { useApi } from "../api";
+import { VENUES_ENDPOINT } from "../api/const";
 
 interface VenueManagerBookingsData {
   venue: VenueManagerBookings;
