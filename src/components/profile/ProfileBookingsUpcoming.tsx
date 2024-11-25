@@ -8,7 +8,6 @@ interface bookingData {
 }
 
 const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
-  console.log(booking);
   // Variables
   const id = booking.venue.id;
   const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "";
@@ -23,8 +22,6 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   // Formatted dates
   const formattedDateFrom = formatDate(dateFrom);
   const formattedDateTo = formatDate(dateTo);
-
-  console.log("city", city);
 
   // Calculate total sum of stay
 

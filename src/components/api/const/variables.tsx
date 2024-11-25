@@ -24,3 +24,7 @@ export const getProfileEndpoint = (name: string): string => {
 // booking (POST)
 
 export const BOOK_VENUE_ENDPOINT = "holidaze/bookings";
+
+// delete (DELETE)
+
+export const DELETE_VENUE_ENDPOINT = "holidaze/venues";

@@ -1,37 +1,70 @@
 import { Link } from "react-router-dom";
 import { VenueManagerBookings } from "../api/interfaces";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { useApi } from "../api";
-import { VENUES_ENDPOINT } from "../api/const";
+import { DELETE_VENUE_ENDPOINT } from "../api/const";
+import Spinner from "react-bootstrap/Spinner";
 
 interface VenueManagerBookingsData {
   venue: VenueManagerBookings;
 }
 
 const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) => {
-  const [show, setShow] = useState(false);
-  const [SelectedVenueId, setSelectedVenueId] = useState<string | null>(null);
-
-  const handleClose = () => {
-    setShow(false);
-    setSelectedVenueId(null);
-  };
-  const handleShow = () => {
-    setShow(true);
-    setSelectedVenueId(venue.id);
-  };
-
-  const handleDelete = async () => {
-    console.log(`Deleting venue with ID: ${SelectedVenueId}`);
-  };
-
   const id = venue.id;
-  console.log("id is", venue.id);
   const name = venue.name;
   const img = venue.media.length > 0 ? venue.media[0].url : "";
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
+  const [show, setShow] = useState(false);
+  const [deleteTrigger, setDeleteTrigger] = useState(false);
+  const [SelectedVenueId, setSelectedVenueId] = useState<string | null>(null);
+  const [deleteLoader, setDeleteLoader] = useState(false);
+  const [deleteError, setDeleteError] = useState(false);
+
+  // api call for deleting venue, using deleteTrigger to control autofetch, so call is triggered by delete button
+
+  const { data, error, loading } = useApi(SelectedVenueId ? `${DELETE_VENUE_ENDPOINT}/${SelectedVenueId}` : "", "DELETE", null, true, deleteTrigger);
+
+  // open confirmation modal
+  const handleShow = () => {
+    setShow(true);
+    setSelectedVenueId(venue.id);
+    console.log("handleShow is working");
+  };
+
+  // close confirmation modal
+  const handleClose = () => {
+    setShow(false);
+    setSelectedVenueId(null);
+    console.log("handleClose is working");
+  };
+
+  // handle deletion by setting deleteTrigger to true to trigger api call
+  const handleDelete = () => {
+    setDeleteTrigger(true);
+    setDeleteLoader(true);
+  };
+
+  useEffect(() => {
+    if (deleteTrigger && !loading) {
+      if (data === null) {
+        setDeleteLoader(false);
+        setShow(false);
+        setSelectedVenueId(null);
+        setDeleteTrigger(false);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }
+
+      if (error) {
+        setDeleteError(true);
+        setDeleteLoader(false);
+      }
+    }
+  }, [deleteTrigger, data, error, loading, SelectedVenueId]);
+
   return (
     <div className="profile-booking-container form-box-shadow mt-3 row mx-1 mx-md-0">
       <div className="col-4 col-md-3 px-0">
@@ -57,7 +90,7 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
           </button>
           <Modal centered show={show} onHide={handleClose}>
             <Modal.Header closeButton></Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="mx-auto">
               <p className="font-gray mt-3">Are you sure you want to delete this venue?</p>
             </Modal.Body>
             <Modal.Footer>
@@ -65,8 +98,9 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
                 I changed my mind
               </Button>
               <Button className="main-button-red " onClick={handleDelete}>
-                I am sure
+                I am sure{deleteLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
               </Button>
+              {deleteError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">Something went wrong, please try again later</p>}
             </Modal.Footer>
           </Modal>
         </div>
