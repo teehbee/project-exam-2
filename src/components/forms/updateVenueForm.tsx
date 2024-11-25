@@ -37,7 +37,29 @@ function UpdateVenueForm() {
     }
   }, [error, responseData, navigate, loading]);
 
-  // console.log(responseData);
+  const { data: updateVenueResponse, error: apiError, loading: isLoading } = useApi<CreateVenueFormInputs, null>(getVenueEndpoint(id as string), "PUT", updateVenueData, true, false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoginLoader(true);
+    }
+    if (apiError) {
+      console.error(apiError);
+      setUpdateError(true);
+      setLoginLoader(false);
+    }
+    // if (!updateVenueData) {
+    //   setUpdateError(true);
+    //   return;
+    // }
+    if (updateVenueResponse) {
+      console.log("Venue updated successfully");
+      navigate("/some-page-after-update");
+      setLoginLoader(false);
+    }
+  }, [updateVenueResponse, apiError, isLoading, navigate, updateVenueData, setUpdateError]);
+
+  console.log(responseData);
 
   // Form validation including default values for checkboxes
   const {
@@ -70,39 +92,11 @@ function UpdateVenueForm() {
         meta,
       };
       setUpdateVenueData(createUpdateData);
-      if (!updateVenueData) {
-        setUpdateError(true);
-        return;
-      }
-      console.log("create is", updateVenueData);
     } catch (error) {
       console.error("Error updating venue:", error);
+      setUpdateError(true);
     }
-    // // Set loader and navigate to success page for demonstration
-    // // Content is logged for now
-    // setLoginLoader(true);
-    // setTimeout(() => {
-    //   setLoginLoader(false);
-    // }, 1000);
-    // console.log("updated date is", data);
   };
-
-  // const onSubmit: SubmitHandler<CreateVenueFormInputs> = async (data) => {
-  //   const meta = {
-  //     wifi: data.wifi,
-  //     parking: data.parking,
-  //     breakfast: data.breakfast,
-  //     pets: data.pets,
-  //   };
-
-  //   const createVenueData = {
-  //     ...data,
-  //     meta,
-  //   };
-
-  //   setLoginLoader(true);
-  //   setCreateVenueData(createVenueData);
-  // };
 
   // Set initial values for correct validation
   useEffect(() => {
