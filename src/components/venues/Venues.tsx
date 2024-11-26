@@ -27,7 +27,7 @@ const VenuesPage: React.FC = () => {
 
   const venues = data?.data || [];
 
-  console.log(venues);
+  console.log("loaded venues", venues);
 
   return (
     <>
@@ -50,16 +50,7 @@ const VenuesPage: React.FC = () => {
         <div className="text-center py-5 d-none">
           <MainLoader />
         </div>
-        <div className="row g-3">
-          <VenueTile />
-          <VenueTile />
-          <VenueTile />
-          <VenueTile />
-          <VenueTile />
-          <VenueTile />
-          <VenueTile />
-          <VenueTile />
-        </div>
+        <div className="row g-3">{venues.length > 0 ? venues.map((venue, index) => <VenueTile key={index} venue={venue} />) : <p>No upcoming bookings</p>}</div>
         <div className="text-center pt-5">
           <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer">Load more venues...</p>
         </div>
