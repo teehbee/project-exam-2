@@ -1,6 +1,6 @@
 import { venueHeroImageLarge, venueHeroImageSmall } from "../../assets/img";
 import { SearchFormMain } from "../forms";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { VenueTile, VenueFiltering } from "./";
@@ -12,6 +12,7 @@ import MainLoader from "../loader";
 
 const VenuesPage: React.FC = () => {
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
+  const [visibleCount, setVisibleCount] = useState(8);
 
   useEffect(() => {
     console.log("Search from redux:", frontpageSearch);
@@ -19,14 +20,10 @@ const VenuesPage: React.FC = () => {
 
   const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false, true);
 
-  console.log("Fetched Data:");
-
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
   const venues = data?.data || [];
-
-  console.log("loaded venues", venues);
 
   return (
     <>
