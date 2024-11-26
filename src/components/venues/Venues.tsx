@@ -11,12 +11,11 @@ import { useApi } from "../api";
 import MainLoader from "../loader";
 
 const VenuesPage: React.FC = () => {
-  const searchData = useSelector((state: RootState) => state.search.searchData);
+  const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
 
   useEffect(() => {
-    // Log the search data to the console
-    console.log("Search Data from frontpage search:", searchData);
-  }, [searchData]);
+    console.log("Search from redux:", frontpageSearch);
+  }, [frontpageSearch]);
 
   const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false, true);
 
