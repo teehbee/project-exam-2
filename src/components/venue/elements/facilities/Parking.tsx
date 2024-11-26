@@ -9,4 +9,8 @@ function ParkingFacility() {
   );
 }
 
-export default ParkingFacility;
+function ParkingFacilityNoText() {
+  return <img className="facility-icon me-2 " src={parkingIcon} alt="" />;
+}
+
+export { ParkingFacility, ParkingFacilityNoText };

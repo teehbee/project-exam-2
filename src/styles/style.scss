@@ -198,6 +198,14 @@ $custom-fs-4-rem: 4rem;
   object-fit: cover;
 }
 
+.simple-linear {
+  background: linear-gradient(blue, pink);
+}
+
+.star-container {
+  bottom: 5%;
+}
+
 // Colors
 
 .bg-dark-gray-color {

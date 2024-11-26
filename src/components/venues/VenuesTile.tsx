@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { petIcon, wifiIcon, restaurantIcon, parkingIcon } from "../../assets/icon";
-import { placeHolderImage } from "../../assets/placeholderImg";
 import { VenueInterface } from "../api/const/interfaces";
+import { WifiFacilityNoText, BreakfastFacilityNoText, ParkingFacilityNoText, PetsFacilityNoText } from "../venue/elements/facilities";
+import { starIcon } from "../../assets/icon";
 
 const VenueTile: React.FC<VenueInterface> = ({ venue }) => {
   // State and handling for large or small screens to alter text in book button
@@ -17,29 +17,50 @@ const VenueTile: React.FC<VenueInterface> = ({ venue }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const img = venue.media.length > 0 ? venue.media[0].url : "";
+  const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
+  const city = venue.location?.city || "Surprise destination";
+  const country = venue.location?.country || "";
+
   return (
     <div className="col-12 col-lg-6">
       <div className="d-flex form-box-shadow pe-2">
-        <Link to="/venue">
-          <img className="border-radius-start-5px preview-tile-img" src={placeHolderImage} alt="placeholder" />
-        </Link>
+        <div className="position-relative ">
+          <Link to={`/venue/${venue.id}`}>
+            <img className=" border-radius-start-5px preview-tile-img" src={img} alt={alt} />
+          </Link>
+          <div className="ps-2 position-absolute star-container">
+            {[...Array(venue.rating)].map((_, index) => (
+              <img key={index} src={starIcon} alt="star" />
+            ))}
+          </div>
+        </div>
         <div className="d-flex flex-column justify-content-between ps-3 py-2 w-100">
           <div className="d-flex flex-column justify-content-start">
-            <Link className="text-decoration-none" to="/venue">
-              <p className="mb-1 secondary-font fs-1rem-to-1-5rem">{venue.name}</p>
-            </Link>
-            <p className="fs-0-75rem-to-1rem mb-0">Location</p>
-            <div className="mt-md-2">
-              <img className="facility-icon me-2" src={wifiIcon} alt="" />
-              <img className="facility-icon me-2" src={restaurantIcon} alt="" />
-              <img className="facility-icon me-2 " src={parkingIcon} alt="" />
-              <img className="facility-icon me-2" src={petIcon} alt="" />
+            <div className="d-flex align-items-center">
+              <div>
+                <Link className="text-decoration-none" to={`/venue/${venue.id}`}>
+                  <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold">{venue.name}</p>
+                </Link>
+              </div>
+            </div>
+            <p className="fs-0-75rem-to-1rem mb-0 fw-medium">
+              {city}, {country}
+            </p>
+            <div className="mt-md-2 d-flex justify-content-start">
+              {venue.meta.wifi && <WifiFacilityNoText />}
+              {venue.meta.breakfast && <BreakfastFacilityNoText />}
+              {venue.meta.parking && <ParkingFacilityNoText />}
+              {venue.meta.pets && <PetsFacilityNoText />}
+            </div>
+            <div>
+              <p className="fs-0-75rem-to-1rem">Max number of guests: {venue.maxGuests}</p>
             </div>
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex flex-column">
-              <p className="fs-0-75rem-to-1rem mb-1">Price</p>
-              <p className="fs-0-75rem-to-0-875rem">per night</p>
+              <p className="fs-0-75rem-to-1rem mb-0 fw-medium">NOK {venue.price},-</p>
+              <p className="fs-0-75rem-to-0-875rem mb-0">per night</p>
             </div>
             <div className="align-items-end pe-md-3">
               <Link to="/venue">

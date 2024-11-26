@@ -1,6 +1,6 @@
-import WifiFacility from "./Wifi";
-import BreakfastFacility from "./Breakfast";
-import ParkingFacility from "./Parking";
-import PetsFacility from "./PetsFacility";
+import { WifiFacility, WifiFacilityNoText } from "./Wifi";
+import { BreakfastFacility, BreakfastFacilityNoText } from "./Breakfast";
+import { ParkingFacility, ParkingFacilityNoText } from "./Parking";
+import { PetsFacility, PetsFacilityNoText } from "./PetsFacility";
 
-export { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility };
+export { WifiFacility, WifiFacilityNoText, BreakfastFacility, BreakfastFacilityNoText, ParkingFacility, ParkingFacilityNoText, PetsFacility, PetsFacilityNoText };

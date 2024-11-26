@@ -9,4 +9,8 @@ function WifiFacility() {
   );
 }
 
-export default WifiFacility;
+function WifiFacilityNoText() {
+  return <img className="facility-icon me-2" src={wifiIcon} alt="Wifi is available at venue" />;
+}
+
+export { WifiFacility, WifiFacilityNoText };

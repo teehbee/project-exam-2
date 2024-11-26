@@ -9,4 +9,8 @@ function PetsFacility() {
   );
 }
 
-export default PetsFacility;
+function PetsFacilityNoText() {
+  return <img className="facility-icon me-2" src={petIcon} alt="" />;
+}
+
+export { PetsFacility, PetsFacilityNoText };
