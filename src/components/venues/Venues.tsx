@@ -53,7 +53,7 @@ const VenuesPage: React.FC = () => {
         </div>
         <div className="row g-3">
           {venues.slice(0, visibleCount).map((venue, index) => (
-            <VenueTile key={index} venue={venue} />
+            <VenueTile key={index} venue={venue} /> // Pass venue directly
           ))}
           {venues.length === 0 && <p>No upcoming bookings</p>}
         </div>

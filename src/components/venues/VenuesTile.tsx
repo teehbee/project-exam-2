@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { VenueInterface } from "../api/const/interfaces";
+import { bookingTileInterface } from "../api/const/interfaces";
 import { WifiFacilityNoText, BreakfastFacilityNoText, ParkingFacilityNoText, PetsFacilityNoText } from "../venue/elements/facilities";
 import { starIcon } from "../../assets/icon";
 
-const VenueTile: React.FC<VenueInterface> = ({ venue }) => {
-  // State and handling for large or small screens to alter text in book button
+const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
@@ -21,6 +20,8 @@ const VenueTile: React.FC<VenueInterface> = ({ venue }) => {
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const city = venue.location?.city || "Surprise destination";
   const country = venue.location?.country || "";
+
+  console.log("venue is", venue);
 
   return (
     <div className="col-12 col-lg-6">

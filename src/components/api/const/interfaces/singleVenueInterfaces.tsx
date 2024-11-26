@@ -10,11 +10,6 @@ export interface VenueInterface {
   venue: SingleVenueResponseContent;
 }
 
-interface Media {
-  url: string;
-  alt: string;
-}
-
 interface Customer {
   name: string;
   email: string;
@@ -28,8 +23,9 @@ interface Bookings {
 }
 
 export interface SingleVenueResponseContent {
-  description: string;
   bookings: Bookings[];
+  description: string;
+
   id: string;
   location: {
     address: string;
