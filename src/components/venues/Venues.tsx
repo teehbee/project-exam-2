@@ -43,7 +43,7 @@ const VenuesPage: React.FC = () => {
       </section>
       <section id="venues-list" className="container py-5 pt-md-0 my-5">
         <div className="py-3 py-lg-5">
-          <p className="secondary-font fs-1rem-to-2rem mb-1">0 venues match your search</p>
+          <p className="secondary-font fs-1rem-to-2rem mb-1">{venues.length > 0 ? `${venues.length} venues matches your search criteria` : "No venues match your search criteria"}</p>
           <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
           <VenueFiltering />
         </div>
