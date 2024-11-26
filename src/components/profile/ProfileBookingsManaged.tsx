@@ -30,14 +30,12 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
   const handleShow = () => {
     setShow(true);
     setSelectedVenueId(venue.id);
-    console.log("handleShow is working");
   };
 
   // close confirmation modal
   const handleClose = () => {
     setShow(false);
     setSelectedVenueId(null);
-    console.log("handleClose is working");
   };
 
   // handle deletion by setting deleteTrigger to true to trigger api call
