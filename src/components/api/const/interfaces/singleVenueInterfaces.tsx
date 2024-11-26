@@ -28,8 +28,6 @@ interface Bookings {
 }
 
 export interface SingleVenueResponseContent {
-  created: string;
-  guests: number;
   description: string;
   bookings: Bookings[];
   id: string;
@@ -51,10 +49,6 @@ export interface SingleVenueResponseContent {
   name: string;
   price: number;
   rating: number;
-  updated: string;
-  _count: {
-    bookings: number;
-  };
 }
 
 export interface BookingCalendarProps {
