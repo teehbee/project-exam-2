@@ -5,45 +5,27 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { VenueTile, VenueFiltering } from "./";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
-import { VenueInterface } from "../api/const/interfaces";
+import { VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
 
 const VenuesPage: React.FC = () => {
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
-  console.log(frontpageSearch);
-  const [visibleCount, setVisibleCount] = useState(() => {
-    const savedCount = localStorage.getItem("visibleCount");
-    return savedCount ? parseInt(savedCount) : 8; // Default to 8 if not found
-  });
-  const [venues, setVenues] = useState<VenueInterface[]>([]);
+  const [visibleCount, setVisibleCount] = useState(8);
 
   useEffect(() => {
-    const savedVenues = localStorage.getItem("venues");
-    if (savedVenues) {
-      setVenues(JSON.parse(savedVenues));
-    }
-  }, []);
+    console.log("Search from redux:", frontpageSearch);
+  }, [frontpageSearch]);
 
-  useEffect(() => {
-    localStorage.setItem("visibleCount", visibleCount.toString());
-    localStorage.setItem("venues", JSON.stringify(venues));
-  }, [visibleCount, venues]);
-
-  const { data, error, loading } = useApi<null, VenueInterface>(VENUES_ENDPOINT, "GET", null, false, true);
-
-  useEffect(() => {
-    if (data) {
-      setVenues(venues);
-    }
-  }, [venues, data]);
-
-  console.log("venues is", venues);
+  const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false, true);
 
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
+  const venues = data?.data || [];
+
+  // Add 8 more venues to be displayed
   const loadMoreVenues = () => {
     setVisibleCount((prevCount) => prevCount + 8);
   };
