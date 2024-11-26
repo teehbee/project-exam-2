@@ -15,6 +15,11 @@ interface Customer {
   email: string;
 }
 
+interface Media {
+  url: string;
+  alt: string;
+}
+
 interface Bookings {
   customer: Customer;
   dateFrom: string;
