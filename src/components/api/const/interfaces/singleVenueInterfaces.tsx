@@ -6,6 +6,10 @@ export interface SingleVenueProp {
   venue: SingleVenueResponse;
 }
 
+export interface VenueInterface {
+  venue: SingleVenueResponseContent;
+}
+
 interface Media {
   url: string;
   alt: string;

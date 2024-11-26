@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { petIcon, wifiIcon, restaurantIcon, parkingIcon } from "../../assets/icon";
 import { placeHolderImage } from "../../assets/placeholderImg";
-import { Venue } from "../api/interfaces";
+import { VenueInterface } from "../api/const/interfaces";
 
-const VenueTile: React.FC<Venue> = ({ venue }) => {
+const VenueTile: React.FC<VenueInterface> = ({ venue }) => {
   // State and handling for large or small screens to alter text in book button
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
 
@@ -26,7 +26,7 @@ const VenueTile: React.FC<Venue> = ({ venue }) => {
         <div className="d-flex flex-column justify-content-between ps-3 py-2 w-100">
           <div className="d-flex flex-column justify-content-start">
             <Link className="text-decoration-none" to="/venue">
-              <p className="mb-1 secondary-font fs-1rem-to-1-5rem">Name of accommodation</p>
+              <p className="mb-1 secondary-font fs-1rem-to-1-5rem">{venue.name}</p>
             </Link>
             <p className="fs-0-75rem-to-1rem mb-0">Location</p>
             <div className="mt-md-2">
