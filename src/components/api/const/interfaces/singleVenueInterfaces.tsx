@@ -6,14 +6,18 @@ export interface SingleVenueProp {
   venue: SingleVenueResponse;
 }
 
-interface Media {
-  url: string;
-  alt: string;
+export interface VenueInterface {
+  venue: SingleVenueResponseContent;
 }
 
 interface Customer {
   name: string;
   email: string;
+}
+
+interface Media {
+  url: string;
+  alt: string;
 }
 
 interface Bookings {
@@ -24,10 +28,9 @@ interface Bookings {
 }
 
 export interface SingleVenueResponseContent {
-  created: string;
-  guests: number;
-  description: string;
   bookings: Bookings[];
+  description: string;
+
   id: string;
   location: {
     address: string;
@@ -47,10 +50,6 @@ export interface SingleVenueResponseContent {
   name: string;
   price: number;
   rating: number;
-  updated: string;
-  _count: {
-    bookings: number;
-  };
 }
 
 export interface BookingCalendarProps {

@@ -30,6 +30,7 @@ export interface Venue {
   media: Media[];
   price: number;
   maxGuests: number;
+  guests: number;
   rating: number;
   meta: Meta;
   location: Location;

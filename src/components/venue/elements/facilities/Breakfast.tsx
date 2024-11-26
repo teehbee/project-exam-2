@@ -9,4 +9,8 @@ function BreakfastFacility() {
   );
 }
 
-export default BreakfastFacility;
+function BreakfastFacilityNoText() {
+  return <img className="facility-icon me-2" src={restaurantIcon} alt="" />;
+}
+
+export { BreakfastFacility, BreakfastFacilityNoText };
