@@ -1,7 +1,7 @@
 import { venueHeroImageLarge, venueHeroImageSmall } from "../../assets/img";
 import { SearchFormMain } from "../forms";
 import { useEffect, useState, useMemo, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
 import { VenueTile, VenueFiltering } from "./";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
@@ -9,10 +9,8 @@ import { VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
-import { ConvertedSearchDataInterface } from "../api/const/interfaces";
-import { useDispatch } from "react-redux";
-import { FilterValues } from "../api/const/interfaces";
-import { filterVenues, deleteSearch, searchHandler, handleFilterChange } from "../utils";
+import { ConvertedSearchDataInterface, FilterValues } from "../api/const/interfaces";
+import { filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMoreVenues } from "../utils";
 
 // Reusable filtering function for venues
 
@@ -54,11 +52,6 @@ const VenuesPage: React.FC = () => {
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
-  // Add 8 more venues to be displayed
-  const loadMoreVenues = () => {
-    setVisibleCount((prevCount) => prevCount + 8);
-  };
-
   return (
     <>
       <picture>
@@ -92,7 +85,7 @@ const VenuesPage: React.FC = () => {
         </div>
         {visibleCount < filteredVenues.length && (
           <div className="text-center pt-5">
-            <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer" onClick={loadMoreVenues}>
+            <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer" onClick={() => loadMoreVenues(setVisibleCount)}>
               Load more venues...
             </p>
           </div>
