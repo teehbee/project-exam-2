@@ -30,7 +30,7 @@ const isDateAvailable = (bookings: Bookings[], dateFrom: string, dateTo: string)
 
 const filterVenues = (venues: SearchReturnInterface[], searchData: ConvertedSearchDataInterface) => {
   return venues.filter((venue) => {
-    const matchesLocation = !searchData.location || (venue.location && ((venue.location.city && venue.location.city.includes(searchData.location)) || (venue.location.country && venue.location.country.includes(searchData.location))));
+    const matchesLocation = !searchData.location || (venue.location && ((venue.location.city && venue.location.city.toLowerCase().includes(searchData.location.toLowerCase())) || (venue.location.country && venue.location.country.toLowerCase().includes(searchData.location.toLowerCase()))));
     const matchesName = !searchData.name || venue.name.toLowerCase().includes(searchData.name.toLowerCase());
     const matchesGuests = !searchData.guests || searchData.guests <= venue.maxGuests;
 
@@ -93,8 +93,6 @@ const VenuesPage: React.FC = () => {
     setFilteredVenues(venues);
     dispatch(clearFrontpageSearchData());
   };
-
-  console.log(frontpageSearch);
 
   return (
     <>
