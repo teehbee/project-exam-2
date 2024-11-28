@@ -9,7 +9,7 @@ import { VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
-import { SearchFormInputInterface } from "../api/const/interfaces";
+import { ConvertedSearchDataInterface } from "../api/const/interfaces";
 
 const VenuesPage: React.FC = () => {
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
@@ -31,7 +31,7 @@ const VenuesPage: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 8);
   };
 
-  const searchHandler = (searchData: SearchFormInputInterface) => {
+  const searchHandler = (searchData: ConvertedSearchDataInterface) => {
     console.log("Parent component received data", searchData);
   };
 

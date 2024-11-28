@@ -4,9 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { venuesSearchSchema } from "./schemas";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
 import { SearchFormInputInterface } from "../api/const/interfaces";
+import { ConvertedSearchDataInterface } from "../api/const/interfaces";
 
 interface SearchFormMainProps {
-  onSearch: (data: SearchFormInputInterface) => void;
+  onSearch: (data: ConvertedSearchDataInterface) => void;
 }
 
 function SearchFormMain({ onSearch }: SearchFormMainProps) {
@@ -15,7 +16,12 @@ function SearchFormMain({ onSearch }: SearchFormMainProps) {
   });
 
   const onSubmit: SubmitHandler<SearchFormInputInterface> = (data) => {
-    onSearch(data);
+    const formattedData: ConvertedSearchDataInterface = {
+      ...data,
+      dateFrom: data.dateFrom ? new Date(data.dateFrom).toISOString() : undefined,
+      dateTo: data.dateTo ? new Date(data.dateTo).toISOString() : undefined,
+    };
+    onSearch(formattedData);
   };
 
   const id = React.useId();
