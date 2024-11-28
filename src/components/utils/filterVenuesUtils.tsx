@@ -1,8 +1,8 @@
 interface FilterValues {
   wifi: boolean;
-  restaurant: boolean;
+  breakfast: boolean;
   parking: boolean;
-  petFriendly: boolean;
+  pets: boolean;
 }
 
 // checking changes compared to initial values of filter

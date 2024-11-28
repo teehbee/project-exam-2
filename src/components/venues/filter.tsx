@@ -3,9 +3,9 @@ import { FilterButton, FilterForm } from "./";
 
 interface FilterValues {
   wifi: boolean;
-  restaurant: boolean;
+  breakfast: boolean;
   parking: boolean;
-  petFriendly: boolean;
+  pets: boolean;
 }
 
 function VenueFiltering() {
@@ -14,9 +14,9 @@ function VenueFiltering() {
   // Storing filtering choices
   const [filterValues, setFilterValues] = useState<FilterValues>({
     wifi: false,
-    restaurant: false,
+    breakfast: false,
     parking: false,
-    petFriendly: false,
+    pets: false,
   });
 
   // Show/hide filtering options when button is clicked
@@ -28,6 +28,8 @@ function VenueFiltering() {
   function handleFilterChange(updatedValues: FilterValues) {
     setFilterValues(updatedValues);
   }
+
+  console.log(filterValues);
 
   return (
     <>

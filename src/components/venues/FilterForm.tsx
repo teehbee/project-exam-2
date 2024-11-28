@@ -1,13 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { checkForFilterChanges, setInitialFilterValues } from "../utils";
-
-interface FilterValues {
-  wifi: boolean;
-  restaurant: boolean;
-  parking: boolean;
-  petFriendly: boolean;
-}
+import { FilterValues } from "../api/const/interfaces";
 
 interface FilterFormProps {
   filterValues: FilterValues;
@@ -47,7 +41,7 @@ function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
           </div>
           <div className="pe-3 pt-3">
             <label className="d-flex align-items-center">
-              <input type="checkbox" className="form-check-input mt-0" {...register("restaurant")} />
+              <input type="checkbox" className="form-check-input mt-0" {...register("breakfast")} />
               Restaurant
             </label>
           </div>
@@ -59,7 +53,7 @@ function FilterForm({ filterValues, onFilterChange }: FilterFormProps) {
           </div>
           <div className="pe-3 pt-3">
             <label className="d-flex align-items-center">
-              <input type="checkbox" className="form-check-input mt-0" {...register("petFriendly")} />
+              <input type="checkbox" className="form-check-input mt-0" {...register("pets")} />
               Pet friendly
             </label>
           </div>

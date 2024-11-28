@@ -70,7 +70,6 @@ const VenuesPage: React.FC = () => {
   };
 
   const searchHandler = (searchData: ConvertedSearchDataInterface) => {
-    console.log(searchData);
     const filtered = filterVenues(venues, searchData);
     setFilteredVenues(filtered);
     if (venuesListRef.current) {
