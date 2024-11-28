@@ -5,5 +5,6 @@ import { VenueInterface } from "./singleVenueInterfaces";
 import { bookingTileInterface } from "./venueTileInterface";
 import { SearchFormInputInterface } from "./venuesSearchInterface";
 import { ConvertedSearchDataInterface } from "./convertedSearchInterface";
+import { SearchReturnInterface } from "./searchReturnInterface";
 
-export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface };
+export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface };
