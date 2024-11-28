@@ -1,6 +1,6 @@
 import { venueHeroImageLarge, venueHeroImageSmall } from "../../assets/img";
 import { SearchFormMain } from "../forms";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { VenueTile, VenueFiltering } from "./";
@@ -27,13 +27,19 @@ const VenuesPage: React.FC = () => {
   const [visibleCount, setVisibleCount] = useState(8);
   const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>([]);
 
+  // Ref to venues-list section of component for scrolling with search is executed.
+
+  const venuesListRef = useRef<HTMLDivElement>(null);
+
+  // Api call for venues
+
   const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false, true);
 
   // Making sure that venues is only re-evaluated when the data changes
 
   const venues = useMemo(() => data?.data || [], [data]);
 
-  // Logic to automate search if frontPageSearch is present, if not, display all venues
+  // Logic to automate search if frontPageSearch is present from redux, if not, display all venues
 
   useEffect(() => {
     if (venues) {
@@ -58,9 +64,10 @@ const VenuesPage: React.FC = () => {
     console.log(searchData);
     const filtered = filterVenues(venues, searchData);
     setFilteredVenues(filtered);
+    if (venuesListRef.current) {
+      venuesListRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
-
-  console.log("filtered is", filteredVenues);
 
   return (
     <>
@@ -73,7 +80,7 @@ const VenuesPage: React.FC = () => {
           <SearchFormMain onSearch={searchHandler} />
         </div>
       </section>
-      <section id="venues-list" className="container py-5 pt-md-0 my-5">
+      <section id="venues-list" ref={venuesListRef} className="container py-5 pt-md-0 my-5">
         <div className="py-3 py-lg-5">
           <p className="secondary-font fs-1rem-to-2rem mb-1">{filteredVenues.length > 0 ? `${filteredVenues.length} venues matches your search criteria` : "No venues match your search criteria"}</p>
           <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
