@@ -25,8 +25,6 @@ export interface SearchReturnInterface {
   name: string;
   location: Location;
   maxGuests: number;
-  dateFrom: Date;
-  dateTo: Date;
   id: string;
   description: string;
   price: number;

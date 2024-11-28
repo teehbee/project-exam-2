@@ -73,6 +73,8 @@ const VenuesPage: React.FC = () => {
     setFilteredVenues(venues);
   };
 
+  console.log(venues);
+
   return (
     <>
       <picture>
