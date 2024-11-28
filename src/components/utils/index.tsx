@@ -8,5 +8,6 @@ import { isDateAvailable } from "./isDateAvailable";
 import { filterVenues } from "./filterVenues";
 import { deleteSearch } from "./deleteSearch";
 import { searchHandler } from "./handleSearch";
+import { handleFilterChange } from "./handleFilterChange";
 
-export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues, deleteSearch, searchHandler };
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues, deleteSearch, searchHandler, handleFilterChange };

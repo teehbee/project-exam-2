@@ -12,7 +12,7 @@ import MainLoader from "../loader";
 import { ConvertedSearchDataInterface } from "../api/const/interfaces";
 import { useDispatch } from "react-redux";
 import { FilterValues } from "../api/const/interfaces";
-import { filterVenues, deleteSearch, searchHandler } from "../utils";
+import { filterVenues, deleteSearch, searchHandler, handleFilterChange } from "../utils";
 
 // Reusable filtering function for venues
 
@@ -59,10 +59,6 @@ const VenuesPage: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 8);
   };
 
-  const handleFilterChange = (updatedValues: FilterValues) => {
-    setFilterValues(updatedValues);
-  };
-
   return (
     <>
       <picture>
@@ -82,7 +78,7 @@ const VenuesPage: React.FC = () => {
               Show all venues
             </p>
           )}
-          <VenueFiltering filterValues={filterValues} onFilterChange={handleFilterChange} />
+          <VenueFiltering filterValues={filterValues} onFilterChange={(updatedValues) => handleFilterChange(updatedValues, setFilterValues)} />
         </div>
 
         <div className="text-center py-5 d-none">
