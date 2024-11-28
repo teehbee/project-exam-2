@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { venuesSearchSchema } from "./schemas";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
 
 // Type definition for search data
@@ -16,21 +16,14 @@ interface SearchFormInputFP {
 
 // Yup schema for search inputs. No required fields
 
-const schema = yup.object().shape({
-  location: yup.string(),
-  name: yup.string(),
-  fromDate: yup.date(),
-  dateTo: yup.date(),
-  guests: yup.number().transform((_, originalValue) => (originalValue === "" ? undefined : Number(originalValue))),
-});
-
 function SearchFormMain() {
   const { register, handleSubmit } = useForm<SearchFormInputFP>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(venuesSearchSchema),
   });
 
   const onSubmit: SubmitHandler<SearchFormInputFP> = (data) => {
-    console.log(data);
+    const venuesSearchData = data;
+    console.log("main search is", venuesSearchData);
   };
   // Setting unique id for input fields
 
