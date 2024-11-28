@@ -4,5 +4,6 @@ import useScrollToTop from "./useScrollToTop";
 import { checkForFilterChanges, setInitialFilterValues } from "./filterVenuesUtils";
 import formatDate from "./useFormatDate";
 import { useCalculateTotalCost } from "./useCalculateCost";
+import { isDateAvailable } from "./isDateAvailable";
 
-export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost };
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable };
