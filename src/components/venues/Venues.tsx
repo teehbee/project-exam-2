@@ -9,33 +9,24 @@ import { VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
-import { ConvertedSearchDataInterface, SearchReturnInterface } from "../api/const/interfaces";
+import { ConvertedSearchDataInterface } from "../api/const/interfaces";
 import { clearFrontpageSearchData } from "../../redux/actions/frontpageRemoveSearchAction";
 import { useDispatch } from "react-redux";
-import { isDateAvailable } from "../utils";
 import { FilterValues } from "../api/const/interfaces";
-
-// Reusable function to check if searched dates match available dates from api
+import { filterVenues } from "../utils";
+import { deleteSearch } from "../utils/deleteSearch";
 
 // Reusable filtering function for venues
 
-const filterVenues = (venues: SearchReturnInterface[], searchData: ConvertedSearchDataInterface, filterValues: FilterValues) => {
-  return venues.filter((venue) => {
-    const matchesLocation = !searchData.location || (venue.location && ((venue.location.city && venue.location.city.toLowerCase().includes(searchData.location.toLowerCase())) || (venue.location.country && venue.location.country.toLowerCase().includes(searchData.location.toLowerCase()))));
-    const matchesName = !searchData.name || venue.name.toLowerCase().includes(searchData.name.toLowerCase());
-    const matchesGuests = !searchData.guests || searchData.guests <= venue.maxGuests;
-    const matchesAvailability = !searchData.dateFrom || !searchData.dateTo || isDateAvailable(venue.bookings, searchData.dateFrom, searchData.dateTo);
-    const matchesFilters = (!filterValues.wifi || venue.meta.wifi) && (!filterValues.breakfast || venue.meta.breakfast) && (!filterValues.parking || venue.meta.parking) && (!filterValues.pets || venue.meta.pets);
-
-    return matchesLocation && matchesName && matchesGuests && matchesAvailability && matchesFilters;
-  });
-};
-
 const VenuesPage: React.FC = () => {
   const dispatch = useDispatch();
+  // Fetch search data from frontpage
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
+  // State for storing number of visible venues on page
   const [visibleCount, setVisibleCount] = useState(8);
+  // State for storing search data including facilities
   const [searchData, setSearchData] = useState<ConvertedSearchDataInterface | null>(null);
+  // State for storing filtered venues
   const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>([]);
   // State for storing facility filtering
   const [filterValues, setFilterValues] = useState<FilterValues>({
@@ -44,7 +35,6 @@ const VenuesPage: React.FC = () => {
     parking: false,
     pets: false,
   });
-
   // Ref to venues-list section of component for scrolling with search is executed.
   const venuesListRef = useRef<HTMLDivElement>(null);
 
@@ -81,17 +71,9 @@ const VenuesPage: React.FC = () => {
     dispatch(clearFrontpageSearchData());
   };
 
-  const deleteSearch = () => {
-    setSearchData(null);
-    setFilteredVenues(venues);
-    dispatch(clearFrontpageSearchData());
-  };
-
   const handleFilterChange = (updatedValues: FilterValues) => {
     setFilterValues(updatedValues);
   };
-
-  console.log("test", filterValues.wifi);
 
   return (
     <>
@@ -108,7 +90,7 @@ const VenuesPage: React.FC = () => {
         <div className="py-3 py-lg-5">
           <p className="secondary-font fs-1rem-to-2rem mb-1">{filteredVenues.length > 0 ? `${filteredVenues.length} venues match your search criteria` : "No venues match your search criteria"}</p>
           {filteredVenues.length < venues.length && (
-            <p className="cursor-pointer fs-0-75rem-to-1rem" onClick={deleteSearch}>
+            <p className="cursor-pointer fs-0-75rem-to-1rem" onClick={() => deleteSearch(setSearchData, setFilteredVenues, venues, dispatch)}>
               Show all venues
             </p>
           )}

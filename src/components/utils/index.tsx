@@ -5,5 +5,6 @@ import { checkForFilterChanges, setInitialFilterValues } from "./filterVenuesUti
 import formatDate from "./useFormatDate";
 import { useCalculateTotalCost } from "./useCalculateCost";
 import { isDateAvailable } from "./isDateAvailable";
+import { filterVenues } from "./filterVenues";
 
-export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable };
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues };
