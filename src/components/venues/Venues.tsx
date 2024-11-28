@@ -10,6 +10,8 @@ import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
 import { ConvertedSearchDataInterface, SearchReturnInterface, Bookings } from "../api/const/interfaces";
+import { clearFrontpageSearchData } from "../../redux/actions/frontpageRemoveSearchAction";
+import { useDispatch } from "react-redux";
 
 // Reusable function to check if searched dates match available dates from api
 
@@ -39,6 +41,7 @@ const filterVenues = (venues: SearchReturnInterface[], searchData: ConvertedSear
 };
 
 const VenuesPage: React.FC = () => {
+  const dispatch = useDispatch();
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
   const [visibleCount, setVisibleCount] = useState(8);
   const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>([]);
@@ -83,13 +86,14 @@ const VenuesPage: React.FC = () => {
     if (venuesListRef.current) {
       venuesListRef.current.scrollIntoView({ behavior: "smooth" });
     }
+    dispatch(clearFrontpageSearchData());
   };
 
   const deleteSearch = () => {
     setFilteredVenues(venues);
   };
 
-  console.log(venues);
+  console.log(frontpageSearch);
 
   return (
     <>
