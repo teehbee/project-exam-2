@@ -15,6 +15,7 @@ function SearchFormMain({ onSearch }: SearchFormMainProps) {
     resolver: yupResolver(venuesSearchSchema),
   });
 
+  // Convert dates from search inputs before sending them to parent container as formattedData
   const onSubmit: SubmitHandler<SearchFormInputInterface> = (data) => {
     const formattedData: ConvertedSearchDataInterface = {
       ...data,

@@ -62,11 +62,13 @@ const VenuesPage: React.FC = () => {
           ))}
           {venues.length === 0 && <p>No upcoming bookings</p>}
         </div>
-        <div className="text-center pt-5">
-          <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer" onClick={loadMoreVenues}>
-            Load more venues...
-          </p>
-        </div>
+        {visibleCount < venues.length && (
+          <div className="text-center pt-5">
+            <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer" onClick={loadMoreVenues}>
+              Load more venues...
+            </p>
+          </div>
+        )}
       </section>
     </>
   );
