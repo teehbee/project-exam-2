@@ -69,6 +69,10 @@ const VenuesPage: React.FC = () => {
     }
   };
 
+  const deleteSearch = () => {
+    setFilteredVenues(venues);
+  };
+
   return (
     <>
       <picture>
@@ -83,7 +87,11 @@ const VenuesPage: React.FC = () => {
       <section id="venues-list" ref={venuesListRef} className="container py-5 pt-md-0 my-5">
         <div className="py-3 py-lg-5">
           <p className="secondary-font fs-1rem-to-2rem mb-1">{filteredVenues.length > 0 ? `${filteredVenues.length} venues matches your search criteria` : "No venues match your search criteria"}</p>
-          <p className="cursor-pointer fs-0-75rem-to-1rem">Show all venues</p>
+          {filteredVenues.length < venues.length && (
+            <p className="cursor-pointer fs-0-75rem-to-1rem" onClick={deleteSearch}>
+              Show all venues
+            </p>
+          )}
           <VenueFiltering />
         </div>
 
@@ -92,7 +100,7 @@ const VenuesPage: React.FC = () => {
         </div>
         <div className="row g-3">
           {filteredVenues.slice(0, visibleCount).map((venue, index) => (
-            <VenueTile key={index} venue={venue} /> // Pass venue directly
+            <VenueTile key={index} venue={venue} />
           ))}
           {filteredVenues.length === 0 && <p>No upcoming bookings</p>}
         </div>
