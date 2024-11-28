@@ -8,7 +8,7 @@ export const checkForFilterChanges = (checkboxes: FilterValues, filterValues: Fi
   });
   if (isDifferent) {
     onFilterChange(checkboxes);
-    console.log("Current filter status:", checkboxes);
+    // console.log("Current filter status:", checkboxes);
   }
 };
 
