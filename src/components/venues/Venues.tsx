@@ -9,6 +9,7 @@ import { VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
+import { SearchFormInputInterface } from "../api/const/interfaces";
 
 const VenuesPage: React.FC = () => {
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
@@ -30,6 +31,10 @@ const VenuesPage: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 8);
   };
 
+  const searchHandler = (data: SearchFormInputInterface) => {
+    console.log("Parent component received data", data);
+  };
+
   return (
     <>
       <picture>
@@ -38,7 +43,7 @@ const VenuesPage: React.FC = () => {
       </picture>
       <section className="hero-container position-relative d-flex justify-content-center align-items-center">
         <div className="container ">
-          <SearchFormMain />
+          <SearchFormMain onSearch={searchHandler} />
         </div>
       </section>
       <section id="venues-list" className="container py-5 pt-md-0 my-5">

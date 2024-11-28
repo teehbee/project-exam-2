@@ -5,14 +5,17 @@ import { venuesSearchSchema } from "./schemas";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
 import { SearchFormInputInterface } from "../api/const/interfaces";
 
-function SearchFormMain() {
+interface SearchFormMainProps {
+  onSearch: (data: SearchFormInputInterface) => void;
+}
+
+function SearchFormMain({ onSearch }: SearchFormMainProps) {
   const { register, handleSubmit } = useForm<SearchFormInputInterface>({
     resolver: yupResolver(venuesSearchSchema),
   });
 
   const onSubmit: SubmitHandler<SearchFormInputInterface> = (data) => {
-    const venuesSearchData = data;
-    console.log("main search is", venuesSearchData);
+    onSearch(data);
   };
 
   const id = React.useId();

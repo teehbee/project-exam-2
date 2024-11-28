@@ -21,7 +21,7 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
   const city = venue.location?.city || "Surprise destination";
   const country = venue.location?.country || "";
 
-  console.log("venue is", venue);
+  // console.log("venue is", venue);
 
   return (
     <div className="col-12 col-lg-6">
