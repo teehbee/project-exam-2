@@ -31,7 +31,10 @@ const filterVenues = (venues: SearchReturnInterface[], searchData: ConvertedSear
     const matchesLocation = !searchData.location || (venue.location && ((venue.location.city && venue.location.city.includes(searchData.location)) || (venue.location.country && venue.location.country.includes(searchData.location))));
     const matchesName = !searchData.name || venue.name.toLowerCase().includes(searchData.name.toLowerCase());
     const matchesGuests = !searchData.guests || searchData.guests <= venue.maxGuests;
-    return matchesLocation && matchesName && matchesGuests;
+
+    const matchesAvailability = !searchData.dateFrom || !searchData.dateTo || isDateAvailable(venue.bookings, searchData.dateFrom, searchData.dateTo);
+
+    return matchesLocation && matchesName && matchesGuests && matchesAvailability;
   });
 };
 
