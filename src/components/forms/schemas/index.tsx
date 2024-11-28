@@ -1,3 +1,4 @@
 import { createVenueSchema } from "./createVenueSchema";
+import { frontpageSearchSchema } from "./frontpageSearchSchema";
 
-export { createVenueSchema };
+export { createVenueSchema, frontpageSearchSchema };
