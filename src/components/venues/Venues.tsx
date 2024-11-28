@@ -91,6 +91,7 @@ const VenuesPage: React.FC = () => {
 
   const deleteSearch = () => {
     setFilteredVenues(venues);
+    dispatch(clearFrontpageSearchData());
   };
 
   console.log(frontpageSearch);
