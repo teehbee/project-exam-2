@@ -1,9 +1,4 @@
-interface FilterValues {
-  wifi: boolean;
-  breakfast: boolean;
-  parking: boolean;
-  pets: boolean;
-}
+import { FilterValues } from "../api/const/interfaces";
 
 // checking changes compared to initial values of filter
 
