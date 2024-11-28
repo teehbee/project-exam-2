@@ -3,7 +3,7 @@ interface Location {
   country?: string;
 }
 
-interface Bookings {
+export interface Bookings {
   fromDate: string;
   toDate: string;
   id: string;

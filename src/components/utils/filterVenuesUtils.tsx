@@ -1,9 +1,4 @@
-interface FilterValues {
-  wifi: boolean;
-  restaurant: boolean;
-  parking: boolean;
-  petFriendly: boolean;
-}
+import { FilterValues } from "../api/const/interfaces";
 
 // checking changes compared to initial values of filter
 
@@ -13,7 +8,7 @@ export const checkForFilterChanges = (checkboxes: FilterValues, filterValues: Fi
   });
   if (isDifferent) {
     onFilterChange(checkboxes);
-    console.log("Current filter status:", checkboxes);
+    // console.log("Current filter status:", checkboxes);
   }
 };
 
