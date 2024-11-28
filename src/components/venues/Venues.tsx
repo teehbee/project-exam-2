@@ -31,8 +31,8 @@ const VenuesPage: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 8);
   };
 
-  const searchHandler = (data: SearchFormInputInterface) => {
-    console.log("Parent component received data", data);
+  const searchHandler = (searchData: SearchFormInputInterface) => {
+    console.log("Parent component received data", searchData);
   };
 
   return (
