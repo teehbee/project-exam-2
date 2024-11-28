@@ -6,5 +6,7 @@ import formatDate from "./useFormatDate";
 import { useCalculateTotalCost } from "./useCalculateCost";
 import { isDateAvailable } from "./isDateAvailable";
 import { filterVenues } from "./filterVenues";
+import { deleteSearch } from "./deleteSearch";
+import { searchHandler } from "./handleSearch";
 
-export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues };
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues, deleteSearch, searchHandler };

@@ -10,11 +10,9 @@ import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
 import { ConvertedSearchDataInterface } from "../api/const/interfaces";
-import { clearFrontpageSearchData } from "../../redux/actions/frontpageRemoveSearchAction";
 import { useDispatch } from "react-redux";
 import { FilterValues } from "../api/const/interfaces";
-import { filterVenues } from "../utils";
-import { deleteSearch } from "../utils/deleteSearch";
+import { filterVenues, deleteSearch, searchHandler } from "../utils";
 
 // Reusable filtering function for venues
 
@@ -61,16 +59,6 @@ const VenuesPage: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 8);
   };
 
-  const searchHandler = (searchData: ConvertedSearchDataInterface) => {
-    setSearchData(searchData);
-    const filtered = filterVenues(venues, searchData, filterValues);
-    setFilteredVenues(filtered);
-    if (venuesListRef.current) {
-      venuesListRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-    dispatch(clearFrontpageSearchData());
-  };
-
   const handleFilterChange = (updatedValues: FilterValues) => {
     setFilterValues(updatedValues);
   };
@@ -83,7 +71,7 @@ const VenuesPage: React.FC = () => {
       </picture>
       <section className="hero-container position-relative d-flex justify-content-center align-items-center">
         <div className="container ">
-          <SearchFormMain onSearch={searchHandler} />
+          <SearchFormMain onSearch={(searchData) => searchHandler(searchData, setSearchData, setFilteredVenues, venues, filterValues, venuesListRef, dispatch)} />
         </div>
       </section>
       <section id="venues-list" ref={venuesListRef} className="container py-5 pt-md-0 my-5">
