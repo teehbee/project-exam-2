@@ -6,8 +6,6 @@ import { setFrontpageSearchData } from "../../redux/actions/frontpageSearchActio
 import { frontpageSearchSchema } from "./schemas";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
 
-// Define the schema for form validation
-
 // Define types for SearchFormInputFP and SerializedSearchFormInputFP
 
 export interface SearchFormInputFP {
@@ -30,7 +28,7 @@ function SearchForm() {
 
   const onSubmit: SubmitHandler<SearchFormInputFP> = (frontpageSearch) => {
     const convertedDates = {
-      arrivalDate: new Date(frontpageSearch.dateFrom).toISOString(),
+      dateFrom: new Date(frontpageSearch.dateFrom).toISOString(),
       departureDate: new Date(frontpageSearch.dateTo).toISOString(),
     };
 
