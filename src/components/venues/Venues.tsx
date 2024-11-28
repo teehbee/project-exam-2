@@ -9,8 +9,21 @@ import { VenueResponse } from "../api/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";
-import { ConvertedSearchDataInterface, SearchReturnInterface } from "../api/const/interfaces";
+import { ConvertedSearchDataInterface, SearchReturnInterface, Bookings } from "../api/const/interfaces";
 
+// Reusable function to check if searched dates match available dates from api
+
+const isDateAvailable = (bookings: Bookings[], dateFrom: string, dateTo: string): boolean => {
+  const searchArrival = new Date(dateFrom).getTime();
+  const searchDeparture = new Date(dateTo).getTime();
+
+  return bookings.every((booking) => {
+    const bookingArrival = new Date(booking.fromDate).getTime();
+    const bookingDeparture = new Date(booking.toDate).getTime();
+
+    return searchDeparture < bookingArrival || searchArrival > bookingDeparture;
+  });
+};
 // Reusable filtering function for venues
 
 const filterVenues = (venues: SearchReturnInterface[], searchData: ConvertedSearchDataInterface) => {
