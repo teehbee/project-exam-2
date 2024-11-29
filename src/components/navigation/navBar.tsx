@@ -4,13 +4,7 @@ import { logoSmall, logoLarge } from "../../assets/logo";
 import { profileIcon, bars, signOutIcon } from "../../assets/icon";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { handleSignOut, checkIsVenueManager } from "../utils";
-
-interface NavBarProps {
-  handleLinkClick: () => void;
-  expanded: boolean;
-  handleToggleClick: () => void;
-  addDarkBackground: boolean;
-}
+import { NavBarProps } from "../api/const/interfaces";
 
 // const isVenueManager = localStorage.getItem("isVenueManager") === "true";
 
