@@ -13,6 +13,7 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
   const loggedIn = localStorage.getItem("loggedIn");
+  const isVenueManager = localStorage.getItem("isVenueManager") === "true";
 
   const handleSignOut = () => {
     localStorage.removeItem("accessToken");
@@ -85,9 +86,12 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
               <NavLink className="nav-link-styling fs-1-125rem m-2" to="contact" onClick={handleLinkClick}>
                 CONTACT
               </NavLink>
-              <NavLink className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
-                RENT OUT
-              </NavLink>
+              {isVenueManager && (
+                <NavLink className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
+                  RENT OUT
+                </NavLink>
+              )}
+
               <Link to="venues" onClick={handleLinkClick}>
                 <button className="main-button-red fs-1-125rem ms-2">BOOK NOW</button>
               </Link>
