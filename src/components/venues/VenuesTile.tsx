@@ -64,7 +64,7 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
               <p className="fs-0-75rem-to-0-875rem mb-0">per night</p>
             </div>
             <div className="align-items-end pe-md-3">
-              <Link to="/venue">
+              <Link to={`/venue/${venue.id}`}>
                 <button className="main-button-red">{isLargeScreen ? "Book now" : "Book"}</button>
               </Link>
             </div>
