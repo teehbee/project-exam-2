@@ -28,7 +28,7 @@ const BookingNumberOfGuests: React.FC<BookingNumberOfGuestsProps> = ({ onGuestsC
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      numberOfGuests: 1, // Set default value to 1
+      numberOfGuests: 1,
     },
   });
 
@@ -52,7 +52,7 @@ const BookingNumberOfGuests: React.FC<BookingNumberOfGuestsProps> = ({ onGuestsC
         <label htmlFor="bookVenueNRofGuests" className="mt-2 fs-0-875rem">
           Max number of guests<span className="text-danger">*</span>
         </label>
-        <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" id="bookVenueNRofGuests" {...register("numberOfGuests")} onBlur={handleBlur} />
+        <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" id="bookVenueNRofGuests" {...register("numberOfGuests", { valueAsNumber: true })} onBlur={handleBlur} />
         {errors.numberOfGuests && <span className="text-danger fs-0-875rem">{errors.numberOfGuests.message}</span>}
       </div>
     </div>
