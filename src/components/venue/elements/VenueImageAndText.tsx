@@ -7,7 +7,7 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
   const venueData = venue.data;
 
   const id = venue.data.id;
-  const img = venueData.media.length > 0 ? venue.data.media[0].url : "";
+  const img = venueData.media.length > 0 ? venue.data.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
   const alt = venueData.media.length > 0 ? venue.data.media[0].alt : "no alt text provided";
   const city = venueData.location.city || "Mystery destination";
   const country = venueData.location.country || "";
