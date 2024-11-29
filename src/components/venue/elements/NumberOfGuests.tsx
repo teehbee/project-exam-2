@@ -1,23 +1,12 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
+import { bookingGuestsSchema } from "../../forms/schemas";
+import { BookingGuestsInterface } from "../../api/const/interfaces";
 
 interface BookingNumberOfGuestsProps {
   onGuestsChange: (guests: number) => void;
 }
-
-interface FormData {
-  guests: number;
-}
-
-// yup schema for validation
-
-const schema = Yup.object().shape({
-  guests: Yup.number().typeError("Must be a number").required("Number of guests is required for booking").min(1, "Must be at least 1"),
-});
-
-// yup validation of form
 
 const BookingNumberOfGuests: React.FC<BookingNumberOfGuestsProps> = ({ onGuestsChange }) => {
   const {
@@ -25,8 +14,8 @@ const BookingNumberOfGuests: React.FC<BookingNumberOfGuestsProps> = ({ onGuestsC
     watch,
     formState: { errors },
     trigger,
-  } = useForm<FormData>({
-    resolver: yupResolver(schema),
+  } = useForm<BookingGuestsInterface>({
+    resolver: yupResolver(bookingGuestsSchema),
     defaultValues: {
       guests: 1,
     },

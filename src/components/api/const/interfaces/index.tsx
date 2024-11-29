@@ -13,5 +13,6 @@ import { NavBarProps } from "./navBarInterfaces";
 import { ContactFormInputs } from "./contactFormInterface";
 import { SearchFormInputFP } from "./searchInterface";
 import { SearchFormMainProps } from "./convertedSearchInterface";
+import { BookingGuestsInterface } from "./bookingGuestsInterface";
 
-export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, FilterValues, UpdateProfileInterface, UpdatedProfileData, NavBarProps, ContactFormInputs, SearchFormInputFP, SearchFormMainProps };
+export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, FilterValues, UpdateProfileInterface, UpdatedProfileData, NavBarProps, ContactFormInputs, SearchFormInputFP, SearchFormMainProps, BookingGuestsInterface };
