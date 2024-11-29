@@ -61,7 +61,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
             </picture>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-3 me-md-5" onClick={handleToggleClick}>
-            <img src={bars} />
+            <img src={bars} aria-label="dropdown menu" />
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
             <Nav className="dropdown-active ms-auto align-items-center">
