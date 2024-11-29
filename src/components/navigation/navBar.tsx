@@ -2,7 +2,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { logoSmall, logoLarge } from "../../assets/logo";
 import { profileIcon, bars, signOutIcon } from "../../assets/icon";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { handleSignOut } from "../utils";
 
 interface NavBarProps {
   handleLinkClick: () => void;
@@ -11,15 +12,15 @@ interface NavBarProps {
   addDarkBackground: boolean;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
-  const loggedIn = localStorage.getItem("loggedIn");
-  const isVenueManager = localStorage.getItem("isVenueManager") === "true";
+// const isVenueManager = localStorage.getItem("isVenueManager") === "true";
 
-  const handleSignOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("name");
-    localStorage.removeItem("loggedIn");
-    window.location.reload();
+const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
+  const navigate = useNavigate();
+  const loggedIn = localStorage.getItem("loggedIn");
+
+  const checkIsVenueManager = () => {
+    const value = localStorage.getItem("isVenueManager");
+    return value !== null && value === "true";
   };
 
   return (
@@ -86,7 +87,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
               <NavLink className="nav-link-styling fs-1-125rem m-2" to="contact" onClick={handleLinkClick}>
                 CONTACT
               </NavLink>
-              {isVenueManager && (
+              {checkIsVenueManager() && (
                 <NavLink className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
                   RENT OUT
                 </NavLink>
@@ -114,7 +115,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
                       className="text-light fs-1-125rem fw-light nav-link pt-0"
                       to="/"
                       onClick={() => {
-                        handleSignOut();
+                        handleSignOut(navigate);
                         handleLinkClick();
                       }}
                     >

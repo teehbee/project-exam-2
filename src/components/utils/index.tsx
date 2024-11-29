@@ -10,5 +10,6 @@ import { deleteSearch } from "./deleteSearch";
 import { searchHandler } from "./handleSearch";
 import { handleFilterChange } from "./handleFilterChange";
 import { loadMoreVenues } from "./loadMoreVenues";
+import { handleSignOut } from "./authorization/authorization";
 
-export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMoreVenues };
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMoreVenues, handleSignOut };
