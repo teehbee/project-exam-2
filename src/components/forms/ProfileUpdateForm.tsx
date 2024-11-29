@@ -81,7 +81,6 @@ function ProfileUpdateForm() {
     setUpdateData(updateData as UpdateProfileInterface);
   };
 
-  // useId for setting unique id to form inputs
   const id = React.useId();
 
   return (

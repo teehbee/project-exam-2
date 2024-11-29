@@ -3,12 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { venuesSearchSchema } from "./schemas";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
-import { SearchFormInputInterface } from "../api/const/interfaces";
-import { ConvertedSearchDataInterface } from "../api/const/interfaces";
-
-interface SearchFormMainProps {
-  onSearch: (data: ConvertedSearchDataInterface) => void;
-}
+import { SearchFormInputInterface, ConvertedSearchDataInterface, SearchFormMainProps } from "../api/const/interfaces";
 
 function SearchFormMain({ onSearch }: SearchFormMainProps) {
   const { register, handleSubmit } = useForm<SearchFormInputInterface>({
