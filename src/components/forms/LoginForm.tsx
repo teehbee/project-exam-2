@@ -52,6 +52,7 @@ function LoginForm() {
       localStorage.setItem("accessToken", responseData.data.accessToken);
       localStorage.setItem("name", responseData.data.name);
       localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("isVenueManager", responseData.data.venueManager.toString());
       navigate("/login-complete");
     }
   }, [error, responseData, navigate]);

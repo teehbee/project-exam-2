@@ -1,6 +1,6 @@
 // authorization (POST)
 
-export const LOGIN_ENDPOINT = "auth/login";
+export const LOGIN_ENDPOINT = "auth/login?_holidaze=true";
 export const REGISTER_ENDPOINT = "auth/register";
 
 // venues (GET)

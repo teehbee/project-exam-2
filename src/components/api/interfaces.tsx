@@ -65,6 +65,7 @@ interface UserData {
   banner?: { url: string; alt: string };
   bio?: string | null;
   email: string;
+  venueManager: boolean;
 }
 
 export interface LoginFormInputs {
