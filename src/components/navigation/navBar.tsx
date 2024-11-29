@@ -2,24 +2,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { logoSmall, logoLarge } from "../../assets/logo";
 import { profileIcon, bars, signOutIcon } from "../../assets/icon";
-import { NavLink, Link } from "react-router-dom";
-
-interface NavBarProps {
-  handleLinkClick: () => void;
-  expanded: boolean;
-  handleToggleClick: () => void;
-  addDarkBackground: boolean;
-}
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { handleSignOut, checkIsVenueManager } from "../utils";
+import { NavBarProps } from "../api/const/interfaces";
 
 const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
+  const navigate = useNavigate();
   const loggedIn = localStorage.getItem("loggedIn");
-
-  const handleSignOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("name");
-    localStorage.removeItem("loggedIn");
-    window.location.reload();
-  };
 
   return (
     <header className={`position-relative ${addDarkBackground ? "bg-dark-gray-color" : ""}`}>
@@ -57,7 +46,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
                   <Link className="ps-2" to="profile">
                     <img className="" src={profileIcon} aria-label="profile link" />
                   </Link>
-                  <img className="ps-3 cursor-pointer" src={signOutIcon} aria-label="sign out" onClick={handleSignOut} />
+                  <img className="ps-3 cursor-pointer" src={signOutIcon} aria-label="sign out" onClick={() => handleSignOut(navigate)} />
                 </li>
               </>
             )}
@@ -72,7 +61,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
             </picture>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="me-3 me-md-5" onClick={handleToggleClick}>
-            <img src={bars} />
+            <img src={bars} aria-label="dropdown menu" />
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" className="pe-5">
             <Nav className="dropdown-active ms-auto align-items-center">
@@ -85,9 +74,12 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
               <NavLink className="nav-link-styling fs-1-125rem m-2" to="contact" onClick={handleLinkClick}>
                 CONTACT
               </NavLink>
-              <NavLink className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
-                RENT OUT
-              </NavLink>
+              {checkIsVenueManager() && (
+                <NavLink className="nav-link-styling fs-1-125rem m-2" to="rent-out" onClick={handleLinkClick}>
+                  RENT OUT
+                </NavLink>
+              )}
+
               <Link to="venues" onClick={handleLinkClick}>
                 <button className="main-button-red fs-1-125rem ms-2">BOOK NOW</button>
               </Link>
@@ -110,7 +102,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
                       className="text-light fs-1-125rem fw-light nav-link pt-0"
                       to="/"
                       onClick={() => {
-                        handleSignOut();
+                        handleSignOut(navigate);
                         handleLinkClick();
                       }}
                     >

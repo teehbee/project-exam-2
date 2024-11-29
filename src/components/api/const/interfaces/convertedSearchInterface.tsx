@@ -5,3 +5,7 @@ export interface ConvertedSearchDataInterface {
   name?: string;
   guests?: number;
 }
+
+export interface SearchFormMainProps {
+  onSearch: (data: ConvertedSearchDataInterface) => void;
+}

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { CreateVenueFormInputs, SingleVenueResponse } from "../api/const/interfaces";
 import { createVenueSchema } from "./schemas";
@@ -14,7 +13,7 @@ import { getVenueEndpoint } from "../api/const";
 function UpdateVenueForm() {
   const [updateVenueData, setUpdateVenueData] = useState<CreateVenueFormInputs | null>(null);
   const [loginLoader, setLoginLoader] = useState(false);
-  const [updateError, setUpdateError] = useState(false);
+  const [updateError, setUpdateError] = useState<string | null>(null);
   const [initialLoader, setInitialLoader] = useState(false);
   const navigate = useNavigate();
 
@@ -29,13 +28,15 @@ function UpdateVenueForm() {
       setInitialLoader(true);
     }
     if (error) {
-      console.error(error);
+      setUpdateError("Something went wrong when fetching your venue data, please try again!");
       setInitialLoader(false);
     }
     if (responseData) {
       setInitialLoader(false);
     }
-  }, [error, responseData, navigate, loading]);
+  }, [error, responseData, loading]);
+
+  // Api call for updating, triggered by onSubmit
 
   const { data: updateVenueResponse, error: apiError, loading: isLoading } = useApi<CreateVenueFormInputs, null>(getVenueEndpoint(id as string), "PUT", updateVenueData, true, false);
 
@@ -44,22 +45,14 @@ function UpdateVenueForm() {
       setLoginLoader(true);
     }
     if (apiError) {
-      console.error(apiError);
-      setUpdateError(true);
+      setUpdateError("Something went wrong, please try again!");
       setLoginLoader(false);
     }
-    // if (!updateVenueData) {
-    //   setUpdateError(true);
-    //   return;
-    // }
     if (updateVenueResponse) {
-      // console.log("Venue updated successfully");
-      navigate("/venue-updated");
+      navigate(`/venue/${id}`);
       setLoginLoader(false);
     }
-  }, [updateVenueResponse, apiError, isLoading, navigate, updateVenueData, setUpdateError]);
-
-  console.log(responseData);
+  }, [updateVenueResponse, apiError, isLoading, navigate, updateVenueData, setUpdateError, id]);
 
   // Form validation including default values for checkboxes
   const {
@@ -80,22 +73,17 @@ function UpdateVenueForm() {
   });
 
   const onSubmit: SubmitHandler<CreateVenueFormInputs> = async (data) => {
-    try {
-      const meta = {
-        wifi: data.wifi,
-        parking: data.parking,
-        breakfast: data.breakfast,
-        pets: data.pets,
-      };
-      const createUpdateData = {
-        ...data,
-        meta,
-      };
-      setUpdateVenueData(createUpdateData);
-    } catch (error) {
-      console.error("Error updating venue:", error);
-      setUpdateError(true);
-    }
+    const meta = {
+      wifi: data.wifi,
+      parking: data.parking,
+      breakfast: data.breakfast,
+      pets: data.pets,
+    };
+    const createUpdateData = {
+      ...data,
+      meta,
+    };
+    setUpdateVenueData(createUpdateData);
   };
 
   // Set initial values for correct validation
@@ -111,6 +99,7 @@ function UpdateVenueForm() {
       setValue("parking", responseData.data.meta.parking || false);
       setValue("breakfast", responseData.data.meta.breakfast || false);
       setValue("pets", responseData.data.meta.pets || false);
+      setValue("rating", responseData.data.rating);
       trigger();
     }
   }, [responseData, setValue, trigger]);
@@ -185,6 +174,13 @@ function UpdateVenueForm() {
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1" id="updateGuests" {...register("maxGuests")} defaultValue={responseData?.data.maxGuests} />
                 {errors.maxGuests && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.maxGuests.message}</p>}
               </div>
+              <div className="form-group d-flex flex-column">
+                <label htmlFor={id + "-rating"} className="mt-2 fs-0-75rem-to-1rem">
+                  Star rating of hotel
+                </label>
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="Between 1 and 5 stars" id={id + "-rating"} {...register("rating")} min="0" max="5" />
+                {errors.rating && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.rating.message}</p>}
+              </div>
               <div className="ms-1 row pt-3 pt-md-4 pb-3">
                 <div className="col-6 form-check d-flex align-items-center">
                   <input className="form-check-input cursor-pointer" type="checkbox" id="updateWifi" {...register("wifi")} defaultChecked={responseData?.data.meta.wifi} />
@@ -213,8 +209,8 @@ function UpdateVenueForm() {
                   </label>
                 </div>
               </div>
-              <button className="main-button-gray mt-4 mb-2 p-1 p-md-2">Create venue {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
-              {updateError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">No updates were made.</p>}
+              <button className="main-button-gray mt-4 mb-2 p-1 p-md-2">Update venue {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
+              {updateError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">{updateError}</p>}
             </form>
           </div>
         </div>

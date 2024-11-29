@@ -5,15 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setFrontpageSearchData } from "../../redux/actions/frontpageSearchActions";
 import { frontpageSearchSchema } from "./schemas";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
-
-// Define types for SearchFormInputFP and SerializedSearchFormInputFP
-
-export interface SearchFormInputFP {
-  location: string;
-  dateFrom: string;
-  dateTo: string;
-  guests: number;
-}
+import { SearchFormInputFP } from "../api/const/interfaces";
 
 function SearchForm() {
   const dispatch = useDispatch();

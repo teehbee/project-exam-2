@@ -14,7 +14,7 @@ interface VenueManagerBookingsData {
 const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) => {
   const id = venue.id;
   const name = venue.name;
-  const img = venue.media.length > 0 ? venue.media[0].url : "";
+  const img = venue.media.length > 0 ? venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const [show, setShow] = useState(false);
   const [deleteTrigger, setDeleteTrigger] = useState(false);
@@ -67,7 +67,7 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
     <div className="profile-booking-container form-box-shadow mt-3 row mx-1 mx-md-0">
       <div className="col-4 col-md-3 px-0">
         <Link to={`/venue/${id}`}>
-          <img className="form-box-shadow" src={img} alt={alt} />
+          <img className="form-box-shadow" src={img} alt={alt || "venue image"} />
         </Link>
       </div>
       <div className="col-8 col-md-9 text-start ps-3 ps-md-5 py-3 d-flex justify-content-between">

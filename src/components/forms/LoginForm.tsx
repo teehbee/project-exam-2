@@ -39,8 +39,6 @@ function LoginForm() {
     if (responseData) {
       setLoginLoader(false);
 
-      // Save token and name to redux reducer
-
       localStorage.setItem("accessToken", responseData.data.accessToken);
       localStorage.setItem("name", responseData.data.name);
       localStorage.setItem("loggedIn", "true");
@@ -61,8 +59,6 @@ function LoginForm() {
 
     setLoginData(loginData);
   };
-
-  // useId for setting unique id to form inputs
 
   const id = React.useId();
 

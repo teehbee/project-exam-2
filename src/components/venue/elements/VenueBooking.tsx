@@ -87,6 +87,8 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     setIsBooking(true);
   };
 
+  console.log(bookingData);
+
   return (
     <div className="col-12 col-md-7">
       <BookingCalendar venue={venue} onDateChange={handleBookingDates} />

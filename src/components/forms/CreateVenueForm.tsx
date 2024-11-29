@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createVenueSchema } from "./schemas";
-import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { CreateVenueFormInputs } from "../api/const/interfaces";
 import { useApi } from "../api";
 import { CREATE_VENUE_ENDPOINT } from "../api/const";
 
-// Yup schema for validation
-
 function CreateVenueForm() {
-  // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
   const [createVenueError, setCreateVenueError] = useState<string | null>(null);
+  const [createVenueData, setCreateVenueData] = useState<CreateVenueFormInputs | null>(null);
   const navigate = useNavigate();
+
   // Form validation including default values for checkboxes
+
   const {
     register,
     handleSubmit,
@@ -32,14 +31,12 @@ function CreateVenueForm() {
     },
   });
 
-  // State for setting data for creating venue, triggered by the onSubmit
-  const [createVenueData, setCreateVenueData] = useState<CreateVenueFormInputs | null>(null);
-
+  // Api call for registering venue
   const { data: responseData, error, loading } = useApi<CreateVenueFormInputs, null>(CREATE_VENUE_ENDPOINT, "POST", createVenueData, true, false);
 
   useEffect(() => {
     if (error) {
-      setCreateVenueError(error);
+      setCreateVenueError("Something went wrong, please try again!");
       setLoginLoader(false);
     }
     if (responseData) {
@@ -136,6 +133,13 @@ function CreateVenueForm() {
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1" id={id + "-maxGuests"} {...register("maxGuests")} />
                 {errors.maxGuests && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.maxGuests.message}</p>}
               </div>
+              <div className="form-group d-flex flex-column">
+                <label htmlFor={id + "-rating"} className="mt-2 fs-0-75rem-to-1rem">
+                  Star rating of hotel
+                </label>
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="Between 1 and 5 stars" id={id + "-rating"} {...register("rating")} min="0" max="5" defaultValue="0" />
+                {errors.rating && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.rating.message}</p>}
+              </div>
               <div className="ms-1 row pt-3 pt-md-4 pb-3">
                 <div className="col-6 form-check d-flex align-items-center">
                   <input className="form-check-input cursor-pointer" type="checkbox" value="" id={id + "-wifi"} {...register("wifi")} />
@@ -165,7 +169,7 @@ function CreateVenueForm() {
                 </div>
               </div>
               <button className="main-button-gray mt-4 mb-2 p-1 p-md-2">Create venue {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
-              {createVenueError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">Something went wrong, don't try again.</p>}
+              {createVenueError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">{createVenueError}</p>}
             </form>
           </div>
         </div>

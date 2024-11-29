@@ -3,12 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { venuesSearchSchema } from "./schemas";
 import { getTodaysDate, getTomorrowsDate } from "../utils";
-import { SearchFormInputInterface } from "../api/const/interfaces";
-import { ConvertedSearchDataInterface } from "../api/const/interfaces";
-
-interface SearchFormMainProps {
-  onSearch: (data: ConvertedSearchDataInterface) => void;
-}
+import { SearchFormInputInterface, ConvertedSearchDataInterface, SearchFormMainProps } from "../api/const/interfaces";
 
 function SearchFormMain({ onSearch }: SearchFormMainProps) {
   const { register, handleSubmit } = useForm<SearchFormInputInterface>({
@@ -60,7 +55,7 @@ function SearchFormMain({ onSearch }: SearchFormMainProps) {
             <label htmlFor={id + "-guests"} className="py-2 text-light fs-0-75rem-to-1rem">
               Number of guests
             </label>
-            <input type="number" id={id + "-venueSearchGuestNumberVP"} defaultValue={1} {...register("guests")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+            <input type="number" id={id + "-guests"} defaultValue={1} {...register("guests")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
           </div>
         </div>
         <button className="main-button-red mt-2 mt-md-4 fs-1-125rem">SEARCH</button>

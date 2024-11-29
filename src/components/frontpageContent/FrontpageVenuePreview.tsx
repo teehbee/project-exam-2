@@ -7,14 +7,10 @@ import { FrontPageLoader, FrontPageError } from "./";
 function FrontpageVenuePreview() {
   const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false);
 
-  // console.log("Fetched Data:", data);
-
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
   const venues = data?.data || [];
-
-  // Will display the 4 newest venues
 
   return (
     <section className="container text-center mt-125px mt-md-4">
@@ -24,7 +20,7 @@ function FrontpageVenuePreview() {
           <div key={venue.id} className="col-6 col-lg-3 fp-img-container">
             <div className="position-relative">
               <Link to={`venue/${venue.id}`}>
-                <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url} alt={venue.media[0]?.alt || "Venue image"} />
+                <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url || "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg"} alt={venue.media[0]?.alt || "Venue image"} />
                 <div className="fp-img-overlay">
                   <div className="fp-img-overlay-text">
                     <div className="text-start">
@@ -41,7 +37,7 @@ function FrontpageVenuePreview() {
         ))}
       </div>
       <div className="text-end">
-        <Link className="text-decoration-none" to="venues#venues-list">
+        <Link className="text-decoration-none" to="/venues#venues-list">
           <p className="secondary-font text-decoration-none dark-font fs-1rem-to-1-5rem">See full list..</p>
         </Link>
       </div>

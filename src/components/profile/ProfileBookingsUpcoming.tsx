@@ -8,9 +8,8 @@ interface bookingData {
 }
 
 const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
-  // Variables
   const id = booking.venue.id;
-  const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "";
+  const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
   const alt = booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Accommodation image";
   const name = booking.venue.name;
   const city = booking.venue.location?.city || "Surprise destination";
@@ -27,7 +26,6 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
 
   const { totalCost } = useCalculateTotalCost(formattedDateFrom, formattedDateTo, price);
 
-  // console.log("booking", booking);
   return (
     <div className="profile-booking-container form-box-shadow mt-3 row mx-1 mx-md-0 mb-4 mb-md-5">
       <div className="col-4 col-md-3 px-0">
