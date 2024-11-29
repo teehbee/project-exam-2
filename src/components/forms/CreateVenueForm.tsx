@@ -12,11 +12,12 @@ import { CREATE_VENUE_ENDPOINT } from "../api/const";
 // Yup schema for validation
 
 function CreateVenueForm() {
-  // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
   const [createVenueError, setCreateVenueError] = useState<string | null>(null);
   const navigate = useNavigate();
+
   // Form validation including default values for checkboxes
+
   const {
     register,
     handleSubmit,
@@ -135,6 +136,13 @@ function CreateVenueForm() {
                 </label>
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1" id={id + "-maxGuests"} {...register("maxGuests")} />
                 {errors.maxGuests && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.maxGuests.message}</p>}
+              </div>
+              <div className="form-group d-flex flex-column">
+                <label htmlFor={id + "-rating"} className="mt-2 fs-0-75rem-to-1rem">
+                  Star rating of hotel
+                </label>
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="Between 1 and 5 stars" id={id + "-rating"} {...register("rating")} />
+                {errors.rating && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.rating.message}</p>}
               </div>
               <div className="ms-1 row pt-3 pt-md-4 pb-3">
                 <div className="col-6 form-check d-flex align-items-center">

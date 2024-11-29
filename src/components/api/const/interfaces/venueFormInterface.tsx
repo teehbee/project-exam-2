@@ -19,4 +19,5 @@ export interface CreateVenueFormInputs {
   parking?: boolean;
   breakfast?: boolean;
   pets?: boolean;
+  rating?: number;
 }
