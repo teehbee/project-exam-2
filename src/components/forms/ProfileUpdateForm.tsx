@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updateProfileSchema } from "./schemas";
-import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { UpdateProfileInterface } from "../api/const/interfaces";
 import { useApi } from "../api";
@@ -67,7 +66,12 @@ function ProfileUpdateForm() {
     if (isVenueManager) {
       delete data.venueManager;
     }
-    const updateData = data;
+    const updateData = {
+      ...data,
+      avatar: {
+        url: data.url,
+      },
+    };
     setLoginLoader(true);
     setUpdateData(updateData);
   };
