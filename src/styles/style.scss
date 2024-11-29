@@ -223,7 +223,7 @@ $custom-fs-4-rem: 4rem;
 // Navigation
 
 .active {
-  font-weight: bold;
+  text-shadow: 0 0 1px white;
 }
 
 .navbar-toggler {
@@ -254,7 +254,7 @@ header .active {
 }
 
 .nav-link-styling:hover {
-  font-weight: 400;
+  text-shadow: 0 0 1px white, 0 0 1px white;
 }
 
 .navbar-toggler:focus {
@@ -274,7 +274,7 @@ header .active {
 }
 
 .main-button-red:hover {
-  font-weight: 300;
+  text-shadow: 0 0 1px white;
   background-color: #871b25;
 }
 
@@ -291,6 +291,7 @@ header .active {
 
 .main-button-gray:hover {
   background-color: #5f5e5e;
+  text-shadow: 0 0 1px white, 0 0 1px white;
 }
 
 .registration-button-gray {
@@ -607,7 +608,7 @@ header .active {
   }
   .main-button-red:hover,
   .main-button-gray:hover {
-    font-weight: 500;
+    text-shadow: 0 0 1px white, 0 0 1px white;
   }
   .preview-tile-img {
     width: 200px;
