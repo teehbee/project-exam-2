@@ -11,5 +11,6 @@ import { searchHandler } from "./handleSearch";
 import { handleFilterChange } from "./handleFilterChange";
 import { loadMoreVenues } from "./loadMoreVenues";
 import { handleSignOut } from "./authorization/authorization";
+import { checkIsVenueManager } from "./authorization/checkIsVenueManager";
 
-export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMoreVenues, handleSignOut };
+export { useRedirectTimer, getTodaysDate, getTomorrowsDate, useScrollToTop, checkForFilterChanges, setInitialFilterValues, formatDate, useCalculateTotalCost, isDateAvailable, filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMoreVenues, handleSignOut, checkIsVenueManager };

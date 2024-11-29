@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { logoSmall, logoLarge } from "../../assets/logo";
 import { profileIcon, bars, signOutIcon } from "../../assets/icon";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { handleSignOut } from "../utils";
+import { handleSignOut, checkIsVenueManager } from "../utils";
 
 interface NavBarProps {
   handleLinkClick: () => void;
@@ -17,11 +17,6 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
   const navigate = useNavigate();
   const loggedIn = localStorage.getItem("loggedIn");
-
-  const checkIsVenueManager = () => {
-    const value = localStorage.getItem("isVenueManager");
-    return value !== null && value === "true";
-  };
 
   return (
     <header className={`position-relative ${addDarkBackground ? "bg-dark-gray-color" : ""}`}>
@@ -59,7 +54,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggle
                   <Link className="ps-2" to="profile">
                     <img className="" src={profileIcon} aria-label="profile link" />
                   </Link>
-                  <img className="ps-3 cursor-pointer" src={signOutIcon} aria-label="sign out" onClick={handleSignOut} />
+                  <img className="ps-3 cursor-pointer" src={signOutIcon} aria-label="sign out" onClick={() => handleSignOut(navigate)} />
                 </li>
               </>
             )}
