@@ -25,8 +25,8 @@ function ContactForm() {
     setTimeout(() => {
       setLoginLoader(false);
       navigate("/message-sent");
-    }, 1000);
-    console.log(data);
+    }, 2000);
+    console.log("contact data is", data);
   };
 
   const id = React.useId();
