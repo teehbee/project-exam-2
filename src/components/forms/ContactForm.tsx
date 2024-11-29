@@ -1,45 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { contactFormSchema } from "./schemas";
 import Spinner from "react-bootstrap/Spinner";
-
-const contactSchema = yup.object().shape({
-  name: yup.string().required("Please enter your name"),
-  email: yup
-    .string()
-    .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
-    .required("Email is required"),
-  message: yup.string().required("Message is required"),
-});
-
-// Types for contact message
-
-interface ContactFormInputs {
-  name: string;
-  email: string;
-  message: string;
-}
+import { ContactFormInputs } from "../api/const/interfaces";
 
 function ContactForm() {
-  // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
-  // For navigating after login
   const navigate = useNavigate();
+
   // Form validation
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ContactFormInputs>({
-    resolver: yupResolver(contactSchema),
+    resolver: yupResolver(contactFormSchema),
   });
 
   const onSubmit: SubmitHandler<ContactFormInputs> = (data) => {
-    // Set loader and navigate to success page for demonstration
-    // Contact message is console logged
     setLoginLoader(true);
     setTimeout(() => {
       setLoginLoader(false);
@@ -48,7 +29,6 @@ function ContactForm() {
     console.log(data);
   };
 
-  // useId for setting unique id to form inputs
   const id = React.useId();
 
   return (
