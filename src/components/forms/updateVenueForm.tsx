@@ -36,7 +36,7 @@ function UpdateVenueForm() {
     }
   }, [error, responseData, loading]);
 
-  console.log(responseData);
+  // Api call for updating, triggered by onSubmit
 
   const { data: updateVenueResponse, error: apiError, loading: isLoading } = useApi<CreateVenueFormInputs, null>(getVenueEndpoint(id as string), "PUT", updateVenueData, true, false);
 
@@ -49,10 +49,10 @@ function UpdateVenueForm() {
       setLoginLoader(false);
     }
     if (updateVenueResponse) {
-      navigate("/profile");
+      navigate(`/venue/${id}`);
       setLoginLoader(false);
     }
-  }, [updateVenueResponse, apiError, isLoading, navigate, updateVenueData, setUpdateError]);
+  }, [updateVenueResponse, apiError, isLoading, navigate, updateVenueData, setUpdateError, id]);
 
   // Form validation including default values for checkboxes
   const {
