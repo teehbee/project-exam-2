@@ -48,12 +48,7 @@ function UpdateVenueForm() {
       setUpdateError(true);
       setLoginLoader(false);
     }
-    // if (!updateVenueData) {
-    //   setUpdateError(true);
-    //   return;
-    // }
     if (updateVenueResponse) {
-      // console.log("Venue updated successfully");
       navigate("/venue-updated");
       setLoginLoader(false);
     }
@@ -111,6 +106,7 @@ function UpdateVenueForm() {
       setValue("parking", responseData.data.meta.parking || false);
       setValue("breakfast", responseData.data.meta.breakfast || false);
       setValue("pets", responseData.data.meta.pets || false);
+      setValue("rating", responseData.data.rating);
       trigger();
     }
   }, [responseData, setValue, trigger]);
@@ -184,6 +180,13 @@ function UpdateVenueForm() {
                 </label>
                 <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="E.g. 1" id="updateGuests" {...register("maxGuests")} defaultValue={responseData?.data.maxGuests} />
                 {errors.maxGuests && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.maxGuests.message}</p>}
+              </div>
+              <div className="form-group d-flex flex-column">
+                <label htmlFor={id + "-rating"} className="mt-2 fs-0-75rem-to-1rem">
+                  Star rating of hotel
+                </label>
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="Between 1 and 5 stars" id={id + "-rating"} {...register("rating")} min="0" max="5" />
+                {errors.rating && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.rating.message}</p>}
               </div>
               <div className="ms-1 row pt-3 pt-md-4 pb-3">
                 <div className="col-6 form-check d-flex align-items-center">

@@ -137,7 +137,7 @@ function CreateVenueForm() {
                 <label htmlFor={id + "-rating"} className="mt-2 fs-0-75rem-to-1rem">
                   Star rating of hotel
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="Between 1 and 5 stars" id={id + "-rating"} {...register("rating")} min="0" max="5" value="0" />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="number" placeholder="Between 1 and 5 stars" id={id + "-rating"} {...register("rating")} min="0" max="5" defaultValue="0" />
                 {errors.rating && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.rating.message}</p>}
               </div>
               <div className="ms-1 row pt-3 pt-md-4 pb-3">
