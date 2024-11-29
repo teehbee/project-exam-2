@@ -20,7 +20,7 @@ function FrontpageVenuePreview() {
           <div key={venue.id} className="col-6 col-lg-3 fp-img-container">
             <div className="position-relative">
               <Link to={`venue/${venue.id}`}>
-                <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url} alt={venue.media[0]?.alt || "Venue image"} />
+                <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url || "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg"} alt={venue.media[0]?.alt || "Venue image"} />
                 <div className="fp-img-overlay">
                   <div className="fp-img-overlay-text">
                     <div className="text-start">
