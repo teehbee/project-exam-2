@@ -5,7 +5,7 @@ interface Location {
 
 interface Media {
   url: string;
-  alt: string;
+  alt?: string;
 }
 
 export interface CreateVenueFormInputs {
@@ -19,5 +19,5 @@ export interface CreateVenueFormInputs {
   parking?: boolean;
   breakfast?: boolean;
   pets?: boolean;
-  rating?: number;
+  rating: number;
 }
