@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,12 +6,16 @@ import { updateProfileSchema } from "./schemas";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { UpdateProfileInterface } from "../api/const/interfaces";
+import { useApi } from "../api";
+import { getProfileEndpoint } from "../api/const/variables";
 
 // Yup schema for validation
 
 function ProfileUpdateForm() {
   // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
+  // Check if user is already venue manager, if not, checkbox for becoming venueManager is displayed
+  const [isVenueManager, setIsVenueManager] = useState(false);
   // For navigating after login
   const navigate = useNavigate();
   // Form validation
@@ -26,8 +30,19 @@ function ProfileUpdateForm() {
     },
   });
 
+  // Check status of isVenueManager
+
+  useEffect(() => {
+    const venueManagerStatus = localStorage.getItem("isVenueManager") === "true";
+    setIsVenueManager(venueManagerStatus);
+  }, []);
+
   const onSubmit: SubmitHandler<UpdateProfileInterface> = (data) => {
     setLoginLoader(true);
+    // Make sure venueManager choice is not sent to api if isVenueManager is true. This to not revert status to default value
+    if (isVenueManager) {
+      delete data.venueManager;
+    }
     setTimeout(() => {
       setLoginLoader(false);
       navigate("/profile");
