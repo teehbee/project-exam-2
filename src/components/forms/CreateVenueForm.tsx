@@ -14,6 +14,7 @@ import { CREATE_VENUE_ENDPOINT } from "../api/const";
 function CreateVenueForm() {
   const [loginLoader, setLoginLoader] = useState(false);
   const [createVenueError, setCreateVenueError] = useState<string | null>(null);
+  const [createVenueData, setCreateVenueData] = useState<CreateVenueFormInputs | null>(null);
   const navigate = useNavigate();
 
   // Form validation including default values for checkboxes
@@ -33,14 +34,12 @@ function CreateVenueForm() {
     },
   });
 
-  // State for setting data for creating venue, triggered by the onSubmit
-  const [createVenueData, setCreateVenueData] = useState<CreateVenueFormInputs | null>(null);
-
+  // Api call for registering venue
   const { data: responseData, error, loading } = useApi<CreateVenueFormInputs, null>(CREATE_VENUE_ENDPOINT, "POST", createVenueData, true, false);
 
   useEffect(() => {
     if (error) {
-      setCreateVenueError(error);
+      setCreateVenueError("Something went wrong, please try again!");
       setLoginLoader(false);
     }
     if (responseData) {
@@ -173,7 +172,7 @@ function CreateVenueForm() {
                 </div>
               </div>
               <button className="main-button-gray mt-4 mb-2 p-1 p-md-2">Create venue {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
-              {createVenueError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">Something went wrong, don't try again.</p>}
+              {createVenueError && <p className="text-danger pt-2 fs-0-75rem-to-0-875rem">{createVenueError}</p>}
             </form>
           </div>
         </div>
