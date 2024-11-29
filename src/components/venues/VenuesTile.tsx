@@ -16,7 +16,7 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const img = venue.media.length > 0 ? venue.media[0].url : "";
+  const img = venue.media.length > 0 ? venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const city = venue.location?.city || "Surprise destination";
   const country = venue.location?.country || "";
