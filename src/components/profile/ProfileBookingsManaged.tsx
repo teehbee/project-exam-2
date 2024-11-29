@@ -67,7 +67,7 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
     <div className="profile-booking-container form-box-shadow mt-3 row mx-1 mx-md-0">
       <div className="col-4 col-md-3 px-0">
         <Link to={`/venue/${id}`}>
-          <img className="form-box-shadow" src={img} alt={alt} />
+          <img className="form-box-shadow" src={img} alt={alt || "venue image"} />
         </Link>
       </div>
       <div className="col-8 col-md-9 text-start ps-3 ps-md-5 py-3 d-flex justify-content-between">
