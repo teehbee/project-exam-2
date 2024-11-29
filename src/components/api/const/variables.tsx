@@ -1,6 +1,6 @@
 // authorization (POST)
 
-export const LOGIN_ENDPOINT = "auth/login";
+export const LOGIN_ENDPOINT = "auth/login?_holidaze=true";
 export const REGISTER_ENDPOINT = "auth/register";
 
 // venues (GET)
@@ -19,6 +19,12 @@ export const CREATE_VENUE_ENDPOINT = "holidaze/venues";
 
 export const getProfileEndpoint = (name: string): string => {
   return `holidaze/profiles/${name}?_bookings=true&_venues=true`;
+};
+
+// update profile
+
+export const getProfileUpdateEndpoint = (name: string): string => {
+  return `holidaze/profiles/${name}`;
 };
 
 // booking (POST)
