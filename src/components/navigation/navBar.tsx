@@ -6,8 +6,6 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { handleSignOut, checkIsVenueManager } from "../utils";
 import { NavBarProps } from "../api/const/interfaces";
 
-// const isVenueManager = localStorage.getItem("isVenueManager") === "true";
-
 const NavBar: React.FC<NavBarProps> = ({ handleLinkClick, expanded, handleToggleClick, addDarkBackground }) => {
   const navigate = useNavigate();
   const loggedIn = localStorage.getItem("loggedIn");
