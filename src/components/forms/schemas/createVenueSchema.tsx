@@ -22,6 +22,7 @@ export const createVenueSchema = yup.object().shape({
     .required("Max number of guests is required")
     .transform((_, originalValue) => (originalValue === "" ? undefined : Number(originalValue)))
     .min(1, "Number of guests must be at least 1"),
+  rating: yup.number(),
   wifi: yup.boolean(),
   parking: yup.boolean(),
   breakfast: yup.boolean(),
