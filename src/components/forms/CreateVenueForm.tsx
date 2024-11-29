@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createVenueSchema } from "./schemas";
-import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { CreateVenueFormInputs } from "../api/const/interfaces";
 import { useApi } from "../api";
 import { CREATE_VENUE_ENDPOINT } from "../api/const";
-
-// Yup schema for validation
 
 function CreateVenueForm() {
   const [loginLoader, setLoginLoader] = useState(false);
