@@ -8,6 +8,6 @@ import { ConvertedSearchDataInterface } from "./convertedSearchInterface";
 import { SearchReturnInterface } from "./searchReturnInterface";
 import { Bookings } from "./searchReturnInterface";
 import { FilterValues } from "./facilityFilterInterface";
-import { UpdateProfileInterface } from "./profileUpdateInterface";
+import { UpdateProfileInterface, UpdatedProfileData } from "./profileUpdateInterface";
 
-export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, FilterValues, UpdateProfileInterface };
+export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, FilterValues, UpdateProfileInterface, UpdatedProfileData };

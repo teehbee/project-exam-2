@@ -4,11 +4,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updateProfileSchema } from "./schemas";
 import Spinner from "react-bootstrap/Spinner";
-import { UpdateProfileInterface } from "../api/const/interfaces";
+import { UpdateProfileInterface, UpdatedProfileData } from "../api/const/interfaces";
 import { useApi } from "../api";
 import { getProfileUpdateEndpoint } from "../api/const/variables";
-
-// Yup schema for validation
 
 function ProfileUpdateForm() {
   // Fetching name for implementing into api endpoint
@@ -16,7 +14,7 @@ function ProfileUpdateForm() {
   // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
 
-  const [updateError, setUpdateError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Check if user is already venue manager, if not, checkbox for becoming venueManager is displayed
   const [isVenueManager, setIsVenueManager] = useState(false);
@@ -51,7 +49,7 @@ function ProfileUpdateForm() {
 
   useEffect(() => {
     if (error) {
-      setUpdateError(true);
+      setErrorMessage("Something went wrong, please try again!");
       setLoginLoader(false);
     }
     if (responseData) {
@@ -66,14 +64,28 @@ function ProfileUpdateForm() {
     if (isVenueManager) {
       delete data.venueManager;
     }
-    const updateData = {
-      ...data,
-      avatar: {
-        url: data.url,
-      },
-    };
+    // If no data, error is shown and return
+    if (!data.url && !data.bio && !data.venueManager) {
+      setErrorMessage("No updates provided, form will not be submitted!");
+      setLoginLoader(false);
+      return;
+    }
+    // Only add data to api call if present, making all fields optional
+    const updateData: UpdatedProfileData = {};
+    if (data.url) {
+      updateData.avatar = { url: data.url };
+    }
+    if (data.bio) {
+      updateData.bio = data.bio;
+    }
+    if (!isVenueManager && data.venueManager !== undefined) {
+      updateData.venueManager = data.venueManager;
+      if (data.venueManager) {
+        localStorage.setItem("isVenueManager", "true");
+      }
+    }
     setLoginLoader(true);
-    setUpdateData(updateData);
+    setUpdateData(updateData as UpdateProfileInterface);
   };
 
   // useId for setting unique id to form inputs
@@ -117,7 +129,7 @@ function ProfileUpdateForm() {
               <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
                 Update profile {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
               </button>
-              {updateError && <p className="text-danger pt-3 ps-1 fs-0-75rem-to-1rem">Something went wrong</p>}
+              {errorMessage && <p className="text-danger pt-3 ps-1 fs-0-75rem-to-1rem">{errorMessage}</p>}
             </form>
           </div>
         </div>
