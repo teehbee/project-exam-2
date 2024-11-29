@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { loginFormSchema } from "./schemas";
 import { Link, useNavigate } from "react-router-dom";
 import { useApi } from "../api";
 import { LOGIN_ENDPOINT } from "../api/const";
@@ -9,14 +9,6 @@ import { LoginFormInputs, LoginResponse } from "../api/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation
-
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
-    .required("Email is required"),
-  password: yup.string().required("Password is required"),
-});
 
 function LoginForm() {
   const [loginError, setLoginError] = useState<string | null>(null);
@@ -27,7 +19,7 @@ function LoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginFormSchema),
     mode: "onSubmit",
   });
 
