@@ -1,6 +1,6 @@
 import { SET_FRONTPAGE_SEARCH_DATA } from "../actions/frontpageSearchActions";
 import { CLEAR_FRONTPAGE_SEARCH_DATA } from "../actions/frontpageRemoveSearchAction";
-import { SearchFormInputFP } from "../../components/forms/SearchForm";
+import { SearchFormInputFP } from "../../components/api/const/interfaces";
 
 // Reducer for saving search data from frontpage
 
