@@ -9,18 +9,20 @@ import { useApi } from "../api";
 import { getProfileUpdateEndpoint } from "../api/const/variables";
 
 function ProfileUpdateForm() {
-  // Fetching name for implementing into api endpoint
   const name = localStorage.getItem("name");
-  // State for displaying loader in submit button
+
   const [loginLoader, setLoginLoader] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  // Check if user is already venue manager, if not, checkbox for becoming venueManager is displayed
   const [isVenueManager, setIsVenueManager] = useState(false);
+  const [updateData, setUpdateData] = useState<UpdateProfileInterface | null>(null);
 
-  // For navigating after login
   const navigate = useNavigate();
+
+  // Check status of isVenueManager
+  useEffect(() => {
+    const venueManagerStatus = localStorage.getItem("isVenueManager") === "true";
+    setIsVenueManager(venueManagerStatus);
+  }, []);
 
   // Form validation
   const {
@@ -33,16 +35,6 @@ function ProfileUpdateForm() {
       venueManager: false,
     },
   });
-
-  // Check status of isVenueManager
-
-  useEffect(() => {
-    const venueManagerStatus = localStorage.getItem("isVenueManager") === "true";
-    setIsVenueManager(venueManagerStatus);
-  }, []);
-
-  // State for setting date for updating profile
-  const [updateData, setUpdateData] = useState<UpdateProfileInterface | null>(null);
 
   // Api call for updating profile
   const { data: responseData, error, loading } = useApi<UpdateProfileInterface, null>(name ? getProfileUpdateEndpoint(name) : "", "PUT", updateData, true, false);
@@ -60,7 +52,8 @@ function ProfileUpdateForm() {
 
   const onSubmit: SubmitHandler<UpdateProfileInterface> = async (data) => {
     setLoginLoader(true);
-    // Make sure venueManager choice is not sent to api if isVenueManager is true. This to not revert status to default value
+    // Make sure venueManager choice is not sent to api if isVenueManager is true.
+    // This to not revert status to default value
     if (isVenueManager) {
       delete data.venueManager;
     }
@@ -70,7 +63,7 @@ function ProfileUpdateForm() {
       setLoginLoader(false);
       return;
     }
-    // Only add data to api call if present, making all fields optional
+    // Only add data to api call if present, making all fields optional and to avoid breaking api call
     const updateData: UpdatedProfileData = {};
     if (data.url) {
       updateData.avatar = { url: data.url };
