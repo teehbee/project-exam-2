@@ -16,10 +16,15 @@ function ProfileUpdateForm() {
   const name = localStorage.getItem("name");
   // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
+
+  const [updateError, setUpdateError] = useState(false);
+
   // Check if user is already venue manager, if not, checkbox for becoming venueManager is displayed
   const [isVenueManager, setIsVenueManager] = useState(false);
+
   // For navigating after login
   const navigate = useNavigate();
+
   // Form validation
   const {
     register,
@@ -39,17 +44,32 @@ function ProfileUpdateForm() {
     setIsVenueManager(venueManagerStatus);
   }, []);
 
-  const onSubmit: SubmitHandler<UpdateProfileInterface> = (data) => {
+  // State for setting date for updating profile
+  const [updateData, setUpdateData] = useState<UpdateProfileInterface | null>(null);
+
+  // Api call for updating profile
+  const { data: responseData, error, loading } = useApi<UpdateProfileInterface, null>(name ? getProfileUpdateEndpoint(name) : "", "PUT", updateData, true, false);
+
+  useEffect(() => {
+    if (error) {
+      setUpdateError(true);
+      setLoginLoader(false);
+    }
+    if (responseData) {
+      setLoginLoader(false);
+      navigate("/profile");
+    }
+  }, [error, responseData, navigate]);
+
+  const onSubmit: SubmitHandler<UpdateProfileInterface> = async (data) => {
     setLoginLoader(true);
     // Make sure venueManager choice is not sent to api if isVenueManager is true. This to not revert status to default value
     if (isVenueManager) {
       delete data.venueManager;
     }
-    setTimeout(() => {
-      setLoginLoader(false);
-      navigate("/profile");
-    }, 1000);
-    console.log(data);
+    const updateData = data;
+    setLoginLoader(true);
+    setUpdateData(updateData);
   };
 
   // useId for setting unique id to form inputs
@@ -81,13 +101,19 @@ function ProfileUpdateForm() {
                 <textarea className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" placeholder="Enter bio text here" rows={4} id={id + "-bio"} {...register("bio")} />
                 {errors.bio && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.bio.message}</p>}
               </div>
-              <div className="col-6 form-check d-flex align-items-center pt-3">
-                <input className="cursor-pointer form-check-input" type="checkbox" value="" id={id + "-venueManager"} {...register("venueManager")} />
-                <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor={id + "-venueManager"}>
-                  Become venue manager
-                </label>
-              </div>
-              <button className="main-button-gray mt-4 p-1 p-md-2">Update profile {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}</button>
+              {!isVenueManager && (
+                <div className="col-6 form-check d-flex align-items-center pt-3">
+                  <input className="cursor-pointer form-check-input" type="checkbox" value="" id={id + "-venueManager"} {...register("venueManager")} />
+                  <label className="cursor-pointer form-check-label mt-1 ps-1 fs-0-75rem-to-1rem" htmlFor={id + "-venueManager"}>
+                    Become venue manager
+                  </label>
+                </div>
+              )}
+
+              <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
+                Update profile {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
+              </button>
+              {updateError && <p className="text-danger pt-3 ps-1 fs-0-75rem-to-1rem">Something went wrong</p>}
             </form>
           </div>
         </div>
