@@ -7,11 +7,13 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { UpdateProfileInterface } from "../api/const/interfaces";
 import { useApi } from "../api";
-import { getProfileEndpoint } from "../api/const/variables";
+import { getProfileUpdateEndpoint } from "../api/const/variables";
 
 // Yup schema for validation
 
 function ProfileUpdateForm() {
+  // Fetching name for implementing into api endpoint
+  const name = localStorage.getItem("name");
   // State for displaying loader in submit button
   const [loginLoader, setLoginLoader] = useState(false);
   // Check if user is already venue manager, if not, checkbox for becoming venueManager is displayed

@@ -21,6 +21,12 @@ export const getProfileEndpoint = (name: string): string => {
   return `holidaze/profiles/${name}?_bookings=true&_venues=true`;
 };
 
+// update profile
+
+export const getProfileUpdateEndpoint = (name: string): string => {
+  return `holidaze/profiles/${name}`;
+};
+
 // booking (POST)
 
 export const BOOK_VENUE_ENDPOINT = "holidaze/bookings";
