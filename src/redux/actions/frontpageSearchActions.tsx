@@ -1,4 +1,4 @@
-import { SearchFormInputFP } from "../../components/forms/SearchForm";
+import { SearchFormInputFP } from "../../components/api/const/interfaces";
 
 export const SET_FRONTPAGE_SEARCH_DATA = "SET_FRONTPAGE_SEARCH_DATA";
 
