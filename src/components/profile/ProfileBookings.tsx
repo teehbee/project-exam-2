@@ -28,8 +28,8 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
 
   const currentDate = new Date();
 
-  // filter through venues to only show upcoming stays
-  // sort through displayed bookings to show first upcoming stay first
+  // filter through venues to only show upcoming stays and sort through displayed bookings to show first upcoming stay first
+
   const upComingBookings = profileData.data.bookings.filter((booking) => new Date(booking.dateFrom) > currentDate).sort((a, b) => new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime());
 
   const handleTabClick = (tab: "bookings" | "manage") => {
