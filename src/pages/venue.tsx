@@ -3,6 +3,7 @@ import { useState } from "react";
 import SingleVenuePage from "../components/venue";
 import { SingleVenueResponse } from "../components/api/const/interfaces";
 import { Helmet } from "react-helmet";
+import { handleVenueMetaData } from "../components/utils";
 
 function Venue() {
   useScrollToTop();
@@ -11,9 +12,8 @@ function Venue() {
   const [title, setTitle] = useState("Holidaze");
   const [description, setDescription] = useState("Discover amazing places to stay at Holidaze.");
 
-  const handleVenueData = (data: SingleVenueResponse) => {
-    setTitle(`${data.data.name} - Holidaze`);
-    setDescription(`${data.data.description} - Holidaze`);
+  const handleData = (data: SingleVenueResponse) => {
+    handleVenueMetaData(data, setTitle, setDescription);
   };
 
   return (
@@ -22,7 +22,7 @@ function Venue() {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Helmet>
-      <SingleVenuePage onSendData={handleVenueData} />
+      <SingleVenuePage onSendData={handleData} />
     </>
   );
 }
