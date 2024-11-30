@@ -5,8 +5,11 @@ import { getVenueEndpoint } from "../api/const";
 import { useApi } from "../api";
 import { SingleVenueResponse } from "../api/const/interfaces";
 
-const SingleVenuePage: React.FC = () => {
-  // find id from url
+interface SingleVenuePageProps {
+  onSendData: (data: SingleVenueResponse) => void;
+}
+
+const SingleVenuePage: React.FC<SingleVenuePageProps> = ({ onSendData }) => {
   const { id } = useParams<{ id: string }>();
 
   //Api call for single venue data
@@ -19,7 +22,9 @@ const SingleVenuePage: React.FC = () => {
     return <FrontPageError />;
   }
 
-  console.log(data);
+  onSendData(data);
+
+  console.log("data is", data);
   return (
     <div className="container my-5">
       <div className="row text-center">
