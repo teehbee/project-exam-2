@@ -30,7 +30,7 @@ const BookingsList: React.FC<SingleVenueProp> = ({ venue }) => {
           </div>
         ))
       ) : (
-        <p className="mb-1 fs-0-75rem-to-0-875rem pt-3">No bookings done at this venue</p>
+        <p className="mb-1 pt-3 ">No bookings done at this venue</p>
       )}
     </div>
   );
