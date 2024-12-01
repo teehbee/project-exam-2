@@ -60,3 +60,15 @@ export interface VenueManagerBookings {
 export interface VenueManagerBookingsData {
   venue: VenueManagerBookings;
 }
+
+export interface UpdateProfileInterface {
+  url?: string;
+  bio?: string;
+  venueManager?: boolean;
+}
+
+export type UpdatedProfileData = {
+  avatar?: { url: string };
+  bio?: string;
+  venueManager?: boolean;
+};

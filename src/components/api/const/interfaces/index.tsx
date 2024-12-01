@@ -1,10 +1,10 @@
 import { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps } from "./singleVenueInterfaces";
-import { CreateVenueFormInputs } from "./venueFormInterface";
+import { CreateVenueFormInputs } from "./postVenueInterface";
 import { VenueInterface } from "./singleVenueInterfaces";
-import { bookingTileInterface } from "./venueTileInterface";
+import { bookingTileInterface } from "./singleVenueInterfaces";
 import { SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, SearchFormInputFP, SearchFormMainProps } from "./searchInterfaces";
 import { FilterValues } from "./facilityFilterInterface";
-import { UpdateProfileInterface, UpdatedProfileData } from "./profileUpdateInterface";
+import { UpdateProfileInterface, UpdatedProfileData } from "./profileInterfaces";
 import { NavBarProps } from "./navBarInterfaces";
 import { ContactFormInputs } from "./contactFormInterface";
 import { BookingGuestsInterface, bookingDate } from "./bookingInterfaces";
