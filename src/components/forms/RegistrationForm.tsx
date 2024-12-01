@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -9,17 +8,9 @@ import { useApi } from "../api";
 import { REGISTER_ENDPOINT } from "../api/const";
 import { RegisterFormInputs } from "../api/const/interfaces";
 import Spinner from "react-bootstrap/Spinner";
+import { registrationSchema } from "./schemas";
 
 // form validation schema
-
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup
-    .string()
-    .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
-    .required("Email is required"),
-  password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
-});
 
 function RegistrationForm() {
   const [registrationError, setRegistrationError] = useState<string | null>(null);
@@ -32,7 +23,7 @@ function RegistrationForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormInputs>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registrationSchema),
     mode: "onSubmit",
   });
 
