@@ -1,20 +1,47 @@
 import { SingleVenueProp } from "../../api/const/interfaces";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
+import { Media } from "../../api/interfaces";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
+  const [venueImages, setVenueImages] = useState<Media[]>([]);
   const venueData = venue.data;
 
   const id = venue.data.id;
-  const img = venueData.media.length > 0 ? venue.data.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
-  const alt = venueData.media.length > 0 ? venue.data.media[0].alt : "no alt text provided";
   const city = venueData.location.city || "Mystery destination";
   const country = venueData.location.country || "";
 
+  // Create fallback alt text for fancybox
+
+  const getAltText = (alt: string | undefined) => alt || "No description available for this image";
+
+  // Create image gallery for Fancybox. Hidden div is created to store images if more than one.
+
+  useEffect(() => {
+    if (venueData.media && venueData.media.length > 0) {
+      setVenueImages(venueData.media);
+    }
+  }, [venueData.media]);
+
+  // Binder for fancybox gallery
+
+  useEffect(() => {
+    Fancybox.bind('[data-fancybox="venueGallery"]');
+  }, [venueImages]);
+
   return (
     <div className="venue-image-and-text-container col-12 col-md-5 mx-auto">
-      <img className="img-fluid form-box-shadow" src={img} alt={alt} />
+      {venueImages.length > 0 ? (
+        <a href={venueImages[0].url} data-fancybox="venueGallery" data-caption={getAltText(venueImages[0].alt)}>
+          <img className="img-fluid form-box-shadow" src={venueImages[0].url} alt={getAltText(venueImages[0].alt)} />
+        </a>
+      ) : (
+        <img className="img-fluid form-box-shadow" src="https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg" alt="No images available" />
+      )}
       <div className="text-start pt-3 pt-md-4">
         <Link className="text-decoration-none font-gray" to={`/venue/${id}`}>
           <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
@@ -41,6 +68,17 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
           {venueData.meta.parking && <ParkingFacility />}
           {venueData.meta.pets && <PetsFacility />}
         </div>
+      </div>
+      <div className="d-none">
+        {venueImages.length > 1 && (
+          <div className="venue-gallery">
+            {venueImages.slice(1).map((image, index) => (
+              <a key={index} href={image.url} data-fancybox="venueGallery" data-caption={getAltText(image.alt)}>
+                <img src={image.url} alt={getAltText(image.alt)} />
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

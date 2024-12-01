@@ -1,28 +1,21 @@
 import { useScrollToTop } from "../components/utils";
-import { useState } from "react";
 import SingleVenuePage from "../components/venue";
-import { SingleVenueResponse } from "../components/api/const/interfaces";
-import { Helmet } from "react-helmet";
-import { handleVenueMetaData } from "../components/utils";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function Venue() {
   useScrollToTop();
 
-  // States for title and description used for meta title and description
-  const [title, setTitle] = useState("Holidaze");
-  const [description, setDescription] = useState("Discover amazing places to stay at Holidaze.");
-
-  const handleData = (data: SingleVenueResponse) => {
-    handleVenueMetaData(data, setTitle, setDescription);
-  };
+  // Handler for dynamic meta data for single venues
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
-      <SingleVenuePage onSendData={handleData} />
+      <HelmetProvider>
+        <Helmet>
+          <title>Venue page - Holidaze</title>
+          <meta name="description" content="Discover and book your perfect stay on Holidaze. Enjoy detailed descriptions, stunning images, and easy booking options for an unforgettable experience." />
+        </Helmet>
+      </HelmetProvider>
+      <SingleVenuePage />
     </>
   );
 }

@@ -4,7 +4,7 @@ import { setVenueManager } from "../../redux/actions/registerActions";
 import { RootState } from "../../redux/store";
 import { AppDispatch } from "../../redux/store";
 import { useScrollToTop } from "../../components/utils";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Register: React.FC = () => {
   useScrollToTop();
@@ -17,10 +17,12 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Register on Holidaze - Customer or Venue Manager</title>
-        <meta name="description" content="Join Holidaze today! Register as a customer to book amazing accommodations or sign up as a venue manager to list your properties. Start your journey with us and enjoy a seamless experience" />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Register on Holidaze - Customer or Venue Manager</title>
+          <meta name="description" content="Join Holidaze today! Register as a customer to book amazing accommodations or sign up as a venue manager to list your properties. Start your journey with us and enjoy a seamless experience" />
+        </Helmet>
+      </HelmetProvider>
       <RegistrationPage isVenueManager={isVenueManager} onButtonClick={handleButtonClick} />
     </>
   );
