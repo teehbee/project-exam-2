@@ -44,7 +44,8 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
               </div>
             </div>
             <p className="fs-0-75rem-to-1rem mb-0 fw-medium">
-              {city}, {country}
+              {city}
+              {country ? `, ${country}` : ""}
             </p>
             <div className="my-1 d-flex justify-content-start align-items-center">
               {venue.meta.wifi && <WifiFacilityNoText />}
