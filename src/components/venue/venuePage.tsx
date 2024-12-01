@@ -11,8 +11,6 @@ const SingleVenuePage = () => {
   //Api call for single venue data
   const { data, error, loading } = useApi<null, SingleVenueResponse>(getVenueEndpoint(id as string), "GET", null, true, true);
 
-  // Make sure data for dynamic meta data is only sent once the component is rendered to avoid errors
-
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
