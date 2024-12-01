@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -9,21 +8,12 @@ import { useApi } from "../api";
 import { REGISTER_ENDPOINT } from "../api/const";
 import { RegisterFormInputs } from "../api/const/interfaces";
 import Spinner from "react-bootstrap/Spinner";
-
-// form validation schema
-
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup
-    .string()
-    .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a valid Noroff student email")
-    .required("Email is required"),
-  password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
-});
+import { registrationSchema } from "./schemas";
 
 function RegistrationForm() {
   const [registrationError, setRegistrationError] = useState<string | null>(null);
   const [registrationLoader, setRegistrationLoader] = useState(false);
+  const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
   const navigate = useNavigate();
   const venueManager = useSelector((state: RootState) => state.register.isVenueManager);
 
@@ -32,13 +22,9 @@ function RegistrationForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormInputs>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registrationSchema),
     mode: "onSubmit",
   });
-
-  // State for combined data from form and from imported venueManager state
-
-  const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
 
   // Api call for registering user
 
@@ -55,8 +41,6 @@ function RegistrationForm() {
     }
   }, [error, responseData, navigate]);
 
-  // onSubmit changes combinedData which again runs api call
-
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     const combinedData = {
       name: data.name,
@@ -66,11 +50,11 @@ function RegistrationForm() {
     };
 
     setRegistrationLoader(true);
+
     // Trigger for api call
+
     setCombinedData(combinedData);
   };
-
-  // Set unique id for each form input
 
   const id = React.useId();
 

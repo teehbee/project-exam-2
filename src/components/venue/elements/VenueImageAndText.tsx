@@ -1,9 +1,9 @@
 import { SingleVenueProp } from "../../api/const/interfaces";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
 import { Media } from "../../api/const/interfaces";
+import { placeHolder } from "../../../assets/img";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
@@ -11,13 +11,15 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
   const [venueImages, setVenueImages] = useState<Media[]>([]);
   const venueData = venue.data;
 
-  const id = venue.data.id;
   const city = venueData.location.city || "Mystery destination";
   const country = venueData.location.country || "";
 
   // Create fallback alt text for fancybox
 
   const getAltText = (alt: string | undefined) => alt || "No description available for this image";
+
+  // In case of rating with decimals
+  const rating = Math.round(venueData.rating);
 
   // Create image gallery for Fancybox. Hidden div is created to store images if more than one.
 
@@ -40,25 +42,26 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
           <img className="img-fluid form-box-shadow" src={venueImages[0].url} alt={getAltText(venueImages[0].alt)} />
         </a>
       ) : (
-        <img className="img-fluid form-box-shadow" src="https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg" alt="No images available" />
+        <img className="img-fluid form-box-shadow" src={placeHolder} alt="No images available" />
       )}
       <div className="text-start pt-3 pt-md-4">
-        <Link className="text-decoration-none font-gray" to={`/venue/${id}`}>
-          <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
-            {venueData.name},{" "}
-            <span className="secondary-font fs-1-25rem-to-1-5rem">
-              {city}, {country}
-            </span>
-          </h1>
-        </Link>
-        <p className="mb-2 fs-0-75rem-to-1rem">NOK {venueData.price},- per night</p>
+        <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
+          <span className="secondary-font fw-bold">{venueData.name}, </span>
+          <span className="secondary-font fs-1-25rem-to-1-5rem">
+            {city}
+            {country ? `, ${country}` : ""}
+          </span>
+        </h1>
+        <p className="mb-2 fs-0-75rem-to-1rem fw-medium">NOK{venueData.price},- per night</p>
         <div className="mb-3">
-          {[...Array(venueData.rating)].map((_, index) => (
+          {[...Array(rating)].map((_, index) => (
             <img key={index} src={starIcon} alt="star" />
           ))}
         </div>
         <p className="mb-2 fs-0-75rem-to-1-125rem mb-md-3">{venueData.description}</p>
-        <p className="fs-0-75rem-to-1-125rem">Max number of guests: {venueData.maxGuests}</p>
+        <p className="fs-0-75rem-to-1-125rem">
+          Max number of guests: <span className="fw-medium">{venueData.maxGuests}</span>
+        </p>
       </div>
       <div className="text-start">
         <h2 className="fs-1rem-to-1-5rem pt-3 pt-md-4">Facilities</h2>

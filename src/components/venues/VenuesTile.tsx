@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { bookingTileInterface } from "../api/const/interfaces";
 import { WifiFacilityNoText, BreakfastFacilityNoText, ParkingFacilityNoText, PetsFacilityNoText } from "../venue/elements/facilities";
 import { starIcon } from "../../assets/icon";
+import { placeHolder } from "../../assets/img";
 
 const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
@@ -16,12 +17,12 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const img = venue.media.length > 0 ? venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
+  const img = venue.media.length > 0 ? venue.media[0].url : placeHolder;
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const city = venue.location?.city || "Surprise destination";
   const country = venue.location?.country || "";
-
-  // console.log("venue is", venue);
+  // In case of ratings with decimals
+  const rating = Math.round(venue.rating);
 
   return (
     <div className="col-12 col-lg-6">
@@ -30,25 +31,28 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
           <Link to={`/venue/${venue.id}`}>
             <img className=" border-radius-start-5px preview-tile-img" src={img} alt={alt} />
           </Link>
-          <div className="ps-2 position-absolute star-container">
-            {[...Array(venue.rating)].map((_, index) => (
-              <img key={index} src={starIcon} alt="star" />
-            ))}
-          </div>
+          {rating > 0 && (
+            <div className="ps-2 position-absolute star-container">
+              {[...Array(rating)].map((_, index) => (
+                <img key={index} src={starIcon} alt="star" />
+              ))}
+            </div>
+          )}
         </div>
         <div className="d-flex flex-column justify-content-between ps-3 py-2 w-100">
           <div className="d-flex flex-column justify-content-start">
             <div className="d-flex align-items-center">
               <div>
                 <Link className="text-decoration-none" to={`/venue/${venue.id}`}>
-                  <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold">{venue.name}</p>
+                  <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold text-ellipsis-on-title">{venue.name}</p>
                 </Link>
               </div>
             </div>
             <p className="fs-0-75rem-to-1rem mb-0 fw-medium">
-              {city}, {country}
+              {city}
+              {country ? `, ${country}` : ""}
             </p>
-            <div className="mt-md-2 d-flex justify-content-start">
+            <div className="my-1 d-flex justify-content-start align-items-center">
               {venue.meta.wifi && <WifiFacilityNoText />}
               {venue.meta.breakfast && <BreakfastFacilityNoText />}
               {venue.meta.parking && <ParkingFacilityNoText />}
@@ -60,7 +64,9 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex flex-column">
-              <p className="fs-0-75rem-to-1rem mb-0 fw-medium">NOK {venue.price},-</p>
+              <p className="fs-0-75rem-to-1rem mb-0">
+                NOK <span className="fw-medium">{venue.price}</span>,-
+              </p>
               <p className="fs-0-75rem-to-0-875rem mb-0">per night</p>
             </div>
             <div className="align-items-end pe-md-3">

@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SingleVenueProp, bookingDate } from "../../api/const/interfaces";
 import { BookingCalendar, BookingNumberOfGuests, BookingSum } from "./";
-import { formatDate } from "../../utils";
+import { formatDate, useCalculateTotalCost } from "../../utils";
 import { useApi } from "../../api";
 import { BOOK_VENUE_ENDPOINT } from "../../api/const";
-import { useCalculateTotalCost } from "../../utils";
 
 const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
   const navigate = useNavigate();
@@ -63,12 +62,10 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
       setBookingLoading(true);
     }
     if (error) {
-      // console.error("Booking, error", error);
       setBookingError("Something went wrong with you booking, please try again later");
       setBookingLoading(false);
     }
     if (responseData) {
-      // console.log("Booking successful", responseData);
       setIsBooking(false);
       setBookingLoading(false);
       setBookingError(null);
@@ -86,8 +83,6 @@ const VenueBooking: React.FC<SingleVenueProp> = ({ venue }) => {
     }
     setIsBooking(true);
   };
-
-  console.log(bookingData);
 
   return (
     <div className="col-12 col-md-7">

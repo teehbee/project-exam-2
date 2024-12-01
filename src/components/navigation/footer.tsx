@@ -19,7 +19,7 @@ function Footer() {
               HOME
             </Link>
             <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-2" to="venues">
-              ACCOMODATION
+              ACCOMMODATION
             </Link>
             <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-2" to="contact">
               CONTACT
@@ -37,7 +37,7 @@ function Footer() {
             </Link>
           </div>
           <div className="col-12 col-lg-5 text-decoration-none pt-3 pt-lg-0">
-            <p className="text-light fs-0-625rem-to-1rem mb-1">Aknowledgements: </p>
+            <p className="text-light fs-0-625rem-to-1rem mb-1">Acknowledgements: </p>
             <p className="fw-light text-light fs-0-625rem-to-1rem">This website is not real and is not representing a real company. This website is created by Tor-Håkon Bergseng as an exam delivery for the Front-End development studies at Noroff School of technology and digital media</p>
           </div>
         </div>

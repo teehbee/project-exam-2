@@ -6,11 +6,12 @@ import { Modal } from "react-bootstrap";
 import { useApi } from "../api";
 import { DELETE_VENUE_ENDPOINT } from "../api/const";
 import Spinner from "react-bootstrap/Spinner";
+import { placeHolder } from "../../assets/img";
 
 const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) => {
   const id = venue.id;
   const name = venue.name;
-  const img = venue.media.length > 0 ? venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
+  const img = venue.media.length > 0 ? venue.media[0].url : placeHolder;
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const [show, setShow] = useState(false);
   const [deleteTrigger, setDeleteTrigger] = useState(false);
@@ -66,26 +67,26 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
           <img className="form-box-shadow" src={img} alt={alt || "venue image"} />
         </Link>
       </div>
-      <div className="col-8 col-md-9 text-start ps-3 ps-md-5 py-3 d-flex justify-content-between">
+      <div className="col-8 col-md-9 text-start ps-3 ps-md-5 py-2 d-flex justify-content-between">
         <div>
           <Link className="text-decoration-none font-gray" to={`/venue/${id}`}>
-            <h4 className="secondary-font fs-1rem-to-1-5rem mt-1 mb-0 fw-bold">{name}</h4>
+            <h4 className="secondary-font fs-1-25rem-to-1-5rem mt-1 mb-0 fw-bold">{name}</h4>
           </Link>
         </div>
         <div className="d-flex flex-column justify-content-between p-md-3">
           <Link to={`/update-venue/${id}`}>
-            <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem">Update</button>
+            <button className="main-button-gray my-1 py-1 fs-0-75rem-to-1rem">Update</button>
           </Link>
           <Link to={`/venue-manager-administration/${id}`}>
-            <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem">Bookings</button>
+            <button className="main-button-gray my-1 py-1 fs-0-75rem-to-1rem">Bookings</button>
           </Link>
-          <button className="main-button-gray my-1 py-1 fs-0-625rem-to-0-875rem" onClick={handleShow}>
+          <button className="main-button-gray my-1 py-1 fs-0-75rem-to-1rem" onClick={handleShow}>
             Delete
           </button>
           <Modal centered show={show} onHide={handleClose}>
-            <Modal.Header closeButton></Modal.Header>
+            <Modal.Header className="border-none" closeButton></Modal.Header>
             <Modal.Body className="mx-auto">
-              <p className="font-gray mt-3">Are you sure you want to delete this venue?</p>
+              <p className="font-gray mt-3 fw-medium">Are you sure you want to delete this venue?</p>
             </Modal.Body>
             <Modal.Footer>
               <Button className="main-button-gray w-50" onClick={handleClose}>

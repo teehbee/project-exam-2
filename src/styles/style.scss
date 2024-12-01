@@ -507,6 +507,9 @@ header .active {
 .border-radius-start-5px {
   border-radius: 5px 0 0 5px;
 }
+.link-hover:hover {
+  font-weight: 500;
+}
 
 // Media queries
 
@@ -615,5 +618,12 @@ header .active {
   }
   .right-border {
     border-right: 0.5px solid rgb(72, 72, 72, 0.2);
+  }
+
+  .text-ellipsis-on-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 350px;
   }
 }
