@@ -43,15 +43,16 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
         <img className="img-fluid form-box-shadow" src="https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg" alt="No images available" />
       )}
       <div className="text-start pt-3 pt-md-4">
-        <Link className="text-decoration-none font-gray" to={`/venue/${id}`}>
-          <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
-            {venueData.name},{" "}
-            <span className="secondary-font fs-1-25rem-to-1-5rem">
-              {city}, {country}
-            </span>
-          </h1>
-        </Link>
-        <p className="mb-2 fs-0-75rem-to-1rem">NOK {venueData.price},- per night</p>
+        <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
+          <span className="secondary-font fw-bold">{venueData.name}, </span>
+          <span className="secondary-font fs-1-25rem-to-1-5rem">
+            {city}
+            {country ? `, ${country}` : ""}
+          </span>
+        </h1>
+        <p className="mb-2 fs-0-75rem-to-1rem">
+          NOK <span className="fw-medium">{venueData.price},-</span> per night
+        </p>
         <div className="mb-3">
           {[...Array(venueData.rating)].map((_, index) => (
             <img key={index} src={starIcon} alt="star" />
