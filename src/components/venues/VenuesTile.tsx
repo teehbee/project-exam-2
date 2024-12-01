@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { bookingTileInterface } from "../api/const/interfaces";
 import { WifiFacilityNoText, BreakfastFacilityNoText, ParkingFacilityNoText, PetsFacilityNoText } from "../venue/elements/facilities";
 import { starIcon } from "../../assets/icon";
+import { placeHolder } from "../../assets/img";
 
 const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
@@ -16,10 +17,12 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const img = venue.media.length > 0 ? venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
+  const img = venue.media.length > 0 ? venue.media[0].url : placeHolder;
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const city = venue.location?.city || "Surprise destination";
   const country = venue.location?.country || "";
+  // In case of ratings with decimals
+  const rating = Math.round(venue.rating);
 
   return (
     <div className="col-12 col-lg-6">
@@ -28,11 +31,13 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
           <Link to={`/venue/${venue.id}`}>
             <img className=" border-radius-start-5px preview-tile-img" src={img} alt={alt} />
           </Link>
-          <div className="ps-2 position-absolute star-container">
-            {[...Array(venue.rating)].map((_, index) => (
-              <img key={index} src={starIcon} alt="star" />
-            ))}
-          </div>
+          {rating > 0 && (
+            <div className="ps-2 position-absolute star-container">
+              {[...Array(rating)].map((_, index) => (
+                <img key={index} src={starIcon} alt="star" />
+              ))}
+            </div>
+          )}
         </div>
         <div className="d-flex flex-column justify-content-between ps-3 py-2 w-100">
           <div className="d-flex flex-column justify-content-start">

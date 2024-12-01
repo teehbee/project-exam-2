@@ -1,5 +1,4 @@
 import { SingleVenueProp } from "../../api/const/interfaces";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
@@ -11,13 +10,15 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
   const [venueImages, setVenueImages] = useState<Media[]>([]);
   const venueData = venue.data;
 
-  const id = venue.data.id;
   const city = venueData.location.city || "Mystery destination";
   const country = venueData.location.country || "";
 
   // Create fallback alt text for fancybox
 
   const getAltText = (alt: string | undefined) => alt || "No description available for this image";
+
+  // In case of rating with decimals
+  const rating = Math.round(venueData.rating);
 
   // Create image gallery for Fancybox. Hidden div is created to store images if more than one.
 
@@ -52,7 +53,7 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
         </h1>
         <p className="mb-2 fs-0-75rem-to-1rem fw-medium">NOK{venueData.price},- per night</p>
         <div className="mb-3">
-          {[...Array(venueData.rating)].map((_, index) => (
+          {[...Array(rating)].map((_, index) => (
             <img key={index} src={starIcon} alt="star" />
           ))}
         </div>
