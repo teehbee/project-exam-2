@@ -46,7 +46,7 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
             <p className="fs-0-75rem-to-1rem mb-0 fw-medium">
               {city}, {country}
             </p>
-            <div className="mt-md-2 d-flex justify-content-start">
+            <div className="my-1 d-flex justify-content-start align-items-center">
               {venue.meta.wifi && <WifiFacilityNoText />}
               {venue.meta.breakfast && <BreakfastFacilityNoText />}
               {venue.meta.parking && <ParkingFacilityNoText />}
@@ -58,7 +58,9 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex flex-column">
-              <p className="fs-0-75rem-to-1rem mb-0 fw-medium">NOK {venue.price},-</p>
+              <p className="fs-0-75rem-to-1rem mb-0">
+                NOK <span className="fw-medium">{venue.price}</span>,-
+              </p>
               <p className="fs-0-75rem-to-0-875rem mb-0">per night</p>
             </div>
             <div className="align-items-end pe-md-3">
