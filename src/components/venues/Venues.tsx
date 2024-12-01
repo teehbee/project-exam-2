@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
 import { VenueTile, VenueFiltering } from "./";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
-import { VenueResponse } from "../api/interfaces";
+import { VenueResponse } from "../api/const/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { useApi } from "../api";
 import MainLoader from "../loader";

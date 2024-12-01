@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useApi } from "../api";
 import { REGISTER_ENDPOINT } from "../api/const";
-import { RegisterFormInputs } from "../api/interfaces";
+import { RegisterFormInputs } from "../api/const/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // form validation schema
