@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { VenueResponse } from "../api/interfaces";
+import { VenueResponse } from "../api/const/interfaces";
 import { clearFrontpageSearchData } from "../../redux/actions/frontpageRemoveSearchAction";
 import { ConvertedSearchDataInterface } from "../api/const/interfaces";
 

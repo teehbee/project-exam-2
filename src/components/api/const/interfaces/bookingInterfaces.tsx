@@ -1,3 +1,7 @@
+export interface BookingGuestsInterface {
+  guests: number;
+}
+
 export interface bookingDate {
   venueId: string;
   dateFrom: string;

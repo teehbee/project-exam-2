@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useApi } from "../api";
-import { Venue, VenueResponse } from "../api/interfaces";
+import { Venue, VenueResponse } from "../api/const/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
 import { FrontPageLoader, FrontPageError } from "./";
 

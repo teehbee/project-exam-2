@@ -1,18 +1,51 @@
 import { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps } from "./singleVenueInterfaces";
-import { bookingDate } from "./bookingInterface";
-import { CreateVenueFormInputs } from "./venueFormInterface";
+import { CreateVenueFormInputs } from "./postVenueInterface";
 import { VenueInterface } from "./singleVenueInterfaces";
-import { bookingTileInterface } from "./venueTileInterface";
-import { SearchFormInputInterface } from "./venuesSearchInterface";
-import { ConvertedSearchDataInterface } from "./convertedSearchInterface";
-import { SearchReturnInterface } from "./searchReturnInterface";
-import { Bookings } from "./searchReturnInterface";
+import { bookingTileInterface } from "./singleVenueInterfaces";
+import { SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, SearchFormInputFP, SearchFormMainProps } from "./searchInterfaces";
 import { FilterValues } from "./facilityFilterInterface";
-import { UpdateProfileInterface, UpdatedProfileData } from "./profileUpdateInterface";
+import { UpdateProfileInterface, UpdatedProfileData } from "./profileInterfaces";
 import { NavBarProps } from "./navBarInterfaces";
 import { ContactFormInputs } from "./contactFormInterface";
-import { SearchFormInputFP } from "./searchInterface";
-import { SearchFormMainProps } from "./convertedSearchInterface";
-import { BookingGuestsInterface } from "./bookingGuestsInterface";
+import { BookingGuestsInterface, bookingDate } from "./bookingInterfaces";
+import { ProfileMedia, ProfileBookings, ProfileContent, ProfileBioText, ProfileData, VenueManagerBookings, VenueManagerBookingsData } from "./profileInterfaces";
+import { LoginFormInputs, LoginResponse } from "./loginInterfaces";
+import { RegisterFormInputs } from "./registrationInterfaces";
+import { Meta, Media, Venue, VenueResponse } from "./venueInterface";
 
-export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, FilterValues, UpdateProfileInterface, UpdatedProfileData, NavBarProps, ContactFormInputs, SearchFormInputFP, SearchFormMainProps, BookingGuestsInterface };
+export type {
+  SingleVenueResponse,
+  SingleVenueResponseContent,
+  SingleVenueProp,
+  BookingCalendarProps,
+  bookingDate,
+  CreateVenueFormInputs,
+  VenueInterface,
+  bookingTileInterface,
+  SearchFormInputInterface,
+  ConvertedSearchDataInterface,
+  SearchReturnInterface,
+  Bookings,
+  FilterValues,
+  UpdateProfileInterface,
+  UpdatedProfileData,
+  NavBarProps,
+  ContactFormInputs,
+  SearchFormInputFP,
+  SearchFormMainProps,
+  BookingGuestsInterface,
+  ProfileBookings,
+  ProfileContent,
+  ProfileBioText,
+  ProfileData,
+  VenueManagerBookings,
+  ProfileMedia,
+  VenueManagerBookingsData,
+  LoginFormInputs,
+  LoginResponse,
+  RegisterFormInputs,
+  Meta,
+  Media,
+  Venue,
+  VenueResponse,
+};

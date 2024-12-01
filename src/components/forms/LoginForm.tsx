@@ -5,7 +5,7 @@ import { loginFormSchema } from "./schemas";
 import { Link, useNavigate } from "react-router-dom";
 import { useApi } from "../api";
 import { LOGIN_ENDPOINT } from "../api/const";
-import { LoginFormInputs, LoginResponse } from "../api/interfaces";
+import { LoginFormInputs, LoginResponse } from "../api/const/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 
 // Yup schema for validation

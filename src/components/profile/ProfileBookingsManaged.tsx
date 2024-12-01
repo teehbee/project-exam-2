@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
-import { VenueManagerBookings } from "../api/interfaces";
+import { VenueManagerBookingsData } from "../api/const/interfaces";
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { useApi } from "../api";
 import { DELETE_VENUE_ENDPOINT } from "../api/const";
 import Spinner from "react-bootstrap/Spinner";
-
-interface VenueManagerBookingsData {
-  venue: VenueManagerBookings;
-}
 
 const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) => {
   const id = venue.id;
