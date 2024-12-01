@@ -50,16 +50,16 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
             {country ? `, ${country}` : ""}
           </span>
         </h1>
-        <p className="mb-2 fs-0-75rem-to-1rem">
-          NOK <span className="fw-medium">{venueData.price},-</span> per night
-        </p>
+        <p className="mb-2 fs-0-75rem-to-1rem fw-medium">NOK{venueData.price},- per night</p>
         <div className="mb-3">
           {[...Array(venueData.rating)].map((_, index) => (
             <img key={index} src={starIcon} alt="star" />
           ))}
         </div>
         <p className="mb-2 fs-0-75rem-to-1-125rem mb-md-3">{venueData.description}</p>
-        <p className="fs-0-75rem-to-1-125rem">Max number of guests: {venueData.maxGuests}</p>
+        <p className="fs-0-75rem-to-1-125rem">
+          Max number of guests: <span className="fw-medium">{venueData.maxGuests}</span>
+        </p>
       </div>
       <div className="text-start">
         <h2 className="fs-1rem-to-1-5rem pt-3 pt-md-4">Facilities</h2>
