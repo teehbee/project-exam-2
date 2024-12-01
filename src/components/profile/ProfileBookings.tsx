@@ -10,12 +10,12 @@ interface ProfileHeaderProps {
 
 const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
   // initialize with stored open tab between manage and bookings
-  const storedTab = localStorage.getItem("activeTab") as "bookings" | "manage" | null;
+  const storedTab = sessionStorage.getItem("activeTab") as "bookings" | "manage" | null;
   const [activeTab, setActiveTab] = useState<"bookings" | "manage">(storedTab || "bookings");
 
   // set active tab
   useEffect(() => {
-    localStorage.setItem("activeTab", activeTab);
+    sessionStorage.setItem("activeTab", activeTab);
   });
 
   if (!profileData || !profileData.data) {

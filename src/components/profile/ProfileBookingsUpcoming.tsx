@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ProfileBookings } from "../api/const/interfaces";
 import { formatDate } from "../utils";
 import { useCalculateTotalCost } from "../utils";
+import { placeHolder } from "../../assets/img";
 
 interface bookingData {
   booking: ProfileBookings;
@@ -9,7 +10,7 @@ interface bookingData {
 
 const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
   const id = booking.venue.id;
-  const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
+  const img = booking.venue.media.length > 0 ? booking.venue.media[0].url : placeHolder;
   const alt = booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Accommodation image";
   const name = booking.venue.name;
   const city = booking.venue.location?.city || "Surprise destination";
