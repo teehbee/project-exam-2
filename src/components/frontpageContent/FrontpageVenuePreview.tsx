@@ -31,7 +31,7 @@ function FrontpageVenuePreview() {
     <section className="container text-center mt-125px mt-md-4">
       <h2 className="pb-5 py-md-5 secondary-font fs-1-5rem-to-2-5rem">Find your next getaway</h2>
       {venueLoader && <Spinner />}
-      {loadingError && <p>{loadingError}</p>}
+      {loadingError && <p className="fs-1rem-to-1-25rem fw-medium text-danger">{loadingError}</p>}
       <div className="row pb-5 gy-4">
         {venues.slice(0, 4).map((venue: Venue) => (
           <div key={venue.id} className="col-6 col-lg-3 fp-img-container">
@@ -53,11 +53,13 @@ function FrontpageVenuePreview() {
           </div>
         ))}
       </div>
-      <div className="text-end">
-        <Link className="text-decoration-none" to="/venues#venues-list">
-          <p className="secondary-font text-decoration-none dark-font fs-1rem-to-1-5rem">See full list..</p>
-        </Link>
-      </div>
+      {venues.length > 0 && (
+        <div className="text-end">
+          <Link className="text-decoration-none" to="/venues#venues-list">
+            <p className="secondary-font text-decoration-none dark-font fs-1rem-to-1-5rem">See full list..</p>
+          </Link>
+        </div>
+      )}
     </section>
   );
 }
