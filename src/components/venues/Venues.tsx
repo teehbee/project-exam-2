@@ -12,29 +12,20 @@ import MainLoader from "../loader";
 import { ConvertedSearchDataInterface, FilterValues } from "../api/const/interfaces";
 import { filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMoreVenues } from "../utils";
 
-// Reusable filtering function for venues
-
 const VenuesPage: React.FC = () => {
   const dispatch = useDispatch();
-  // Fetch search data from frontpage
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
-  // State for storing number of visible venues on page
   const [visibleCount, setVisibleCount] = useState(8);
-  // State for storing search data including facilities
   const [searchData, setSearchData] = useState<ConvertedSearchDataInterface | null>(null);
-  // State for storing filtered venues
   const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>([]);
-  // State for storing facility filtering
   const [filterValues, setFilterValues] = useState<FilterValues>({
     wifi: false,
     breakfast: false,
     parking: false,
     pets: false,
   });
-  // Ref to venues-list section of component for scrolling with search is executed.
   const venuesListRef = useRef<HTMLDivElement>(null);
 
-  // Api call for venues
   const { data, error, loading } = useApi<null, VenueResponse>(VENUES_ENDPOINT, "GET", null, false, true);
 
   // Making sure that venues is only re-evaluated when the data changes
