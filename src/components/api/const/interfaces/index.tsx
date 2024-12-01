@@ -1,5 +1,4 @@
 import { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps } from "./singleVenueInterfaces";
-import { bookingDate } from "./bookingInterface";
 import { CreateVenueFormInputs } from "./venueFormInterface";
 import { VenueInterface } from "./singleVenueInterfaces";
 import { bookingTileInterface } from "./venueTileInterface";
@@ -13,7 +12,7 @@ import { NavBarProps } from "./navBarInterfaces";
 import { ContactFormInputs } from "./contactFormInterface";
 import { SearchFormInputFP } from "./searchInterface";
 import { SearchFormMainProps } from "./convertedSearchInterface";
-import { BookingGuestsInterface } from "./bookingGuestsInterface";
+import { BookingGuestsInterface, bookingDate } from "./bookingInterfaces";
 import { ProfileMedia, ProfileBookings, ProfileContent, ProfileBioText, ProfileData, VenueManagerBookings, VenueManagerBookingsData } from "./profileInterfaces";
 import { LoginFormInputs, LoginResponse } from "./loginInterfaces";
 
