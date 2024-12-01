@@ -10,5 +10,42 @@ import { ContactFormInputs } from "./contactFormInterface";
 import { BookingGuestsInterface, bookingDate } from "./bookingInterfaces";
 import { ProfileMedia, ProfileBookings, ProfileContent, ProfileBioText, ProfileData, VenueManagerBookings, VenueManagerBookingsData } from "./profileInterfaces";
 import { LoginFormInputs, LoginResponse } from "./loginInterfaces";
+import { RegisterFormInputs } from "./registrationInterfaces";
+import { Meta, Media, Venue, VenueResponse } from "./venueInterface";
 
-export type { SingleVenueResponse, SingleVenueResponseContent, SingleVenueProp, BookingCalendarProps, bookingDate, CreateVenueFormInputs, VenueInterface, bookingTileInterface, SearchFormInputInterface, ConvertedSearchDataInterface, SearchReturnInterface, Bookings, FilterValues, UpdateProfileInterface, UpdatedProfileData, NavBarProps, ContactFormInputs, SearchFormInputFP, SearchFormMainProps, BookingGuestsInterface, ProfileBookings, ProfileContent, ProfileBioText, ProfileData, VenueManagerBookings, ProfileMedia, VenueManagerBookingsData, LoginFormInputs, LoginResponse };
+export type {
+  SingleVenueResponse,
+  SingleVenueResponseContent,
+  SingleVenueProp,
+  BookingCalendarProps,
+  bookingDate,
+  CreateVenueFormInputs,
+  VenueInterface,
+  bookingTileInterface,
+  SearchFormInputInterface,
+  ConvertedSearchDataInterface,
+  SearchReturnInterface,
+  Bookings,
+  FilterValues,
+  UpdateProfileInterface,
+  UpdatedProfileData,
+  NavBarProps,
+  ContactFormInputs,
+  SearchFormInputFP,
+  SearchFormMainProps,
+  BookingGuestsInterface,
+  ProfileBookings,
+  ProfileContent,
+  ProfileBioText,
+  ProfileData,
+  VenueManagerBookings,
+  ProfileMedia,
+  VenueManagerBookingsData,
+  LoginFormInputs,
+  LoginResponse,
+  RegisterFormInputs,
+  Meta,
+  Media,
+  Venue,
+  VenueResponse,
+};
