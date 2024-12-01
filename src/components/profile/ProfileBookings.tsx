@@ -39,11 +39,11 @@ const ProfileBookings: React.FC<ProfileHeaderProps> = ({ profileData }) => {
   return (
     <div className="col-12 col-lg-8 ps-lg-5">
       <div className="d-flex justify-content-between py-4 ">
-        <h3 className={`secondary-font cursor-pointer fs-1rem-to-2rem profile-bookings-selector ${activeTab === "bookings" ? "profile-bookings-selector-active" : ""}`} onClick={() => handleTabClick("bookings")}>
+        <h3 className={`secondary-font cursor-pointer fs-1-5rem-to-2rem profile-bookings-selector ${activeTab === "bookings" ? "profile-bookings-selector-active" : ""}`} onClick={() => handleTabClick("bookings")}>
           Upcoming bookings
         </h3>
         {profileData.data.venueManager && (
-          <h3 className={`secondary-font cursor-pointer fs-1rem-to-2rem profile-bookings-selector ${activeTab === "manage" ? "profile-bookings-selector-active" : ""}`} onClick={() => handleTabClick("manage")}>
+          <h3 className={`secondary-font cursor-pointer fs-1-5rem-to-2rem profile-bookings-selector ${activeTab === "manage" ? "profile-bookings-selector-active" : ""}`} onClick={() => handleTabClick("manage")}>
             Manage venues
           </h3>
         )}
