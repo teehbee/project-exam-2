@@ -15,6 +15,7 @@ import { registrationSchema } from "./schemas";
 function RegistrationForm() {
   const [registrationError, setRegistrationError] = useState<string | null>(null);
   const [registrationLoader, setRegistrationLoader] = useState(false);
+  const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
   const navigate = useNavigate();
   const venueManager = useSelector((state: RootState) => state.register.isVenueManager);
 
@@ -26,10 +27,6 @@ function RegistrationForm() {
     resolver: yupResolver(registrationSchema),
     mode: "onSubmit",
   });
-
-  // State for combined data from form and from imported venueManager state
-
-  const [combinedData, setCombinedData] = useState<RegisterFormInputs | null>(null);
 
   // Api call for registering user
 
@@ -46,8 +43,6 @@ function RegistrationForm() {
     }
   }, [error, responseData, navigate]);
 
-  // onSubmit changes combinedData which again runs api call
-
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     const combinedData = {
       name: data.name,
@@ -57,11 +52,11 @@ function RegistrationForm() {
     };
 
     setRegistrationLoader(true);
+
     // Trigger for api call
+
     setCombinedData(combinedData);
   };
-
-  // Set unique id for each form input
 
   const id = React.useId();
 
