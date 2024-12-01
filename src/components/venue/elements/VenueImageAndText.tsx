@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
 import { Media } from "../../api/const/interfaces";
+import { placeHolder } from "../../../assets/img";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
@@ -41,7 +42,7 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
           <img className="img-fluid form-box-shadow" src={venueImages[0].url} alt={getAltText(venueImages[0].alt)} />
         </a>
       ) : (
-        <img className="img-fluid form-box-shadow" src="https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg" alt="No images available" />
+        <img className="img-fluid form-box-shadow" src={placeHolder} alt="No images available" />
       )}
       <div className="text-start pt-3 pt-md-4">
         <h1 className="secondary-font fs-1-25rem-to-1-5rem mb-3">
