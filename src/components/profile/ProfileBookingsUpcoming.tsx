@@ -38,7 +38,8 @@ const ProfileBookingTile: React.FC<bookingData> = ({ booking }) => {
           <h4 className="secondary-font fs-1-25rem-to-1-5rem mb-0 fw-bold">{name}</h4>
         </Link>
         <p className="fs-0-75rem-to-1rem mt-md-1 fw-medium">
-          {city} {country}
+          {city}
+          {country ? `, ${country}` : ""}
         </p>
         <p className="fs-0-75rem-to-1rem mb-0 mt-md-4">
           {formattedDateFrom} to {formattedDateTo}
