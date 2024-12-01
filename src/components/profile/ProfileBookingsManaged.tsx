@@ -83,9 +83,9 @@ const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) =
             Delete
           </button>
           <Modal centered show={show} onHide={handleClose}>
-            <Modal.Header closeButton></Modal.Header>
+            <Modal.Header className="border-none" closeButton></Modal.Header>
             <Modal.Body className="mx-auto">
-              <p className="font-gray mt-3">Are you sure you want to delete this venue?</p>
+              <p className="font-gray mt-3 fw-medium">Are you sure you want to delete this venue?</p>
             </Modal.Body>
             <Modal.Footer>
               <Button className="main-button-gray w-50" onClick={handleClose}>

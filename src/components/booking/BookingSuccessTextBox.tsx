@@ -1,11 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { SingleVenueResponse } from "../api/const/interfaces";
-import { Link } from "react-router-dom";
 import { useApi } from "../api";
 import { getVenueEndpoint } from "../api/const";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
-import { formatDate } from "../utils";
-import { useCalculateTotalCost } from "../utils";
+import { formatDate, useCalculateTotalCost } from "../utils";
 
 const BookingSuccessTextBox: React.FC = () => {
   // Get the id from the URL

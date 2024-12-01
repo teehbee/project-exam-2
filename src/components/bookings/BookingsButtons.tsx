@@ -3,7 +3,6 @@ import { SingleVenueProp } from "../api/const/interfaces";
 
 const BookingsButtons: React.FC<SingleVenueProp> = (venue) => {
   const bookingData = venue.venue.data;
-  console.log("button", venue);
   return (
     <div className="col-12 col-md-11 bookings-buttons-container d-flex justify-content-start gap-1 flex-column flex-md-row pt-3 mx-auto">
       <Link className="flex-fill" to={`/update-venue/${bookingData.id}`}>
