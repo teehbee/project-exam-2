@@ -1,6 +1,6 @@
 import { SingleVenueProp } from "../../api/const/interfaces";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
 import { Media } from "../../api/interfaces";
@@ -14,6 +14,14 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
   const alt = venueData.media.length > 0 ? venue.data.media[0].alt : "no alt text provided";
   const city = venueData.location.city || "Mystery destination";
   const country = venueData.location.country || "";
+
+  useEffect(() => {
+    if (venueData.media && venueData.media.length > 0) {
+      setVenueImages(venueData.media);
+    }
+  }, [venueData.media]);
+
+  console.log("venueImages are", venueImages);
 
   return (
     <div className="venue-image-and-text-container col-12 col-md-5 mx-auto">
