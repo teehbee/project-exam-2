@@ -19,7 +19,7 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
 
   const getAltText = (alt: string | undefined) => alt || "No description available for this image";
 
-  // Create image gallery for Fancybox
+  // Create image gallery for Fancybox. Hidden div is created to store images if more than one.
 
   useEffect(() => {
     if (venueData.media && venueData.media.length > 0) {

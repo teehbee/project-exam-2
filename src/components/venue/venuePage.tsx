@@ -1,4 +1,5 @@
 import { VenueImageAndText, VenueBooking } from "./elements";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
 import { getVenueEndpoint } from "../api/const";
@@ -15,6 +16,13 @@ const SingleVenuePage: React.FC<SingleVenuePageProps> = ({ onSendData }) => {
   //Api call for single venue data
   const { data, error, loading } = useApi<null, SingleVenueResponse>(getVenueEndpoint(id as string), "GET", null, true, true);
 
+  // Make sure data for dynamic meta data is only sent once the component is rendered to avoid errors
+  useEffect(() => {
+    if (data) {
+      onSendData(data);
+    }
+  }, [data, onSendData]);
+
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
 
@@ -24,7 +32,6 @@ const SingleVenuePage: React.FC<SingleVenuePageProps> = ({ onSendData }) => {
 
   onSendData(data);
 
-  console.log("data is", data);
   return (
     <div className="container my-5">
       <div className="row text-center">
