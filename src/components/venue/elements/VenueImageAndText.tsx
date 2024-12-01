@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
 import { Media } from "../../api/interfaces";
+import "@fancyapps/ui/dist/fancybox.css";
+import { Fancybox } from "@fancyapps/ui";
 
 const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
   const [venueImages, setVenueImages] = useState<Media[]>([]);
@@ -20,6 +22,10 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
       setVenueImages(venueData.media);
     }
   }, [venueData.media]);
+
+  useEffect(() => {
+    Fancybox.bind('[data-fancybox="gallery"]');
+  }, [venueImages]);
 
   console.log("venueImages are", venueImages);
 
