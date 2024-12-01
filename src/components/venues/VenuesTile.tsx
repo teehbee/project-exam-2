@@ -21,8 +21,6 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
   const city = venue.location?.city || "Surprise destination";
   const country = venue.location?.country || "";
 
-  // console.log("venue is", venue);
-
   return (
     <div className="col-12 col-lg-6">
       <div className="d-flex form-box-shadow pe-2">
@@ -41,7 +39,7 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
             <div className="d-flex align-items-center">
               <div>
                 <Link className="text-decoration-none" to={`/venue/${venue.id}`}>
-                  <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold">{venue.name}</p>
+                  <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold text-ellipsis-on-title">{venue.name}</p>
                 </Link>
               </div>
             </div>

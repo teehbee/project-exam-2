@@ -616,4 +616,11 @@ header .active {
   .right-border {
     border-right: 0.5px solid rgb(72, 72, 72, 0.2);
   }
+
+  .text-ellipsis-on-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 350px;
+  }
 }
