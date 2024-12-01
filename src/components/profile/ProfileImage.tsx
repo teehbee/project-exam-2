@@ -1,4 +1,4 @@
-import { ProfileMedia } from "../api/interfaces";
+import { ProfileMedia } from "../api/const/interfaces";
 
 const ProfileImage: React.FC<ProfileMedia> = ({ url, alt }) => {
   return (

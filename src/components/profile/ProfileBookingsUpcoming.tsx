@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ProfileBookings } from "../api/interfaces";
+import { ProfileBookings } from "../api/const/interfaces";
 import { formatDate } from "../utils";
 import { useCalculateTotalCost } from "../utils";
 

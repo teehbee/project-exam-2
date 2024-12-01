@@ -1,7 +1,7 @@
 import { ProfileHeader, ProfileBookings } from "./";
 import { useApi } from "../api";
 import { getProfileEndpoint } from "../api/const/variables";
-import { ProfileData } from "../api/interfaces";
+import { ProfileData } from "../api/const/interfaces";
 import { FrontPageLoader } from "../frontpageContent";
 import PageNotFound from "../error";
 

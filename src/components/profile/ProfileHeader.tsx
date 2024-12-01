@@ -1,5 +1,5 @@
 import { ProfileImage, ProfileData, ProfileBio } from "./";
-import { ProfileData as ProfileDataType } from "../api/interfaces";
+import { ProfileData as ProfileDataType } from "../api/const/interfaces";
 
 interface ProfileHeaderProps {
   profileData: ProfileDataType;
