@@ -33,7 +33,7 @@ function LoginForm() {
 
   useEffect(() => {
     if (error) {
-      setLoginError(error);
+      setLoginError("Incorrect email address or password");
       setLoginLoader(false);
     }
     if (responseData) {
@@ -91,7 +91,7 @@ function LoginForm() {
               <button className="main-button-gray mt-4 p-1 p-md-2" disabled={loading}>
                 Login {loginLoader && <Spinner className="ms-1" animation="border" size="sm" variant="light" />}
               </button>
-              {loginError && <p className="pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">Incorrect email address or password</p>}
+              {loginError && <p className="pt-1 m-0 text-danger fs-0-75rem-to-0-875rem">{loginError}</p>}
               <div className="mt-2 mt-md-3">
                 <p className="fs-0-75rem-to-1rem">
                   Not registered?{" "}

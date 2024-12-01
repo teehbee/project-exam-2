@@ -10,8 +10,6 @@ import { RegisterFormInputs } from "../api/const/interfaces";
 import Spinner from "react-bootstrap/Spinner";
 import { registrationSchema } from "./schemas";
 
-// form validation schema
-
 function RegistrationForm() {
   const [registrationError, setRegistrationError] = useState<string | null>(null);
   const [registrationLoader, setRegistrationLoader] = useState(false);

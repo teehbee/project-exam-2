@@ -10,8 +10,6 @@ function ContactForm() {
   const [loginLoader, setLoginLoader] = useState(false);
   const navigate = useNavigate();
 
-  // Form validation
-
   const {
     register,
     handleSubmit,
