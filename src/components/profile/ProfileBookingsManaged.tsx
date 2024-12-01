@@ -11,7 +11,7 @@ import { placeHolder } from "../../assets/img";
 const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) => {
   const id = venue.id;
   const name = venue.name;
-  const img = venue.media.length > 0 ? venue.media[0].url : { placeHolder };
+  const img = venue.media.length > 0 ? venue.media[0].url : placeHolder;
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const [show, setShow] = useState(false);
   const [deleteTrigger, setDeleteTrigger] = useState(false);
