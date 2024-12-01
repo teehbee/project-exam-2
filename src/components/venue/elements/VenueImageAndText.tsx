@@ -1,9 +1,12 @@
 import { SingleVenueProp } from "../../api/const/interfaces";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { WifiFacility, BreakfastFacility, ParkingFacility, PetsFacility } from "./facilities";
 import { starIcon } from "../../../assets/icon";
+import { Media } from "../../api/interfaces";
 
 const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
+  const [venueImages, setVenueImages] = useState<Media[]>([]);
   const venueData = venue.data;
 
   const id = venue.data.id;

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@demark-pro/react-booking-calendar": "^4.0.3",
+    "@fancyapps/ui": "^5.0.36",
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.3.0",
     "bootstrap": "^5.3.3",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@types/fancybox": "^3.5.7",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@types/react-helmet": "^6.1.11",
