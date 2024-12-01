@@ -5,11 +5,7 @@ import { getVenueEndpoint } from "../api/const";
 import { useApi } from "../api";
 import { SingleVenueResponse } from "../api/const/interfaces";
 
-interface SingleVenuePageProps {
-  onSendData: (data: SingleVenueResponse) => void;
-}
-
-const SingleVenuePage: React.FC<SingleVenuePageProps> = () => {
+const SingleVenuePage = () => {
   const { id } = useParams<{ id: string }>();
 
   //Api call for single venue data
