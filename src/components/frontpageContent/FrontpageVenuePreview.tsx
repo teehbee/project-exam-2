@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useApi } from "../api";
 import { Venue, VenueResponse } from "../api/const/interfaces";
 import { VENUES_ENDPOINT } from "../api/const";
-// import { FrontPageLoader, FrontPageError } from "./";
 import { Spinner } from "react-bootstrap";
+import { placeHolder } from "../../assets/img";
 
 function FrontpageVenuePreview() {
   const [venueLoader, setVenueLoader] = useState(false);
@@ -37,7 +37,7 @@ function FrontpageVenuePreview() {
           <div key={venue.id} className="col-6 col-lg-3 fp-img-container">
             <div className="position-relative">
               <Link to={`venue/${venue.id}`}>
-                <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url || "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg"} alt={venue.media[0]?.alt || "Venue image"} />
+                <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url || placeHolder} alt={venue.media[0]?.alt || "Venue image"} />
                 <div className="fp-img-overlay">
                   <div className="fp-img-overlay-text">
                     <div className="text-start">

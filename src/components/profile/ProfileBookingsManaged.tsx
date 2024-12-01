@@ -6,11 +6,12 @@ import { Modal } from "react-bootstrap";
 import { useApi } from "../api";
 import { DELETE_VENUE_ENDPOINT } from "../api/const";
 import Spinner from "react-bootstrap/Spinner";
+import { placeHolder } from "../../assets/img";
 
 const ProfileBookingsManaged: React.FC<VenueManagerBookingsData> = ({ venue }) => {
   const id = venue.id;
   const name = venue.name;
-  const img = venue.media.length > 0 ? venue.media[0].url : "https://img.freepik.com/premium-vector/cartoon-hotel-with-sign-that-says-hotel-it_534019-32.jpg";
+  const img = venue.media.length > 0 ? venue.media[0].url : { placeHolder };
   const alt = venue.media.length > 0 ? venue.media[0].alt : "Accommodation image";
   const [show, setShow] = useState(false);
   const [deleteTrigger, setDeleteTrigger] = useState(false);
