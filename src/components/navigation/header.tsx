@@ -3,13 +3,10 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function Header() {
-  // States related to navbar behavior
   const location = useLocation();
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 992);
   const [expanded, setExpanded] = useState(false);
   const isTransparent = location.pathname === "/" || location.pathname === "/venues";
-
-  // Event listener and cleanup for window size
 
   useEffect(() => {
     const handleResize = () => {
