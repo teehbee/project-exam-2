@@ -48,20 +48,10 @@ const VenuesPage: React.FC = () => {
     }
   }, [venues, frontpageSearch, filterValues, searchData]);
 
-  // Logic for saving scroll position and visible venue listings
-
+  // Save state to localStorage whenever it changes
   useEffect(() => {
-    const handleBeforeUnload = () => {
-      localStorage.setItem("visibleCount", visibleCount.toString());
-      localStorage.setItem("filteredVenues", JSON.stringify(filteredVenues));
-      localStorage.setItem("scrollPosition", window.scrollY.toString());
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+    localStorage.setItem("visibleCount", visibleCount.toString());
+    localStorage.setItem("filteredVenues", JSON.stringify(filteredVenues));
   }, [visibleCount, filteredVenues]);
 
   // Set scroll position after navigating away from page
@@ -70,6 +60,16 @@ const VenuesPage: React.FC = () => {
     if (savedScrollPosition) {
       window.scrollTo(0, parseInt(savedScrollPosition, 10));
     }
+
+    const handleBeforeUnload = () => {
+      localStorage.setItem("scrollPosition", window.scrollY.toString());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   console.log("filtered venues is", filteredVenues);
