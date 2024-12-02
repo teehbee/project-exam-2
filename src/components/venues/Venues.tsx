@@ -15,9 +15,17 @@ import { filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMore
 const VenuesPage: React.FC = () => {
   const dispatch = useDispatch();
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
-  const [visibleCount, setVisibleCount] = useState(8);
+  // State for visible venues, set to default 8 or fetched from localStorage
+  const [visibleCount, setVisibleCount] = useState(() => {
+    const savedVisibleCount = localStorage.getItem("visibleCount");
+    return savedVisibleCount ? parseInt(savedVisibleCount, 10) : 8;
+  });
   const [searchData, setSearchData] = useState<ConvertedSearchDataInterface | null>(null);
-  const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>([]);
+  // State for filtered venues, fetched from localStorage if user navigated away from page
+  const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>(() => {
+    const savedFilteredVenues = localStorage.getItem("filteredVenues");
+    return savedFilteredVenues ? JSON.parse(savedFilteredVenues) : [];
+  });
   const [filterValues, setFilterValues] = useState<FilterValues>({
     wifi: false,
     breakfast: false,
@@ -39,6 +47,32 @@ const VenuesPage: React.FC = () => {
       setFilteredVenues(filtered);
     }
   }, [venues, frontpageSearch, filterValues, searchData]);
+
+  // Logic for saving scroll position and visible venue listings
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.setItem("visibleCount", visibleCount.toString());
+      localStorage.setItem("filteredVenues", JSON.stringify(filteredVenues));
+      localStorage.setItem("scrollPosition", window.scrollY.toString());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [visibleCount, filteredVenues]);
+
+  // Set scroll position after navigating away from page
+  useEffect(() => {
+    const savedScrollPosition = localStorage.getItem("scrollPosition");
+    if (savedScrollPosition) {
+      window.scrollTo(0, parseInt(savedScrollPosition, 10));
+    }
+  }, []);
+
+  console.log("filtered venues is", filteredVenues);
 
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;

@@ -1,9 +1,8 @@
 import { VenuesPage } from "../components/venues";
-import { useScrollToTop } from "../components/utils";
+// import { useScrollToTop } from "../components/utils";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function Venues() {
-  useScrollToTop();
   return (
     <>
       <HelmetProvider>
