@@ -492,6 +492,10 @@ header .active {
   font-weight: 800;
 }
 
+.link-hover-md:hover {
+  font-weight: 500;
+}
+
 .text-ident-5px {
   text-indent: 5px;
 }
@@ -507,8 +511,19 @@ header .active {
 .border-radius-start-5px {
   border-radius: 5px 0 0 5px;
 }
-.link-hover:hover {
-  font-weight: 500;
+
+.gradient-container {
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 49%, rgba(2, 0, 36, 0.4));
+  }
 }
 
 // Media queries

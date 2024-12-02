@@ -27,9 +27,11 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
   return (
     <div className="col-12 col-lg-6">
       <div className="d-flex form-box-shadow pe-2">
-        <div className="position-relative ">
-          <Link to={`/venue/${venue.id}`}>
-            <img className=" border-radius-start-5px preview-tile-img" src={img} alt={alt} />
+        <div className="position-relative">
+          <Link className="" to={`/venue/${venue.id}`}>
+            <div className="gradient-container">
+              <img className=" border-radius-start-5px preview-tile-img" src={img} alt={alt} />
+            </div>
           </Link>
           {rating > 0 && (
             <div className="ps-2 position-absolute star-container">

@@ -70,16 +70,16 @@ function RegistrationForm() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerName"} className="mt-2 fs-0-75rem-to-1rem">
-                  Name<span className="text-danger">*</span>
+                  Username<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="I hate my life" id={id + "-name"} {...register("name")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="text" placeholder="Enter username here" id={id + "-name"} {...register("name")} />
                 {errors.name && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.name.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">
                 <label htmlFor={id + "-registerEmail"} className="mt-2 fs-0-75rem-to-1rem">
-                  Email<span className="text-danger">*</span>
+                  E-mail<span className="text-danger">*</span>
                 </label>
-                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="ihatemylife@stud.noroff.no" id={id + "-email"} {...register("email")} />
+                <input className="mt-1 custom-border-gray text-ident-5px p-1 p-md-2 form-input-bg fs-0-75rem-to-0-875rem" type="email" placeholder="iamawesome@stud.noroff.no" id={id + "-email"} {...register("email")} />
                 {errors.email && <p className="text-danger fs-0-75rem-to-0-875rem pt-1">{errors.email.message}</p>}
               </div>
               <div className="form-group d-flex flex-column">

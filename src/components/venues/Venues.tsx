@@ -76,7 +76,7 @@ const VenuesPage: React.FC = () => {
         </div>
         {visibleCount < filteredVenues.length && (
           <div className="text-center pt-5">
-            <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer" onClick={() => loadMoreVenues(setVisibleCount)}>
+            <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer link-hover-md" onClick={() => loadMoreVenues(setVisibleCount)}>
               Load more venues...
             </p>
           </div>
