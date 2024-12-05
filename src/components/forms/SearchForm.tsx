@@ -30,7 +30,7 @@ function SearchForm() {
   const onSubmit: SubmitHandler<SearchFormInputFP> = (frontpageSearch) => {
     const convertedDates = {
       dateFrom: new Date(frontpageSearch.dateFrom).toISOString(),
-      departureDate: new Date(frontpageSearch.dateTo).toISOString(),
+      dateTo: new Date(frontpageSearch.dateTo).toISOString(),
     };
 
     const updatedFrontpageSearch = { ...frontpageSearch, ...convertedDates };
