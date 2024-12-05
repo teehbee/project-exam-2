@@ -15,17 +15,9 @@ import { filterVenues, deleteSearch, searchHandler, handleFilterChange, loadMore
 const VenuesPage: React.FC = () => {
   const dispatch = useDispatch();
   const frontpageSearch = useSelector((state: RootState) => state.search.searchData);
-  // State for visible venues, set to default 8 or fetched from localStorage
-  const [visibleCount, setVisibleCount] = useState(() => {
-    const savedVisibleCount = localStorage.getItem("visibleCount");
-    return savedVisibleCount ? parseInt(savedVisibleCount, 10) : 8;
-  });
+  const [visibleCount, setVisibleCount] = useState(8);
   const [searchData, setSearchData] = useState<ConvertedSearchDataInterface | null>(null);
-  // State for filtered venues, fetched from localStorage if user navigated away from page
-  const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>(() => {
-    const savedFilteredVenues = localStorage.getItem("filteredVenues");
-    return savedFilteredVenues ? JSON.parse(savedFilteredVenues) : [];
-  });
+  const [filteredVenues, setFilteredVenues] = useState<VenueResponse["data"]>([]);
   const [filterValues, setFilterValues] = useState<FilterValues>({
     wifi: false,
     breakfast: false,
@@ -47,32 +39,6 @@ const VenuesPage: React.FC = () => {
       setFilteredVenues(filtered);
     }
   }, [venues, frontpageSearch, filterValues, searchData]);
-
-  // Save state to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("visibleCount", visibleCount.toString());
-    localStorage.setItem("filteredVenues", JSON.stringify(filteredVenues));
-  }, [visibleCount, filteredVenues]);
-
-  // Set scroll position after navigating away from page
-  useEffect(() => {
-    const savedScrollPosition = localStorage.getItem("scrollPosition");
-    if (savedScrollPosition) {
-      window.scrollTo(0, parseInt(savedScrollPosition, 10));
-    }
-
-    const handleBeforeUnload = () => {
-      localStorage.setItem("scrollPosition", window.scrollY.toString());
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
-
-  console.log("filtered venues is", filteredVenues);
 
   if (loading) return <FrontPageLoader />;
   if (error) return <FrontPageError />;
@@ -110,7 +76,7 @@ const VenuesPage: React.FC = () => {
         </div>
         {visibleCount < filteredVenues.length && (
           <div className="text-center pt-5">
-            <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer link-hover-md" onClick={() => loadMoreVenues(setVisibleCount)}>
+            <p className="secondary-font fs-1rem-to-1-25rem cursor-pointer" onClick={() => loadMoreVenues(setVisibleCount)}>
               Load more venues...
             </p>
           </div>
