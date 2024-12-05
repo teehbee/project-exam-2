@@ -35,6 +35,9 @@ function Footer() {
             <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="register">
               Register
             </Link>
+            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="profile">
+              Profile
+            </Link>
           </div>
           <div className="col-12 col-lg-5 text-decoration-none pt-3 pt-lg-0">
             <p className="text-light fs-0-625rem-to-1rem mb-1">Acknowledgements: </p>
