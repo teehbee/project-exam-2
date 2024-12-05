@@ -37,7 +37,7 @@ function useDateAdjust(dateFrom: string | undefined, setValue: UseFormSetValue<F
       setValue("dateTo", newMinDateTo);
     } else {
       setMinDateTo(tomorrow);
-      setValue("dateTo", tomorrow); // Ensure the fallback value is set in the form
+      setValue("dateTo", tomorrow);
     }
   }, [dateFrom, setValue]);
 
