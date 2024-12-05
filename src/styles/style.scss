@@ -462,6 +462,10 @@ header .active {
   object-fit: cover;
 }
 
+.calendar__week-container {
+  position: static;
+}
+
 // Profile
 
 .avatar-image {
