@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setFrontpageSearchData } from "../../redux/actions/frontpageSearchActions";
 import { frontpageSearchSchema } from "./schemas";
 import { getTodaysDate } from "../utils";
-import useDateAdjust from "../utils/useDateAdjust";
+import { useDateAdjust } from "../utils/";
 import { SearchFormInputFP } from "../api/const/interfaces";
 
 function SearchForm() {
