@@ -72,7 +72,7 @@ const VenuesPage: React.FC = () => {
           {filteredVenues.slice(0, visibleCount).map((venue, index) => (
             <VenueTile key={index} venue={venue} />
           ))}
-          {filteredVenues.length === 0 && <p>No upcoming bookings</p>}
+          {filteredVenues.length === 0 && <p>No venues match your search, please try some other search criteria.</p>}
         </div>
         {visibleCount < filteredVenues.length && (
           <div className="text-center pt-5">
