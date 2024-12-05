@@ -444,9 +444,15 @@ header .active {
   max-width: 350px;
 }
 
+.venue-image-and-text-container img {
+  object-fit: cover;
+}
+
 // Booking confirmation
 
 .booking-success-container {
+  height: 100%;
+  width: 100%;
   max-height: 150px;
 }
 
@@ -639,6 +645,18 @@ header .active {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    width: 250px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .text-ellipsis-on-title {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .text-ellipsis-on-title {
     width: 350px;
   }
 }

@@ -6,8 +6,8 @@ function Frontpage() {
   return (
     <>
       <picture>
-        <source media="(min-width: 992px)" srcSet={frontpageHeroImageLarge} />
-        <img className="position-absolute top-0 banner-img" src={frontpageHeroImageSmall} aria-label="A beautiful fjord" />
+        <source media="(min-width: 992px)" srcSet={frontpageHeroImageLarge} width="1920" height="950" />
+        <img className="position-absolute top-0 banner-img" src={frontpageHeroImageSmall} aria-label="A beautiful fjord" width="992" height="950" />
       </picture>
       <section className="hero-container position-relative d-flex justify-content-center align-items-center">
         <div className="container mt-5 pt-5">

@@ -39,7 +39,13 @@ const VenueImageAndText: React.FC<SingleVenueProp> = ({ venue }) => {
     <div className="venue-image-and-text-container col-12 col-md-5 mx-auto">
       {venueImages.length > 0 ? (
         <a href={venueImages[0].url} data-fancybox="venueGallery" data-caption={getAltText(venueImages[0].alt)}>
-          <img className="img-fluid form-box-shadow" src={venueImages[0].url} alt={getAltText(venueImages[0].alt)} />
+          <picture>
+            <source media="(min-width: 1400px)" srcSet={venueImages[0].url} width="525" />
+            <source media="(min-width: 1200px)" srcSet={venueImages[0].url} width="450" />
+            <source media="(min-width: 992px)" srcSet={venueImages[0].url} width="375" height="225" />
+            <source media="(min-width: 768px)" srcSet={venueImages[0].url} width="200" height="200" />
+            <img className="img-fluid form-box-shadow" src={venueImages[0].url} alt={getAltText(venueImages[0].alt)} width="325" height="215" />
+          </picture>
         </a>
       ) : (
         <img className="img-fluid form-box-shadow" src={placeHolder} alt="No images available" />

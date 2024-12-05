@@ -37,7 +37,13 @@ function FrontpageVenuePreview() {
           <div key={venue.id} className="col-6 col-lg-3 fp-img-container">
             <div className="position-relative">
               <Link to={`venue/${venue.id}`}>
-                <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url || placeHolder} alt={venue.media[0]?.alt || "Venue image"} />
+                <picture>
+                  <source media="(min-width: 1400px)" srcSet={venue.media[0]?.url || placeHolder} width="306" height="200" />
+                  <source media="(min-width: 1200px)" srcSet={venue.media[0]?.url || placeHolder} width="261" height="200" />
+                  <source media="(min-width: 992px)" srcSet={venue.media[0]?.url || placeHolder} width="216" height="200" />
+                  <source media="(min-width: 768px)" srcSet={venue.media[0]?.url || placeHolder} width="336" height="200" />
+                  <img className="fp-tile-img form-box-shadow-no-br" src={venue.media[0]?.url || placeHolder} alt={venue.media[0]?.alt || "Venue image"} width="246" height="150" />
+                </picture>
                 <div className="fp-img-overlay">
                   <div className="fp-img-overlay-text">
                     <div className="text-start">

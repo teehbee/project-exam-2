@@ -30,7 +30,10 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
         <div className="position-relative">
           <Link className="" to={`/venue/${venue.id}`}>
             <div className="gradient-container">
-              <img className=" border-radius-start-5px preview-tile-img" src={img} alt={alt} />
+              <picture>
+                <source media="(min-width: 992)" srcSet={img} width="200" height="200" />
+                <img className=" border-radius-start-5px preview-tile-img" src={img} alt={alt} width="130" height="200" />
+              </picture>
             </div>
           </Link>
           {rating > 0 && (
@@ -42,13 +45,11 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
           )}
         </div>
         <div className="d-flex flex-column justify-content-between ps-3 py-2 w-100">
-          <div className="d-flex flex-column justify-content-start">
-            <div className="d-flex align-items-center">
-              <div>
-                <Link className="text-decoration-none" to={`/venue/${venue.id}`}>
-                  <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold text-ellipsis-on-title">{venue.name}</p>
-                </Link>
-              </div>
+          <div className="d-flex flex-column">
+            <div>
+              <Link className="text-decoration-none" to={`/venue/${venue.id}`}>
+                <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold text-ellipsis-on-title">{venue.name}</p>
+              </Link>
             </div>
             <p className="fs-0-75rem-to-1rem mb-0 fw-medium">
               {city}
@@ -71,7 +72,7 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
               </p>
               <p className="fs-0-75rem-to-0-875rem mb-0">per night</p>
             </div>
-            <div className="align-items-end pe-md-3">
+            <div className="align-items-end pe-md-3 me-3">
               <Link to={`/venue/${venue.id}`}>
                 <button className="main-button-red">{isLargeScreen ? "Book now" : "Book"}</button>
               </Link>

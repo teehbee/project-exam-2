@@ -18,7 +18,11 @@ function FrontpageTiles() {
       </div>
       <div className="row flex-lg-row-reverse gx-lg-5">
         <div className="col-12 col-lg-6">
-          <img className="img-fluid form-box-shadow-no-br" src={frontPageImage2} alt="Landscape in northern Norway" />
+          <picture>
+            <source media="(min-width: 992px)" srcSet={frontPageImage2} width="444" height="285" />
+            <source media="(min-width: 768px)" srcSet={frontPageImage2} width="646" height="414" />
+            <img className="img-fluid form-box-shadow-no-br" src={frontPageImage2} alt="Landscape in northern Norway" width="516" height="330" />
+          </picture>
         </div>
         <div className="col-12 col-lg-6 text-center text-lg-end d-flex flex-column justify-content-center">
           <h3 className="secondary-font fs-1-5rem-to-2-5rem pt-3 pt-lg-0">Find your next getaway</h3>
