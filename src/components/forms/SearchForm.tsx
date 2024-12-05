@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFrontpageSearchData } from "../../redux/actions/frontpageSearchActions";
 import { frontpageSearchSchema } from "./schemas";
-import { getTodaysDate, getTomorrowsDate } from "../utils";
+import { getTodaysDate } from "../utils";
+import useDateAdjust from "../utils/useDateAdjust";
 import { SearchFormInputFP } from "../api/const/interfaces";
 
 function SearchForm() {
@@ -13,10 +14,18 @@ function SearchForm() {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<SearchFormInputFP>({
     resolver: yupResolver(frontpageSearchSchema),
   });
+
+  // State and watch for updating dateTo automatically to not be earlier then arrival date
+
+  const dateFrom = watch("dateFrom");
+
+  const minDateTo = useDateAdjust(dateFrom, setValue);
 
   const onSubmit: SubmitHandler<SearchFormInputFP> = (frontpageSearch) => {
     const convertedDates = {
@@ -49,7 +58,7 @@ function SearchForm() {
         <label htmlFor="MainSearchDateTo" className="py-2 text-light fs-0-75rem-to-1rem">
           Departure date
         </label>
-        <input type="date" id="MainSearchDateTo" min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("dateTo")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+        <input type="date" id="MainSearchDateTo" min={minDateTo} defaultValue={minDateTo} {...register("dateTo")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
         {errors.dateTo && <p className="text-danger m-0 fs-0-75rem-to-0-875rem">{errors.dateTo.message}</p>}
 
         <label htmlFor="MainSearchGuests" className="py-2 text-light fs-0-75rem-to-1rem">
