@@ -462,10 +462,16 @@ header .active {
   object-fit: cover;
 }
 
+// Booking calendar
+
 .calendar__week-container {
   position: static;
 }
 
+.calendar__calendar-container:not([data-scrollable]) .calendar__month-content[data-some-month] span:first-child,
+.calendar__calendar-container:not([data-scrollable]) .calendar__month-content[data-some-year] span:nth-child(2) {
+  color: $secondary-gray-color;
+}
 // Profile
 
 .avatar-image {
