@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { logoSmall, logoLarge } from "../../assets/logo";
 
 function Footer() {
+  const loggedIn = localStorage.getItem("loggedIn");
   return (
     <footer className="bg-dark-gray-color py-3 pt-lg-5 pb-lg-4">
       <div className="container text-light text-center border-bottom-white">
@@ -29,15 +30,20 @@ function Footer() {
             </Link>
           </div>
           <div className="col-12 col-lg-2 text-decoration-none d-lg-flex flex-column text-start-lg">
-            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="login">
-              Login
-            </Link>
-            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="register">
-              Register
-            </Link>
-            <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="profile">
-              Profile
-            </Link>
+            {!loggedIn ? (
+              <>
+                <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="login">
+                  Login
+                </Link>
+                <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="register">
+                  Register
+                </Link>
+              </>
+            ) : (
+              <Link className="nav-link-styling fs-0-75rem-to-1-125rem px-2 py-lg-1" to="profile">
+                Profile
+              </Link>
+            )}
           </div>
           <div className="col-12 col-lg-5 text-decoration-none pt-3 pt-lg-0">
             <p className="text-light fs-0-625rem-to-1rem mb-1">Acknowledgements: </p>
