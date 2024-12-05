@@ -48,7 +48,7 @@ const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
           <div className="d-flex flex-column">
             <div>
               <Link className="text-decoration-none" to={`/venue/${venue.id}`}>
-                <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold">{venue.name}</p>
+                <p className="mb-1 secondary-font fs-1rem-to-1-5rem fw-bold text-ellipsis-on-title">{venue.name}</p>
               </Link>
             </div>
             <p className="fs-0-75rem-to-1rem mb-0 fw-medium">
