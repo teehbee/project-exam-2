@@ -27,11 +27,11 @@ The booking site consists of the following pages
 
 You can list a the tech stack that you've used over here
 
-**Vite**
-**React**
-**Bootstrap**
-**React Bootstrap**
-**Redux (implemented at certain places for training purposes)**
+- Vite
+- React
+- Bootstrap
+- React Bootstrap
+- Redux (implemented at certain places for training purposes)
 
 ## Getting Started
 
