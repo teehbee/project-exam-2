@@ -2,13 +2,18 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { venuesSearchSchema } from "./schemas";
-import { getTodaysDate, getTomorrowsDate } from "../utils";
+import { getTodaysDate } from "../utils";
+import { useDateAdjust } from "../utils";
 import { SearchFormInputInterface, ConvertedSearchDataInterface, SearchFormMainProps } from "../api/const/interfaces";
 
 function SearchFormMain({ onSearch }: SearchFormMainProps) {
-  const { register, handleSubmit } = useForm<SearchFormInputInterface>({
+  const { register, handleSubmit, watch, setValue } = useForm<SearchFormInputInterface>({
     resolver: yupResolver(venuesSearchSchema),
   });
+
+  const dateFrom = watch("dateFrom");
+
+  const minDateTo = useDateAdjust(dateFrom, setValue);
 
   // Convert dates from search inputs before sending them to parent container as formattedData
   const onSubmit: SubmitHandler<SearchFormInputInterface> = (data) => {
@@ -49,7 +54,7 @@ function SearchFormMain({ onSearch }: SearchFormMainProps) {
             <label htmlFor={id + "-dateTo"} className="py-2 text-light fs-0-75rem-to-1rem">
               Departure date
             </label>
-            <input type="date" id={id + "-dateTo"} min={getTomorrowsDate()} defaultValue={getTomorrowsDate()} {...register("dateTo")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
+            <input type="date" id={id + "-dateTo"} min={minDateTo} defaultValue={minDateTo} {...register("dateTo")} className="date-search-input mb-1 fs-0-75rem-to-0-875rem text-light pe-2" />
           </div>
           <div className="col-12 col-md-6 form-group d-flex flex-column">
             <label htmlFor={id + "-guests"} className="py-2 text-light fs-0-75rem-to-1rem">
