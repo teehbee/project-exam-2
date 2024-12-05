@@ -11,7 +11,7 @@ function SearchFormMain({ onSearch }: SearchFormMainProps) {
     resolver: yupResolver(venuesSearchSchema),
   });
 
-  const dateFrom = watch("dateFrom");
+  const dateFrom = watch("dateFrom") as string | undefined;
 
   const minDateTo = useDateAdjust(dateFrom, setValue);
 
