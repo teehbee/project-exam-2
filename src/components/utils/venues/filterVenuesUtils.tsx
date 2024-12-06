@@ -1,6 +1,6 @@
 import { FilterValues } from "../../api/const/interfaces";
 
-// Checking changes compared to initial values of filter
+// Checking changes compared to initial values of filter of facilities
 
 export const checkForFilterChanges = (checkboxes: FilterValues, filterValues: FilterValues, onFilterChange: (updatedValues: FilterValues) => void) => {
   const isDifferent = Object.keys(checkboxes).some((key) => {

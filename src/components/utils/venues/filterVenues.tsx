@@ -1,6 +1,8 @@
 import { SearchReturnInterface, FilterValues, ConvertedSearchDataInterface } from "../../api/const/interfaces";
 import { isDateAvailable } from "../dateAndTime/isDateAvailable";
 
+// Function for filtering venues used for search
+
 export const filterVenues = (venues: SearchReturnInterface[], searchData: ConvertedSearchDataInterface, filterValues: FilterValues) => {
   return venues.filter((venue) => {
     const matchesLocation = !searchData.location || (venue.location && ((venue.location.city && venue.location.city.toLowerCase().includes(searchData.location.toLowerCase())) || (venue.location.country && venue.location.country.toLowerCase().includes(searchData.location.toLowerCase()))));
