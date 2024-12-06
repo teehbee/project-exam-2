@@ -1,12 +1,10 @@
-import { useRedirectTimer } from "../../components/utils";
+import { useRedirectTimer, useScrollToTop } from "../../components/utils";
 import SuccessMessage from "../../components/successMessages";
-import { useScrollToTop } from "../../components/utils";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function UpdateVenueSuccess() {
   useScrollToTop();
   useRedirectTimer("/", 2000);
-
   return (
     <>
       <HelmetProvider>

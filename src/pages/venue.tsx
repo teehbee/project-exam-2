@@ -4,9 +4,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function Venue() {
   useScrollToTop();
-
-  // Handler for dynamic meta data for single venues
-
   return (
     <>
       <HelmetProvider>
