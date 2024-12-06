@@ -1,10 +1,5 @@
 import { checkIcon } from "../../../assets/icon";
-
-interface ProfileDataProps {
-  name: string;
-  email: string;
-  venueManager: boolean;
-}
+import { ProfileDataProps } from "../../api/const/interfaces";
 
 const ProfileData: React.FC<ProfileDataProps> = ({ name, email, venueManager }) => {
   return (

@@ -72,3 +72,9 @@ export type UpdatedProfileData = {
   bio?: string;
   venueManager?: boolean;
 };
+
+export interface ProfileDataProps {
+  name: string;
+  email: string;
+  venueManager: boolean;
+}

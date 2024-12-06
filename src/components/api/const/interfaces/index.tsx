@@ -8,7 +8,7 @@ import { UpdateProfileInterface, UpdatedProfileData } from "./profileInterfaces"
 import { NavBarProps } from "./navBarInterfaces";
 import { ContactFormInputs } from "./contactFormInterface";
 import { BookingGuestsInterface, bookingDate } from "./bookingInterfaces";
-import { ProfileMedia, ProfileBookings, ProfileContent, ProfileBioText, ProfileData, VenueManagerBookings, VenueManagerBookingsData } from "./profileInterfaces";
+import { ProfileMedia, ProfileBookings, ProfileContent, ProfileBioText, ProfileData, VenueManagerBookings, VenueManagerBookingsData, ProfileDataProps } from "./profileInterfaces";
 import { LoginFormInputs, LoginResponse } from "./loginInterfaces";
 import { RegisterFormInputs } from "./registrationInterfaces";
 import { Meta, Media, Venue, VenueResponse } from "./venueInterface";
@@ -39,6 +39,7 @@ export type {
   ProfileContent,
   ProfileBioText,
   ProfileData,
+  ProfileDataProps,
   VenueManagerBookings,
   ProfileMedia,
   VenueManagerBookingsData,
