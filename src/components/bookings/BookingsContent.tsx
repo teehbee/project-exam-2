@@ -1,6 +1,5 @@
 import { VenueImageAndText } from "../venue/elements";
-import BookingsList from "./BookingsList";
-import BookingsButtons from "./BookingsButtons";
+import { BookingsList, BookingsButtons } from "./";
 import { useParams } from "react-router-dom";
 import { FrontPageLoader, FrontPageError } from "../frontpageContent";
 import { getVenueEndpoint } from "../api/const";

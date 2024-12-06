@@ -1,6 +1,6 @@
-import { FilterValues } from "../api/const/interfaces";
+import { FilterValues } from "../../api/const/interfaces";
 
-// checking changes compared to initial values of filter
+// Checking changes compared to initial values of filter of facilities
 
 export const checkForFilterChanges = (checkboxes: FilterValues, filterValues: FilterValues, onFilterChange: (updatedValues: FilterValues) => void) => {
   const isDifferent = Object.keys(checkboxes).some((key) => {
@@ -8,11 +8,10 @@ export const checkForFilterChanges = (checkboxes: FilterValues, filterValues: Fi
   });
   if (isDifferent) {
     onFilterChange(checkboxes);
-    // console.log("Current filter status:", checkboxes);
   }
 };
 
-// setting changes
+// Setting changes
 
 export const setInitialFilterValues = (filterValues: FilterValues, setValue: (key: keyof FilterValues, value: boolean) => void) => {
   Object.keys(filterValues).forEach((key) => {

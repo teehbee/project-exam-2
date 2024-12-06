@@ -1,7 +1,7 @@
-import VenueTile from "./VenuesTile";
-import VenueFiltering from "./filter";
-import FilterButton from "./FilterButton";
-import FilterForm from "./FilterForm";
+import VenueTile from "./elements/VenuesTile";
+import VenueFiltering from "./elements/filter";
+import FilterButton from "./elements/FilterButton";
+import FilterForm from "./elements/FilterForm";
 import VenuesPage from "./Venues";
 
 export { VenueTile, VenueFiltering, FilterButton, FilterForm, VenuesPage };

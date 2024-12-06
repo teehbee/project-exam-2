@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ProfileBioText } from "../api/const/interfaces";
+import { ProfileBioText } from "../../api/const/interfaces";
 
 const ProfileBio: React.FC<ProfileBioText> = ({ bio, name }) => {
   return (

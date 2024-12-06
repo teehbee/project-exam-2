@@ -1,5 +1,4 @@
-import { useRedirectTimer } from "../../components/utils";
-import { useScrollToTop } from "../../components/utils";
+import { useRedirectTimer, useScrollToTop } from "../../components/utils";
 import SuccessMessage from "../../components/successMessages";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 

@@ -1,4 +1,4 @@
-import { FilterValues } from "../api/const/interfaces";
+import { FilterValues } from "../../api/const/interfaces";
 
 // Set values from facility filters
 

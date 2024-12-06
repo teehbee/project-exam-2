@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { checkForFilterChanges, setInitialFilterValues } from "../utils";
-import { FilterValues } from "../api/const/interfaces";
+import { checkForFilterChanges, setInitialFilterValues } from "../../utils";
+import { FilterValues } from "../../api/const/interfaces";
 
 interface FilterFormProps {
   filterValues: FilterValues;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { ProfileBookingsUpcoming, ProfileBookingsManaged } from "./";
-import { ProfileData } from "../api/const/interfaces";
+import { ProfileBookingsUpcoming, ProfileBookingsManaged } from "..";
+import { ProfileData } from "../../api/const/interfaces";
 
 // section for managing bookings is set to bookings default
 

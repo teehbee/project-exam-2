@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FilterButton, FilterForm } from "./";
-import { FilterValues } from "../api/const/interfaces";
+import { FilterButton, FilterForm } from "..";
+import { FilterValues } from "../../api/const/interfaces";
 
 interface VenueFilteringProps {
   filterValues: FilterValues;

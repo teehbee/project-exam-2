@@ -87,8 +87,3 @@ const VenuesPage: React.FC = () => {
 };
 
 export default VenuesPage;
-
-{
-  /* <source media="(min-width: 992px)" srcSet={frontpageHeroImageLarge} width="1920" height="920" />
-<img className="position-absolute top-0 banner-img" src={frontpageHeroImageSmall} aria-label="A beautiful fjord" width="992" height="950" /> */
-}

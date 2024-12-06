@@ -1,7 +1,7 @@
-import { ConvertedSearchDataInterface, FilterValues } from "../api/const/interfaces";
+import { ConvertedSearchDataInterface, FilterValues } from "../../api/const/interfaces";
 import { Dispatch } from "redux";
-import { clearFrontpageSearchData } from "../../redux/actions/frontpageRemoveSearchAction";
-import { VenueResponse } from "../api/const/interfaces";
+import { clearFrontpageSearchData } from "../../../redux/actions/frontpageRemoveSearchAction";
+import { VenueResponse } from "../../api/const/interfaces";
 import { filterVenues } from "./filterVenues";
 
 // Search handler function for venue search

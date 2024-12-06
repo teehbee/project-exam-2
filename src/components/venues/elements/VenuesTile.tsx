@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { bookingTileInterface } from "../api/const/interfaces";
-import { WifiFacilityNoText, BreakfastFacilityNoText, ParkingFacilityNoText, PetsFacilityNoText } from "../venue/elements/facilities";
-import { starIcon } from "../../assets/icon";
-import { placeHolder } from "../../assets/img";
+import { bookingTileInterface } from "../../api/const/interfaces";
+import { WifiFacilityNoText, BreakfastFacilityNoText, ParkingFacilityNoText, PetsFacilityNoText } from "../../venue/elements/facilities";
+import { starIcon } from "../../../assets/icon";
+import { placeHolder } from "../../../assets/img";
 
 const VenueTile: React.FC<bookingTileInterface> = ({ venue }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);

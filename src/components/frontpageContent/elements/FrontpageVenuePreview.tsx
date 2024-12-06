@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useApi } from "../api";
-import { Venue, VenueResponse } from "../api/const/interfaces";
-import { VENUES_ENDPOINT } from "../api/const";
+import { useApi } from "../../api";
+import { Venue, VenueResponse } from "../../api/const/interfaces";
+import { VENUES_ENDPOINT } from "../../api/const";
 import { Spinner } from "react-bootstrap";
-import { placeHolder } from "../../assets/img";
+import { placeHolder } from "../../../assets/img";
 
 function FrontpageVenuePreview() {
   const [venueLoader, setVenueLoader] = useState(false);

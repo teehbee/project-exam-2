@@ -1,6 +1,6 @@
 import BookingsContent from "./BookingsContent";
-import BookingsList from "./BookingsList";
-import BookingsButtons from "./BookingsButtons";
-import BookingsListItem from "./BookingsListItem";
+import BookingsButtons from "./elements/BookingsButtons";
+import BookingsListItem from "./elements/BookingsListItem";
+import BookingsList from "./elements/BookingsList";
 
 export { BookingsContent, BookingsList, BookingsButtons, BookingsListItem };

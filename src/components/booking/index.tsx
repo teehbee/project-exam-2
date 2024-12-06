@@ -1,5 +1,5 @@
 import BookingSuccessContent from "./BookingSuccessContent";
-import BookingSuccessButtons from "./BookingSuccessButtons";
-import BookingSuccessTextBox from "./BookingSuccessTextBox";
+import BookingSuccessButtons from "./elements/BookingSuccessButtons";
+import BookingSuccessTextBox from "./elements/BookingSuccessTextBox";
 
 export { BookingSuccessContent, BookingSuccessTextBox, BookingSuccessButtons };

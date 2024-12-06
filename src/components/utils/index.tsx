@@ -1,15 +1,15 @@
-import useRedirectTimer from "./useRedirectTimer";
-import { getTodaysDate, getTomorrowsDate } from "./dateUtils";
-import useScrollToTop from "./useScrollToTop";
-import { checkForFilterChanges, setInitialFilterValues } from "./filterVenuesUtils";
-import formatDate from "./useFormatDate";
-import { useCalculateTotalCost } from "./useCalculateCost";
-import { isDateAvailable } from "./isDateAvailable";
-import { filterVenues } from "./filterVenues";
-import { deleteSearch } from "./deleteSearch";
-import { searchHandler } from "./handleSearch";
-import { handleFilterChange } from "./handleFilterChange";
-import { loadMoreVenues } from "./loadMoreVenues";
+import useRedirectTimer from "./hooks/useRedirectTimer";
+import { getTodaysDate, getTomorrowsDate } from "./dateAndTime/dateUtils";
+import useScrollToTop from "./hooks/useScrollToTop";
+import { checkForFilterChanges, setInitialFilterValues } from "./venues/filterVenuesUtils";
+import formatDate from "./hooks/useFormatDate";
+import { useCalculateTotalCost } from "./hooks/useCalculateCost";
+import { isDateAvailable } from "./dateAndTime/isDateAvailable";
+import { filterVenues } from "./venues/filterVenues";
+import { deleteSearch } from "./venues/deleteSearch";
+import { searchHandler } from "./venues/handleSearch";
+import { handleFilterChange } from "./venues/handleFilterChange";
+import { loadMoreVenues } from "./venues/loadMoreVenues";
 import { handleSignOut } from "./authorization/authorization";
 import { checkIsVenueManager } from "./authorization/checkIsVenueManager";
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SingleVenueProp } from "../api/const/interfaces";
+import { SingleVenueProp } from "../../api/const/interfaces";
 
 const BookingsButtons: React.FC<SingleVenueProp> = (venue) => {
   const bookingData = venue.venue.data;

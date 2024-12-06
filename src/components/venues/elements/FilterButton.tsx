@@ -1,4 +1,4 @@
-import { filterIcon } from "../../assets/icon";
+import { filterIcon } from "../../../assets/icon";
 
 interface FilterButtonProps {
   handleFilterClick: () => void;
