@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { frontPageImage1, frontPageImage2 } from "../../assets/frontpageImg";
+import { frontPageImage1, frontPageImage2 } from "../../../assets/frontpageImg";
 
 function FrontpageTiles() {
   return (

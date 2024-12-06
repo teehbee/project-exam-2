@@ -1,4 +1,4 @@
-import BookingSuccessContent from "./elements/BookingSuccessContent";
+import BookingSuccessContent from "./BookingSuccessContent";
 import BookingSuccessButtons from "./elements/BookingSuccessButtons";
 import BookingSuccessTextBox from "./elements/BookingSuccessTextBox";
 

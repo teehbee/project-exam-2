@@ -1,5 +1,5 @@
-import { SingleVenueProp } from "../api/const/interfaces";
-import { formatDate } from "../utils";
+import { SingleVenueProp } from "../../api/const/interfaces";
+import { formatDate } from "../../utils";
 
 const BookingsList: React.FC<SingleVenueProp> = ({ venue }) => {
   const bookingData = venue.data.bookings;

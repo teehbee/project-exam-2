@@ -1,4 +1,4 @@
-import { checkIcon } from "../../assets/icon";
+import { checkIcon } from "../../../assets/icon";
 
 interface ProfileDataProps {
   name: string;

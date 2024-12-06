@@ -1,4 +1,4 @@
-import BookingSuccessTextBox from "./BookingSuccessTextBox";
+import BookingSuccessTextBox from "./elements/BookingSuccessTextBox";
 function BookingSuccessContent() {
   return <BookingSuccessTextBox />;
 }
