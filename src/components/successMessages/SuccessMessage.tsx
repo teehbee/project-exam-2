@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
+import { SuccessMessageProps } from "../api/const/interfaces";
 
 // Reusable component for success pages. To be used on login, registration and other updates
-
-interface SuccessMessageProps {
-  title: string;
-  linkTo: string;
-}
 
 const SuccessMessage: React.FC<SuccessMessageProps> = ({ title, linkTo }) => {
   return (

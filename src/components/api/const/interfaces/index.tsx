@@ -12,6 +12,7 @@ import { ProfileMedia, ProfileBookings, ProfileContent, ProfileBioText, ProfileD
 import { LoginFormInputs, LoginResponse } from "./loginInterfaces";
 import { RegisterFormInputs } from "./registrationInterfaces";
 import { Meta, Media, Venue, VenueResponse } from "./venueInterface";
+import { SuccessMessageProps } from "./successMessageInterface";
 
 export type {
   SingleVenueResponse,
@@ -48,4 +49,5 @@ export type {
   Media,
   Venue,
   VenueResponse,
+  SuccessMessageProps,
 };
