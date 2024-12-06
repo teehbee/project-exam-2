@@ -1,4 +1,4 @@
-// Reusable function to calculate total cost of stay by multiplying number of nights with price per night
+// Reusable hook to calculate total cost of stay by multiplying number of nights with price per night
 
 const parseDate = (dateString: string): Date => {
   const [day, month, year] = dateString.split(".").map(Number);

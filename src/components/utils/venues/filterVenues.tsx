@@ -1,5 +1,5 @@
-import { SearchReturnInterface, FilterValues, ConvertedSearchDataInterface } from "../api/const/interfaces";
-import { isDateAvailable } from "./isDateAvailable";
+import { SearchReturnInterface, FilterValues, ConvertedSearchDataInterface } from "../../api/const/interfaces";
+import { isDateAvailable } from "../dateAndTime/isDateAvailable";
 
 export const filterVenues = (venues: SearchReturnInterface[], searchData: ConvertedSearchDataInterface, filterValues: FilterValues) => {
   return venues.filter((venue) => {

@@ -1,4 +1,4 @@
-import { Bookings } from "../api/const/interfaces";
+import { Bookings } from "../../api/const/interfaces";
 
 export const isDateAvailable = (bookings: Bookings[], dateFrom: string, dateTo: string): boolean => {
   const searchArrival = new Date(dateFrom).getTime();

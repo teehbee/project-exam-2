@@ -1,7 +1,6 @@
 import { Dispatch } from "redux";
-import { VenueResponse } from "../api/const/interfaces";
-import { clearFrontpageSearchData } from "../../redux/actions/frontpageRemoveSearchAction";
-import { ConvertedSearchDataInterface } from "../api/const/interfaces";
+import { VenueResponse, ConvertedSearchDataInterface } from "../../api/const/interfaces";
+import { clearFrontpageSearchData } from "../../../redux/actions/frontpageRemoveSearchAction";
 
 // Function for clearing out search on venues page
 
