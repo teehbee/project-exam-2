@@ -6,7 +6,6 @@ import { FrontPageLoader, FrontPageError } from "../../frontpageContent";
 import { formatDate, useCalculateTotalCost } from "../../utils";
 
 const BookingSuccessTextBox: React.FC = () => {
-  // Get the id from the URL
   const { id } = useParams<{ id: string }>();
 
   // API call to fetch the needed venue
